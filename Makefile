@@ -2,6 +2,18 @@
 run:
 	go run ./cmd/ipmanager run -config ./configs/ipmanager.yaml
 
+.PHONY: migrate
+migrate:
+	go run ./cmd/ipmanager migrate -config ./configs/ipmanager.yaml
+
+.PHONY: test-data
+test-data:
+	go run ./cmd/ipmanager migrate -config ./configs/ipmanager.yaml
+
+.PHONY: test-client
+test-client:
+	go run ./test/grpc_client
+
 .PHONY: build
 build:
 	go run ./tools/vfsgen
@@ -15,3 +27,5 @@ gen:
 	   --go_out=paths=source_relative:./api/pb \
 	   --go-grpc_out=paths=source_relative:./api/pb \
 	   ./api/proto/*.proto
+
+	cd web && yarn gen

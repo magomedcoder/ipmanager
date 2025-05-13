@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import UserCreate from '@/components/UserCreate.vue'
-import UserCard from '@/components/UserCard.vue'
+import UserCreate from '@/components/user/UserCreate.vue'
+import UserCard from '@/components/user/UserCard.vue'
 import BaseTable from '@/components/base/BaseTable.vue'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import { useUserStore } from '@/stores/user'
@@ -56,7 +56,7 @@ const load = async (_page: number) => {
   loading.value = true
   userStore.getUsers(page.value, pageSize.value)
     .then(async (res: { total: number; items: IItem[] }) => {
-      total.value = res.total
+      total.value = Number(res.total)
       items.value = res.items
   }).finally(() => {
     loading.value = false

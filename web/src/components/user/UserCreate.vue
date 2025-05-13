@@ -8,7 +8,7 @@ const emit = defineEmits(['onReset'])
 
 const userStore = useUserStore()
 
-interface ILogin {
+interface IUser {
   username: string
   password: string
   name: string
@@ -17,14 +17,14 @@ interface ILogin {
 
 const ruleFormRef = ref<FormInstance>()
 
-const form = reactive<ILogin>({
+const form = reactive<IUser>({
   username: '',
   password: '',
   name: '',
   surname: ''
 })
 
-const rules = reactive<FormRules<ILogin>>({
+const rules = reactive<FormRules<IUser>>({
   username: [
     {
       required: true,
@@ -85,8 +85,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
         name: form.name,
         surname: form.surname
       }).then(async (res: any) => {
-        const { code, data } = res
-        if (code == 200 && data.id) {
+        if (res.id !=0) {
           onClose()
           emit('onReset')
         }

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/magomedcoder/ipmanager/api/pb"
+	"github.com/magomedcoder/ipmanager/internal/app/di"
 	"github.com/magomedcoder/ipmanager/internal/delivery/grpc/handler"
-	"github.com/magomedcoder/ipmanager/internal/delivery/grpc/middleware"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"io"
@@ -14,18 +14,14 @@ import (
 	"strings"
 )
 
-type AppProvider struct {
-	UserHandler pb.UserServiceServer
-	Middleware  middleware.AuthMiddleware
-}
-
-func Run(app *AppProvider) error {
+func Run(app *di.AppProvider) error {
 	srv := grpc.NewServer(
 		grpc.UnaryInterceptor(app.Middleware.UnaryInterceptor),
 		grpc.StreamInterceptor(app.Middleware.StreamInterceptor),
 	)
 
 	pb.RegisterUserServiceServer(srv, app.UserHandler)
+	pb.RegisterIpServiceServer(srv, app.IpHandler)
 
 	reflection.Register(srv)
 

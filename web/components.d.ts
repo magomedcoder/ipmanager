@@ -30,10 +30,12 @@ declare module 'vue' {
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElPagination: typeof import('element-plus/es')['ElPagination']
     ElTableV2: typeof import('element-plus/es')['ElTableV2']
+    IPCard: typeof import('./src/components/ip/IPCard.vue')['default']
+    IPCreate: typeof import('./src/components/ip/IPCreate.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    UserCard: typeof import('./src/components/UserCard.vue')['default']
-    UserCreate: typeof import('./src/components/UserCreate.vue')['default']
+    UserCard: typeof import('./src/components/user/UserCard.vue')['default']
+    UserCreate: typeof import('./src/components/user/UserCreate.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']

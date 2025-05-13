@@ -1,7 +1,9 @@
+@forward 'element-plus/theme-chalk/src/mixins/config.scss';
+
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $colors: (
     'primary': (
-      'base': #3d444db3,
+      'base': #374151,
     ),
   ),
   $common-component-size: (
@@ -11,14 +13,13 @@
     '': rgb(30 37 43 / 93%)
   ),
   $bg-color: (
-    '': #010409,
-    'page': #010409,
-    'overlay': #010409,
+    '': #262D34,
+    'page': #262D34,
+    'overlay': #262D34,
   ),
   $fill-color: (
     'light': #1e242a,
-    'blank': #010409,
-    'extra-light': #010409,
+    'blank': #262D34,
   ),
   $text-color:(
     'primary': #ffffff,
@@ -31,23 +32,23 @@
     'border-radius': 0.5rem
   ),
   $border-color: (
-    '': #3d444db3,
-    'light': #3d444db3,
-    'lighter': #3d444db3,
-    'extra-light': #3d444db3,
-    'dark': #3d444db3,
-    'darker': #3d444db3,
+    '': #374151,
+    'light': #374151,
+    'lighter': #374151,
+    'extra-light': #374151,
+    'dark': #374151,
+    'darker': #374151,
   ),
   $menu: (
-    'bg-color': #010409,
-    'hover-bg-color': #0d1117,
+    'bg-color': #262D34,
+    'hover-bg-color': #1e242a,
     'active-color': #ffffff,
   ),
   $table: (
     'row-hover-bg-color': #1e242a
   ),
   $card: (
-    'bg-color': #010409
+    'bg-color': #262D34
   ),
   $pagination: (
     'button-bg-color': transparent

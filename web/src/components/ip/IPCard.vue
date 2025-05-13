@@ -1,30 +1,26 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useUserStore } from '@/stores/user'
+import { useIpStore } from '@/stores/ip'
 
 const modelValue = defineModel()
 const props = defineProps(['id'])
 
-const userStore = useUserStore()
+const ipStore = useIpStore()
 
 const onClose = () => modelValue.value = false
 
 interface IItem {
   id: number
-  username: string
-  name: string
-  surname: string
+  ip: string
 }
 
 const form = ref<IItem>({
   id: 0,
-  username: '',
-  name: '',
-  surname: '',
+  ip: '',
 })
 
 const load = async () => {
-  userStore.getUser(props.id)
+  ipStore.getIp(props.id)
     .then(async (res: any) => {
       form.value = res
     }).finally(() => {
@@ -37,14 +33,12 @@ load()
 <template>
   <el-dialog
     v-model="modelValue"
-    title="Карточка пользователя"
+    title="Карточка IP"
     width="500"
     align-center
   >
     <el-descriptions :column="1">
-      <el-descriptions-item label="Имя пользователя:">@ {{form.username}}</el-descriptions-item>
-      <el-descriptions-item label="Имя:">{{form.name}}</el-descriptions-item>
-      <el-descriptions-item label="Фамилия:">{{form.surname}}</el-descriptions-item>
+      <el-descriptions-item label="IP:">{{form.ip}}</el-descriptions-item>
     </el-descriptions>
   </el-dialog>
 </template>

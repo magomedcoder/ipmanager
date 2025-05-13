@@ -9,20 +9,20 @@ package di
 import (
 	"github.com/google/wire"
 	"github.com/magomedcoder/ipmanager/api/pb"
+	"github.com/magomedcoder/ipmanager/internal/cli"
+	handler2 "github.com/magomedcoder/ipmanager/internal/cli/handler"
 	"github.com/magomedcoder/ipmanager/internal/config"
 	"github.com/magomedcoder/ipmanager/internal/delivery/grpc/handler"
 	"github.com/magomedcoder/ipmanager/internal/delivery/grpc/middleware"
 	"github.com/magomedcoder/ipmanager/internal/infrastructure"
 	"github.com/magomedcoder/ipmanager/internal/infrastructure/postgres/repository"
 	"github.com/magomedcoder/ipmanager/internal/provider"
-	"github.com/magomedcoder/ipmanager/internal/server"
 	"github.com/magomedcoder/ipmanager/internal/usecase"
 )
 
 // Injectors from wire.go:
 
-func NewGrpcInjector(conf *config.Config) *server.AppProvider {
-	unimplementedUserServiceServer := pb.UnimplementedUserServiceServer{}
+func NewGrpcInjector(conf *config.Config) *AppProvider {
 	db := provider.NewPostgresClient(conf)
 	userRepository := repository.NewUserRepository(db)
 	userSessionRepository := repository.NewUserSessionRepository(db)
@@ -31,16 +31,49 @@ func NewGrpcInjector(conf *config.Config) *server.AppProvider {
 		UserRepo:        userRepository,
 		UserSessionRepo: userSessionRepository,
 	}
+	authMiddleware := middleware.AuthMiddleware{
+		UserUseCase: userUseCase,
+	}
+	unimplementedUserServiceServer := pb.UnimplementedUserServiceServer{}
 	userHandler := &handler.UserHandler{
 		UnimplementedUserServiceServer: unimplementedUserServiceServer,
 		UserUseCase:                    userUseCase,
 	}
-	authMiddleware := middleware.AuthMiddleware{
+	unimplementedIpServiceServer := pb.UnimplementedIpServiceServer{}
+	ipRepository := repository.NewIPRepository(db)
+	ipUseCase := &usecase.IpUseCase{
+		Conf:   conf,
+		IpRepo: ipRepository,
+	}
+	ipHandler := &handler.IpHandler{
+		UnimplementedIpServiceServer: unimplementedIpServiceServer,
+		IpUseCase:                    ipUseCase,
+	}
+	appProvider := &AppProvider{
+		Middleware:  authMiddleware,
+		UserHandler: userHandler,
+		IpHandler:   ipHandler,
+	}
+	return appProvider
+}
+
+func NewCliInjector(conf *config.Config) *cli.AppProvider {
+	db := provider.NewPostgresClient(conf)
+	userRepository := repository.NewUserRepository(db)
+	userSessionRepository := repository.NewUserSessionRepository(db)
+	userUseCase := &usecase.UserUseCase{
+		Conf:            conf,
+		UserRepo:        userRepository,
+		UserSessionRepo: userSessionRepository,
+	}
+	migrate := &handler2.Migrate{
+		Conf:        conf,
+		Db:          db,
 		UserUseCase: userUseCase,
 	}
-	appProvider := &server.AppProvider{
-		UserHandler: userHandler,
-		Middleware:  authMiddleware,
+	appProvider := &cli.AppProvider{
+		Conf:    conf,
+		Migrate: migrate,
 	}
 	return appProvider
 }

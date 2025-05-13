@@ -201,9 +201,9 @@ const showChangePasswordBox = () => {
 <style lang="scss" scoped>
 header {
   display: flex;
-  background-color: #010409;
+  background-color: #262D34;
   height: 60px;
-  border-bottom: 1px solid #3d444db3;
+  border-bottom: 1px solid #374151;
 
   .header__logo {
     display: flex;
