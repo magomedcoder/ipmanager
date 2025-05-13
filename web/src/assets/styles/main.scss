@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #0d1117 !important;
+  color: #c1d4e3;
+}
+
+.el-select-dropdown__item.is-selected {
+  color: #c1d4e3 !important;
+  background-color: var(--el-fill-color-light);
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #262d34 inset !important;
+  -webkit-text-fill-color: #fff;
+}
+
+.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active {
+  color: #fff !important;
+}
+
+.el-message-box__message {
+  width: 100%;
+}

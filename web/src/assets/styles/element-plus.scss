@@ -1,0 +1,55 @@
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      'base': #3d444db3,
+    ),
+  ),
+  $common-component-size: (
+    'default': 38px,
+  ),
+  $mask-color: (
+    '': rgb(30 37 43 / 93%)
+  ),
+  $bg-color: (
+    '': #010409,
+    'page': #010409,
+    'overlay': #010409,
+  ),
+  $fill-color: (
+    'light': #1e242a,
+    'blank': #010409,
+    'extra-light': #010409,
+  ),
+  $text-color:(
+    'primary': #ffffff,
+    'regular': #ffffff,
+    'secondary': #ffffff,
+    'placeholder': #a8abb2,
+    'disabled': #c0c4cc,
+  ),
+  $input: (
+    'border-radius': 0.5rem
+  ),
+  $border-color: (
+    '': #3d444db3,
+    'light': #3d444db3,
+    'lighter': #3d444db3,
+    'extra-light': #3d444db3,
+    'dark': #3d444db3,
+    'darker': #3d444db3,
+  ),
+  $menu: (
+    'bg-color': #010409,
+    'hover-bg-color': #0d1117,
+    'active-color': #ffffff,
+  ),
+  $table: (
+    'row-hover-bg-color': #1e242a
+  ),
+  $card: (
+    'bg-color': #010409
+  ),
+  $pagination: (
+    'button-bg-color': transparent
+  ),
+);

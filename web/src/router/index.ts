@@ -1,19 +1,35 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { isLoggedIn } from '@/utils/cookie'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: () => import('../views/HomeView.vue'),
+      name: 'HomeView',
+      component: () => import('../views/home.vue')
     },
     {
       path: '/login',
-      name: 'login',
-      component: () => import('../views/LoginView.vue'),
-    },
-  ],
+      name: 'LoginView',
+      component: () => import('../views/login.vue')
+    }
+  ]
 })
+
+// router.beforeEach((to, from, next) => {
+//   document.title = to.meta.title || 'IP Manager'
+//   if (!isLoggedIn() && to.fullPath !== '/login') {
+//     next('/login')
+//     return
+//   }
+//
+//   if (isLoggedIn() && to.fullPath == '/login') {
+//     next('/')
+//     return
+//   }
+//
+//   next()
+// })
 
 export default router
