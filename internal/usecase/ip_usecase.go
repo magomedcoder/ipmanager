@@ -73,7 +73,6 @@ func (i *IpUseCase) GetIps(ctx context.Context, arg ...func(*gorm.DB)) ([]*entit
 
 	items := make([]*entity.Ip, 0)
 	for _, item := range ips {
-		fmt.Println(item.Vlan)
 		res := &entity.Ip{
 			Id: int64(item.ID),
 			Ip: item.Ip,

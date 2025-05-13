@@ -28,7 +28,7 @@ func NewVlanRepository(db *gorm.DB) *VlanRepository {
 
 func (v *VlanRepository) Create(ctx context.Context, vlan *model.Vlan) (*model.Vlan, error) {
 	if err := v.Repo.Create(ctx, vlan); err != nil {
-		log.Printf("Не удалось создать пользователя: %s", err)
+		log.Printf("Не удалось создать: %s", err)
 		return nil, err
 	}
 

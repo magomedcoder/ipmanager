@@ -36,6 +36,8 @@ declare module 'vue' {
     IPCreate: typeof import('./src/components/ip/IPCreate.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ServiceCard: typeof import('./src/components/service/ServiceCard.vue')['default']
+    ServiceCreate: typeof import('./src/components/service/ServiceCreate.vue')['default']
     UserCard: typeof import('./src/components/user/UserCard.vue')['default']
     UserCreate: typeof import('./src/components/user/UserCreate.vue')['default']
     VlanCard: typeof import('./src/components/vlan/VlanCard.vue')['default']

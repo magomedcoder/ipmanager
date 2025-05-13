@@ -14,4 +14,7 @@ var ProviderSet = wire.NewSet(
 
 	wire.Struct(new(VlanUseCase), "*"),
 	wire.Bind(new(IVlanUseCase), new(*VlanUseCase)),
+
+	wire.Struct(new(ServiceUseCase), "*"),
+	wire.Bind(new(IServiceUseCase), new(*ServiceUseCase)),
 )

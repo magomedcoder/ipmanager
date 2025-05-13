@@ -13,6 +13,7 @@ type AppProvider struct {
 	IpHandler       pb.IpServiceServer
 	CustomerHandler pb.CustomerServiceServer
 	VlanHandler     pb.VlanServiceServer
+	ServiceHandler  pb.ServiceServiceServer
 }
 
 var GRPCProviderSet = wire.NewSet(

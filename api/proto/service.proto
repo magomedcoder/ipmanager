@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package service;
+
+option go_package = "github.com/magomedcoder/ipmanager/api/pb";
+
+service ServiceService {
+  rpc CreateService(CreateServiceRequest) returns (CreateServiceResponse);
+
+  rpc GetServices(GetServicesRequest) returns (GetServicesResponse);
+
+  rpc GetServiceById(GetServiceRequest) returns (GetServiceResponse);
+}
+
+message CreateServiceRequest{
+  string name = 1;
+}
+
+message CreateServiceResponse{
+  int64 id = 1;
+}
+
+message GetServicesRequest {
+  int64 page = 1;
+  int64 pageSize = 2;
+}
+
+message GetServicesResponse {
+  int64 total = 1;
+  repeated ServiceItem items = 2;
+}
+
+message ServiceItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message GetServiceRequest {
+  int64 id = 1;
+}
+
+message GetServiceResponse {
+  int64 id = 1;
+  string name = 2;
+}

@@ -10,11 +10,11 @@ const router = createRouter({
       component: () => import('../views/home.vue')
     },
     {
-      path: '/customers',
-      name: 'CustomerView',
-      component: () => import('../views/customers.vue'),
+      path: '/services',
+      name: 'servicesView',
+      component: () => import('../views/services.vue'),
       meta: {
-        title: 'Клиенты'
+        title: 'Сервисы'
       }
     },
     {
@@ -23,6 +23,14 @@ const router = createRouter({
       component: () => import('../views/vlans.vue'),
       meta: {
         title: 'VLAN'
+      }
+    },
+    {
+      path: '/customers',
+      name: 'CustomerView',
+      component: () => import('../views/customers.vue'),
+      meta: {
+        title: 'Клиенты'
       }
     },
     {

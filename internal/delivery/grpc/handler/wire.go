@@ -21,4 +21,8 @@ var ProviderSet = wire.NewSet(
 	wire.Struct(new(VlanHandler), "*"),
 	wire.Struct(new(pb.UnimplementedVlanServiceServer), "*"),
 	wire.Bind(new(pb.VlanServiceServer), new(*VlanHandler)),
+
+	wire.Struct(new(ServiceHandler), "*"),
+	wire.Struct(new(pb.UnimplementedServiceServiceServer), "*"),
+	wire.Bind(new(pb.ServiceServiceServer), new(*ServiceHandler)),
 )
