@@ -1,0 +1,10 @@
+postgres:
+  host: postgres
+  port: 5432
+  username: postgres
+  password: postgres
+  database: gskeleton
+
+jwt:
+  secret: "github.com/magomedcoder/ipmanager"
+  expires_time: 2678400

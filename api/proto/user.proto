@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "github.com/magomedcoder/ipmanager/api/pb";
+
+service UserService {
+  rpc Login(UserLoginRequest) returns (UserLoginResponse);
+
+  rpc Logout(UserLogoutRequest) returns (UserLogoutResponse);
+}
+
+message UserLoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message UserLoginResponse {
+  string access_token = 1;
+}
+
+message UserLogoutRequest {}
+
+message UserLogoutResponse {
+  bool success = 1;
+}
