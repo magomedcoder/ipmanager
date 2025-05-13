@@ -1,0 +1,37 @@
+services:
+  ipmanager:
+    container_name: ipmanager
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /usr/bin/ipmanager run
+    volumes:
+      - ./configs/ipmanager.yaml:/etc/ipmanager/ipmanager.yaml
+    restart: always
+    ports:
+      - '8000:8000'
+    networks:
+      - network-ipmanager
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: postgres
+    image: postgres:16
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/data/postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=ipmanager
+    networks:
+      - network-ipmanager
+
+volumes:
+  postgres:
+
+networks:
+  network-ipmanager:
+    driver: bridge
