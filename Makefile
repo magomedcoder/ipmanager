@@ -2,6 +2,11 @@
 run:
 	go run ./cmd/ipmanager run -config ./configs/ipmanager.yaml
 
+.PHONY: build
+build:
+	go run ./tools/vfsgen
+	go build -o ./build/ipmanager ./cmd/ipmanager
+
 .PHONY: gen
 gen:
 	wire ./internal/app/di
