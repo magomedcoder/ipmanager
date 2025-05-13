@@ -12,24 +12,35 @@ const router = createRouter({
     {
       path: '/login',
       name: 'LoginView',
-      component: () => import('../views/login.vue')
-    }
+      component: () => import('../views/login.vue'),
+      meta: {
+        title: 'Вход'
+      }
+    },
+    {
+      path: '/users',
+      name: 'UserView',
+      component: () => import('../views/users.vue'),
+      meta: {
+        title: 'Пользователи'
+      }
+    },
   ]
 })
 
-// router.beforeEach((to, from, next) => {
-//   document.title = to.meta.title || 'IP Manager'
-//   if (!isLoggedIn() && to.fullPath !== '/login') {
-//     next('/login')
-//     return
-//   }
-//
-//   if (isLoggedIn() && to.fullPath == '/login') {
-//     next('/')
-//     return
-//   }
-//
-//   next()
-// })
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || 'IP Manager'
+  if (!isLoggedIn() && to.fullPath !== '/login') {
+    next('/login')
+    return
+  }
+
+  if (isLoggedIn() && to.fullPath == '/login') {
+    next('/')
+    return
+  }
+
+  next()
+})
 
 export default router

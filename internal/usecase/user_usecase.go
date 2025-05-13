@@ -22,11 +22,15 @@ type IUserUseCase interface {
 
 	Logout(ctx context.Context, accessToken string) error
 
-	Create(ctx context.Context, userModel *postgresModel.User) (*postgresModel.User, error)
-
 	ValidateToken(tokenString string) (*UserClaims, error)
 
 	IsTokenRevoked(ctx context.Context, token string) (bool, error)
+
+	Create(ctx context.Context, opt *UserOpt) (*entity.User, error)
+
+	GetUsers(ctx context.Context, arg ...func(*gorm.DB)) ([]*entity.User, error)
+
+	GetUserById(ctx context.Context, id int64) (*entity.User, error)
 }
 
 var _ IUserUseCase = (*UserUseCase)(nil)
@@ -65,34 +69,6 @@ func (u *UserUseCase) Login(ctx context.Context, username string, password strin
 
 func (u *UserUseCase) Logout(ctx context.Context, accessToken string) error {
 	return u.UserSessionRepo.DeleteByToken(ctx, accessToken)
-}
-
-func (u *UserUseCase) Create(ctx context.Context, userModel *postgresModel.User) (*postgresModel.User, error) {
-	user, err := u.UserRepo.GetByUsername(userModel.Username)
-	if err != nil {
-		if !errors.Is(err, gorm.ErrRecordNotFound) {
-			log.Println(err)
-			return nil, err
-		}
-	}
-
-	if user != nil && user.ID != 0 {
-		return nil, status.Error(codes.AlreadyExists, fmt.Sprintf("Пользователь %s уже существует", user.Username))
-	}
-
-	passwordHash, err := u.hashPassword(userModel.Password)
-	if err != nil {
-		return nil, status.Error(codes.Internal, "Не удалось хешировать пароль")
-	}
-
-	userModel.Password = passwordHash
-
-	createdUser, err := u.UserRepo.Create(ctx, userModel)
-	if err != nil {
-		return nil, status.Error(codes.Internal, "Не удалось создать пользователя")
-	}
-
-	return createdUser, nil
 }
 
 func (u *UserUseCase) hashPassword(password string) (string, error) {
@@ -157,4 +133,81 @@ func (u *UserUseCase) IsTokenRevoked(ctx context.Context, accessToken string) (b
 	}
 
 	return !isValid, nil
+}
+
+type UserOpt struct {
+	Id       int64
+	Username string
+	Password string
+	Name     string
+	Surname  string
+}
+
+func (u *UserUseCase) Create(ctx context.Context, opt *UserOpt) (*entity.User, error) {
+	user, err := u.UserRepo.GetByUsername(opt.Username)
+	if err != nil {
+		if !errors.Is(err, gorm.ErrRecordNotFound) {
+			log.Println(err)
+			return nil, err
+		}
+	}
+
+	if user != nil && user.ID != 0 {
+		return nil, status.Error(codes.AlreadyExists, fmt.Sprintf("Пользователь %s уже существует", user.Username))
+	}
+
+	passwordHash, err := u.hashPassword(opt.Password)
+	if err != nil {
+		return nil, status.Error(codes.Internal, "Не удалось хешировать пароль")
+	}
+
+	createdUser, err := u.UserRepo.Create(ctx, &postgresModel.User{
+		Username: opt.Username,
+		Password: passwordHash,
+		Name:     opt.Name,
+		Surname:  opt.Surname,
+	})
+	if err != nil {
+		return nil, status.Error(codes.Internal, "Не удалось создать пользователя")
+	}
+
+	return &entity.User{
+		Id:       int64(createdUser.ID),
+		Username: createdUser.Username,
+		Name:     createdUser.Name,
+		Surname:  createdUser.Surname,
+	}, nil
+}
+
+func (u *UserUseCase) GetUsers(ctx context.Context, arg ...func(*gorm.DB)) ([]*entity.User, error) {
+	users, err := u.UserRepo.GetUsers(ctx, arg...)
+	if err != nil {
+		return nil, err
+	}
+
+	items := make([]*entity.User, 0)
+	for _, item := range users {
+		items = append(items, &entity.User{
+			Id:       int64(item.ID),
+			Username: item.Username,
+			Name:     item.Name,
+			Surname:  item.Surname,
+		})
+	}
+
+	return items, nil
+}
+
+func (u *UserUseCase) GetUserById(ctx context.Context, id int64) (*entity.User, error) {
+	user, err := u.UserRepo.Get(ctx, id)
+	if err != nil {
+		return nil, errors.New(fmt.Sprintf("Не удалось получить пользователя: %v", id))
+	}
+
+	return &entity.User{
+		Id:       int64(user.ID),
+		Username: user.Username,
+		Name:     user.Name,
+		Surname:  user.Surname,
+	}, nil
 }

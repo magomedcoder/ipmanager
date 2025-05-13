@@ -193,7 +193,7 @@ const showChangePasswordBox = () => {
       </div>
     </el-header>
     <el-main class="!pt-20">
-      <router-view />
+      <slot/>
     </el-main>
   </el-container>
 </template>

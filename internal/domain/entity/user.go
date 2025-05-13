@@ -24,3 +24,10 @@ func GetUserClaimsFromContext(ctx context.Context) (*UserClaims, bool) {
 
 	return nil, false
 }
+
+type User struct {
+	Id       int64
+	Username string
+	Name     string
+	Surname  string
+}

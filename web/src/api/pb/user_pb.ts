@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file user.proto.
  */
 export const file_user: GenFile = /*@__PURE__*/
-  fileDesc("Cgp1c2VyLnByb3RvEgR1c2VyIjYKEFVzZXJMb2dpblJlcXVlc3QSEAoIdXNlcm5hbWUYASABKAkSEAoIcGFzc3dvcmQYAiABKAkiKQoRVXNlckxvZ2luUmVzcG9uc2USFAoMYWNjZXNzX3Rva2VuGAEgASgJIhMKEVVzZXJMb2dvdXRSZXF1ZXN0IiUKElVzZXJMb2dvdXRSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIMoQBCgtVc2VyU2VydmljZRI4CgVMb2dpbhIWLnVzZXIuVXNlckxvZ2luUmVxdWVzdBoXLnVzZXIuVXNlckxvZ2luUmVzcG9uc2USOwoGTG9nb3V0EhcudXNlci5Vc2VyTG9nb3V0UmVxdWVzdBoYLnVzZXIuVXNlckxvZ291dFJlc3BvbnNlQipaKGdpdGh1Yi5jb20vbWFnb21lZGNvZGVyL2lwbWFuYWdlci9hcGkvcGJiBnByb3RvMw");
+  fileDesc("Cgp1c2VyLnByb3RvEgR1c2VyIjYKEFVzZXJMb2dpblJlcXVlc3QSEAoIdXNlcm5hbWUYASABKAkSEAoIcGFzc3dvcmQYAiABKAkiKQoRVXNlckxvZ2luUmVzcG9uc2USFAoMYWNjZXNzX3Rva2VuGAEgASgJIhMKEVVzZXJMb2dvdXRSZXF1ZXN0IiUKElVzZXJMb2dvdXRSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIIlYKEUNyZWF0ZVVzZXJSZXF1ZXN0EhAKCHVzZXJuYW1lGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJEgwKBG5hbWUYAyABKAkSDwoHc3VybmFtZRgEIAEoCSIgChJDcmVhdGVVc2VyUmVzcG9uc2USCgoCaWQYASABKAMiMQoPR2V0VXNlcnNSZXF1ZXN0EgwKBHBhZ2UYASABKAMSEAoIcGFnZVNpemUYAiABKAMiQAoQR2V0VXNlcnNSZXNwb25zZRINCgV0b3RhbBgBIAEoAxIdCgVpdGVtcxgCIAMoCzIOLnVzZXIuVXNlckl0ZW0iRwoIVXNlckl0ZW0SCgoCaWQYASABKAMSEAoIdXNlcm5hbWUYAiABKAkSDAoEbmFtZRgDIAEoCRIPCgdzdXJuYW1lGAQgASgJIhwKDkdldFVzZXJSZXF1ZXN0EgoKAmlkGAEgASgDIk4KD0dldFVzZXJSZXNwb25zZRIKCgJpZBgBIAEoAxIQCgh1c2VybmFtZRgCIAEoCRIMCgRuYW1lGAMgASgJEg8KB3N1cm5hbWUYBCABKAkyuAIKC1VzZXJTZXJ2aWNlEjgKBUxvZ2luEhYudXNlci5Vc2VyTG9naW5SZXF1ZXN0GhcudXNlci5Vc2VyTG9naW5SZXNwb25zZRI7CgZMb2dvdXQSFy51c2VyLlVzZXJMb2dvdXRSZXF1ZXN0GhgudXNlci5Vc2VyTG9nb3V0UmVzcG9uc2USPwoKQ3JlYXRlVXNlchIXLnVzZXIuQ3JlYXRlVXNlclJlcXVlc3QaGC51c2VyLkNyZWF0ZVVzZXJSZXNwb25zZRI5CghHZXRVc2VycxIVLnVzZXIuR2V0VXNlcnNSZXF1ZXN0GhYudXNlci5HZXRVc2Vyc1Jlc3BvbnNlEjYKB0dldFVzZXISFC51c2VyLkdldFVzZXJSZXF1ZXN0GhUudXNlci5HZXRVc2VyUmVzcG9uc2VCKlooZ2l0aHViLmNvbS9tYWdvbWVkY29kZXIvaXBtYW5hZ2VyL2FwaS9wYmIGcHJvdG8z");
 
 /**
  * @generated from message user.UserLoginRequest
@@ -82,6 +82,180 @@ export const UserLogoutResponseSchema: GenMessage<UserLogoutResponse> = /*@__PUR
   messageDesc(file_user, 3);
 
 /**
+ * @generated from message user.CreateUserRequest
+ */
+export type CreateUserRequest = Message<"user.CreateUserRequest"> & {
+  /**
+   * @generated from field: string username = 1;
+   */
+  username: string;
+
+  /**
+   * @generated from field: string password = 2;
+   */
+  password: string;
+
+  /**
+   * @generated from field: string name = 3;
+   */
+  name: string;
+
+  /**
+   * @generated from field: string surname = 4;
+   */
+  surname: string;
+};
+
+/**
+ * Describes the message user.CreateUserRequest.
+ * Use `create(CreateUserRequestSchema)` to create a new message.
+ */
+export const CreateUserRequestSchema: GenMessage<CreateUserRequest> = /*@__PURE__*/
+  messageDesc(file_user, 4);
+
+/**
+ * @generated from message user.CreateUserResponse
+ */
+export type CreateUserResponse = Message<"user.CreateUserResponse"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+};
+
+/**
+ * Describes the message user.CreateUserResponse.
+ * Use `create(CreateUserResponseSchema)` to create a new message.
+ */
+export const CreateUserResponseSchema: GenMessage<CreateUserResponse> = /*@__PURE__*/
+  messageDesc(file_user, 5);
+
+/**
+ * @generated from message user.GetUsersRequest
+ */
+export type GetUsersRequest = Message<"user.GetUsersRequest"> & {
+  /**
+   * @generated from field: int64 page = 1;
+   */
+  page: bigint;
+
+  /**
+   * @generated from field: int64 pageSize = 2;
+   */
+  pageSize: bigint;
+};
+
+/**
+ * Describes the message user.GetUsersRequest.
+ * Use `create(GetUsersRequestSchema)` to create a new message.
+ */
+export const GetUsersRequestSchema: GenMessage<GetUsersRequest> = /*@__PURE__*/
+  messageDesc(file_user, 6);
+
+/**
+ * @generated from message user.GetUsersResponse
+ */
+export type GetUsersResponse = Message<"user.GetUsersResponse"> & {
+  /**
+   * @generated from field: int64 total = 1;
+   */
+  total: bigint;
+
+  /**
+   * @generated from field: repeated user.UserItem items = 2;
+   */
+  items: UserItem[];
+};
+
+/**
+ * Describes the message user.GetUsersResponse.
+ * Use `create(GetUsersResponseSchema)` to create a new message.
+ */
+export const GetUsersResponseSchema: GenMessage<GetUsersResponse> = /*@__PURE__*/
+  messageDesc(file_user, 7);
+
+/**
+ * @generated from message user.UserItem
+ */
+export type UserItem = Message<"user.UserItem"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+
+  /**
+   * @generated from field: string username = 2;
+   */
+  username: string;
+
+  /**
+   * @generated from field: string name = 3;
+   */
+  name: string;
+
+  /**
+   * @generated from field: string surname = 4;
+   */
+  surname: string;
+};
+
+/**
+ * Describes the message user.UserItem.
+ * Use `create(UserItemSchema)` to create a new message.
+ */
+export const UserItemSchema: GenMessage<UserItem> = /*@__PURE__*/
+  messageDesc(file_user, 8);
+
+/**
+ * @generated from message user.GetUserRequest
+ */
+export type GetUserRequest = Message<"user.GetUserRequest"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+};
+
+/**
+ * Describes the message user.GetUserRequest.
+ * Use `create(GetUserRequestSchema)` to create a new message.
+ */
+export const GetUserRequestSchema: GenMessage<GetUserRequest> = /*@__PURE__*/
+  messageDesc(file_user, 9);
+
+/**
+ * @generated from message user.GetUserResponse
+ */
+export type GetUserResponse = Message<"user.GetUserResponse"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+
+  /**
+   * @generated from field: string username = 2;
+   */
+  username: string;
+
+  /**
+   * @generated from field: string name = 3;
+   */
+  name: string;
+
+  /**
+   * @generated from field: string surname = 4;
+   */
+  surname: string;
+};
+
+/**
+ * Describes the message user.GetUserResponse.
+ * Use `create(GetUserResponseSchema)` to create a new message.
+ */
+export const GetUserResponseSchema: GenMessage<GetUserResponse> = /*@__PURE__*/
+  messageDesc(file_user, 10);
+
+/**
  * @generated from service user.UserService
  */
 export const UserService: GenService<{
@@ -100,6 +274,30 @@ export const UserService: GenService<{
     methodKind: "unary";
     input: typeof UserLogoutRequestSchema;
     output: typeof UserLogoutResponseSchema;
+  },
+  /**
+   * @generated from rpc user.UserService.CreateUser
+   */
+  createUser: {
+    methodKind: "unary";
+    input: typeof CreateUserRequestSchema;
+    output: typeof CreateUserResponseSchema;
+  },
+  /**
+   * @generated from rpc user.UserService.GetUsers
+   */
+  getUsers: {
+    methodKind: "unary";
+    input: typeof GetUsersRequestSchema;
+    output: typeof GetUsersResponseSchema;
+  },
+  /**
+   * @generated from rpc user.UserService.GetUser
+   */
+  getUser: {
+    methodKind: "unary";
+    input: typeof GetUserRequestSchema;
+    output: typeof GetUserResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_user, 0);

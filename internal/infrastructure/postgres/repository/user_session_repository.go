@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 	"github.com/magomedcoder/ipmanager/internal/infrastructure/postgres/model"
+	"github.com/magomedcoder/ipmanager/pkg/gormutil"
 	"gorm.io/gorm"
 	"log"
 )
@@ -18,11 +19,11 @@ type IUserSessionRepository interface {
 var _ IUserSessionRepository = (*UserSessionRepository)(nil)
 
 type UserSessionRepository struct {
-	Repo[model.UserSession]
+	gormutil.Repo[model.UserSession]
 }
 
 func NewUserSessionRepository(db *gorm.DB) *UserSessionRepository {
-	return &UserSessionRepository{Repo: NewRepo[model.UserSession](db)}
+	return &UserSessionRepository{Repo: gormutil.NewRepo[model.UserSession](db)}
 }
 
 func (u *UserSessionRepository) Create(ctx context.Context, userSession *model.UserSession) (*model.UserSession, error) {

@@ -8,6 +8,12 @@ service UserService {
   rpc Login(UserLoginRequest) returns (UserLoginResponse);
 
   rpc Logout(UserLogoutRequest) returns (UserLogoutResponse);
+
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+
+  rpc GetUsers(GetUsersRequest) returns (GetUsersResponse);
+
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
 }
 
 message UserLoginRequest {
@@ -23,4 +29,43 @@ message UserLogoutRequest {}
 
 message UserLogoutResponse {
   bool success = 1;
+}
+
+message CreateUserRequest{
+  string username = 1;
+  string password = 2;
+  string name = 3;
+  string surname = 4;
+}
+
+message CreateUserResponse{
+  int64 id = 1;
+}
+
+message GetUsersRequest {
+  int64 page = 1;
+  int64 pageSize = 2;
+}
+
+message GetUsersResponse {
+  int64 total = 1;
+  repeated UserItem items = 2;
+}
+
+message UserItem {
+  int64 id = 1;
+  string username = 2;
+  string name = 3;
+  string surname = 4;
+}
+
+message GetUserRequest {
+  int64 id = 1;
+}
+
+message GetUserResponse {
+  int64 id = 1;
+  string username = 2;
+  string name = 3;
+  string surname = 4;
 }

@@ -1,4 +1,4 @@
-package repository
+package gormutil
 
 import (
 	"context"
@@ -70,6 +70,7 @@ func (r *Repo[T]) QueryExist(ctx context.Context, where string, args ...any) (bo
 }
 
 func (r *Repo[T]) DeleteWhere(ctx context.Context, where string, args ...interface{}) error {
-	res := r.Model(ctx).Where(where, args...).Delete(r.model)
+	var item T
+	res := r.Db.WithContext(ctx).Where(where, args...).Delete(&item)
 	return res.Error
 }

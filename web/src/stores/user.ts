@@ -2,6 +2,8 @@ import { defineStore } from 'pinia'
 import { client } from '@/api/client'
 import { UserService } from '@/api/pb/user_pb'
 import { ConnectError } from '@connectrpc/connect'
+import { setAccessToken, removeAccessToken } from '@/utils/cookie'
+import { useJwt } from '@vueuse/integrations/useJwt'
 
 const userService = client(UserService)
 
@@ -31,9 +33,10 @@ export const useUserStore = defineStore('user', {
           username: form.username,
           password: form.password
         })
+        const { payload } = useJwt(accessToken)
+        setAccessToken(accessToken, payload.value?.exp)
         success()
         loading(false)
-        console.log(accessToken)
       } catch (err) {
         loading(false)
         if (err instanceof ConnectError) {
@@ -71,6 +74,56 @@ export const useUserStore = defineStore('user', {
           console.log(err.message)
         }
       }
+    },
+
+    CreateUser(user: { username: string, password: string, name: string, surname: string }): Promise<any> {
+      return new Promise(async (resolve, reject) => {
+        try {
+          const res = await userService.createUser({
+            username: user.username,
+            password: user.password,
+            name: user.name,
+            surname: user.surname
+          })
+          resolve(res)
+        } catch (err) {
+          if (err instanceof ConnectError) {
+            console.log(err.message)
+          }
+          reject()
+        }
+      })
+    },
+
+    getUsers(page: number, pageSize: number): Promise<any> {
+      return new Promise(async (resolve, reject) => {
+        try {
+          const res = await userService.getUsers({
+            page: page,
+            pageSize: pageSize
+          })
+          resolve(res)
+        } catch (err) {
+          if (err instanceof ConnectError) {
+            console.log(err.message)
+          }
+          reject()
+        }
+      })
+    },
+
+    getUser(id: number): Promise<any> {
+      return new Promise(async (resolve, reject) => {
+        try {
+          const res = await userService.getUser({ id: id })
+          resolve(res)
+        } catch (err) {
+          if (err instanceof ConnectError) {
+            console.log(err.message)
+          }
+          reject()
+        }
+      })
     }
   },
   getters: {

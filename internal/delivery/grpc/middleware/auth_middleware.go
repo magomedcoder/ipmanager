@@ -2,7 +2,6 @@ package middleware
 
 import (
 	"context"
-	"fmt"
 	"github.com/magomedcoder/ipmanager/internal/domain/entity"
 	"github.com/magomedcoder/ipmanager/internal/usecase"
 	"google.golang.org/grpc"
@@ -54,7 +53,6 @@ func (a *AuthMiddleware) validateToken(ctx context.Context) (*entity.UserClaims,
 }
 
 func (a *AuthMiddleware) UnaryInterceptor(ctx context.Context, req any, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (any, error) {
-	fmt.Println(info.FullMethod)
 	if info.FullMethod == "/user.UserService/Login" {
 		return handler(ctx, req)
 	}
