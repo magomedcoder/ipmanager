@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package vlan;
+
+option go_package = "github.com/magomedcoder/ipmanager/api/pb";
+
+service VlanService {
+  rpc CreateVlan(CreateVlanRequest) returns (CreateVlanResponse);
+
+  rpc GetVlans(GetVlansRequest) returns (GetVlansResponse);
+
+  rpc GetVlanById(GetVlanRequest) returns (GetVlanResponse);
+}
+
+message CreateVlanRequest{
+  string name = 1;
+}
+
+message CreateVlanResponse{
+  int64 id = 1;
+}
+
+message GetVlansRequest {
+  int64 page = 1;
+  int64 pageSize = 2;
+}
+
+message GetVlansResponse {
+  int64 total = 1;
+  repeated VlanItem items = 2;
+}
+
+message VlanItem {
+  int64 id = 1;
+  string name = 2;
+}
+
+message GetVlanRequest {
+  int64 id = 1;
+}
+
+message GetVlanResponse {
+  int64 id = 1;
+  string name = 2;
+}

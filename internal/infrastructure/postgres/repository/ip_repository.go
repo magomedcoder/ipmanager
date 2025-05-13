@@ -14,9 +14,9 @@ type IIpRepository interface {
 
 	GetIps(ctx context.Context, arg ...func(*gorm.DB)) ([]*model.Ip, error)
 
-	Get(ctx context.Context, id int64) (*model.Ip, error)
+	GetById(ctx context.Context, id int64) (*model.Ip, error)
 
-	GetById(ip string) (*model.Ip, error)
+	GetByIp(ip string) (*model.Ip, error)
 }
 
 var _ IIpRepository = (*IpRepository)(nil)
@@ -47,7 +47,7 @@ func (i *IpRepository) GetIps(ctx context.Context, arg ...func(*gorm.DB)) ([]*mo
 	return ips, nil
 }
 
-func (i *IpRepository) Get(ctx context.Context, id int64) (*model.Ip, error) {
+func (i *IpRepository) GetById(ctx context.Context, id int64) (*model.Ip, error) {
 	ip, err := i.Repo.FindById(ctx, id)
 	if err != nil {
 		return nil, err
@@ -56,7 +56,7 @@ func (i *IpRepository) Get(ctx context.Context, id int64) (*model.Ip, error) {
 	return ip, nil
 }
 
-func (i *IpRepository) GetById(ip string) (*model.Ip, error) {
+func (i *IpRepository) GetByIp(ip string) (*model.Ip, error) {
 	ipData, err := i.Repo.FindByWhere(context.TODO(), "ip = ?", ip)
 	if err != nil {
 		if !errors.Is(err, gorm.ErrRecordNotFound) {

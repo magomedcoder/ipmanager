@@ -76,7 +76,7 @@ export const useUserStore = defineStore('user', {
       }
     },
 
-    CreateUser(user: { username: string, password: string, name: string, surname: string }): Promise<any> {
+    createUser(user: { username: string, password: string, name: string, surname: string }): Promise<any> {
       return new Promise(async (resolve, reject) => {
         try {
           const res = await userService.createUser({
@@ -115,7 +115,7 @@ export const useUserStore = defineStore('user', {
     getUser(id: number): Promise<any> {
       return new Promise(async (resolve, reject) => {
         try {
-          const res = await userService.getUser({ id: id })
+          const res = await userService.getUserById({ id: id })
           resolve(res)
         } catch (err) {
           if (err instanceof ConnectError) {

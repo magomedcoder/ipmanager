@@ -8,7 +8,7 @@ migrate:
 
 .PHONY: test-data
 test-data:
-	go run ./cmd/ipmanager migrate -config ./configs/ipmanager.yaml
+	go run ./cmd/ipmanager test-data -config ./configs/ipmanager.yaml
 
 .PHONY: test-client
 test-client:
@@ -21,11 +21,11 @@ build:
 
 .PHONY: gen
 gen:
-	wire ./internal/app/di
-
 	protoc --proto_path=./api/proto \
 	   --go_out=paths=source_relative:./api/pb \
 	   --go-grpc_out=paths=source_relative:./api/pb \
 	   ./api/proto/*.proto
+
+	wire ./internal/app/di
 
 	cd web && yarn gen

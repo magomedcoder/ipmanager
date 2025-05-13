@@ -20,6 +20,8 @@ func (m *Migrate) Migrate(ctx context.Context) error {
 		&model.User{},
 		&model.UserSession{},
 		&model.Ip{},
+		&model.Customer{},
+		&model.Vlan{},
 	); err != nil {
 		return err
 	}

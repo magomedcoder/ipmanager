@@ -22,6 +22,8 @@ func Run(app *di.AppProvider) error {
 
 	pb.RegisterUserServiceServer(srv, app.UserHandler)
 	pb.RegisterIpServiceServer(srv, app.IpHandler)
+	pb.RegisterCustomerServiceServer(srv, app.CustomerHandler)
+	pb.RegisterVlanServiceServer(srv, app.VlanHandler)
 
 	reflection.Register(srv)
 

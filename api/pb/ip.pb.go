@@ -217,6 +217,10 @@ type IpItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Ip            string                 `protobuf:"bytes,2,opt,name=ip,proto3" json:"ip,omitempty"`
+	VlanId        int64                  `protobuf:"varint,3,opt,name=vlan_id,json=vlanId,proto3" json:"vlan_id,omitempty"`
+	VlanName      string                 `protobuf:"bytes,4,opt,name=vlan_name,json=vlanName,proto3" json:"vlan_name,omitempty"`
+	CustomerId    int64                  `protobuf:"varint,5,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
+	CustomerName  string                 `protobuf:"bytes,6,opt,name=customer_name,json=customerName,proto3" json:"customer_name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -261,6 +265,34 @@ func (x *IpItem) GetId() int64 {
 func (x *IpItem) GetIp() string {
 	if x != nil {
 		return x.Ip
+	}
+	return ""
+}
+
+func (x *IpItem) GetVlanId() int64 {
+	if x != nil {
+		return x.VlanId
+	}
+	return 0
+}
+
+func (x *IpItem) GetVlanName() string {
+	if x != nil {
+		return x.VlanName
+	}
+	return ""
+}
+
+func (x *IpItem) GetCustomerId() int64 {
+	if x != nil {
+		return x.CustomerId
+	}
+	return 0
+}
+
+func (x *IpItem) GetCustomerName() string {
+	if x != nil {
+		return x.CustomerName
 	}
 	return ""
 }
@@ -376,19 +408,24 @@ const file_ip_proto_rawDesc = "" +
 	"\x0eGetIpsResponse\x12\x14\n" +
 	"\x05total\x18\x01 \x01(\x03R\x05total\x12 \n" +
 	"\x05items\x18\x02 \x03(\v2\n" +
-	".ip.IpItemR\x05items\"(\n" +
+	".ip.IpItemR\x05items\"\xa4\x01\n" +
 	"\x06IpItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x0e\n" +
-	"\x02ip\x18\x02 \x01(\tR\x02ip\"\x1e\n" +
+	"\x02ip\x18\x02 \x01(\tR\x02ip\x12\x17\n" +
+	"\avlan_id\x18\x03 \x01(\x03R\x06vlanId\x12\x1b\n" +
+	"\tvlan_name\x18\x04 \x01(\tR\bvlanName\x12\x1f\n" +
+	"\vcustomer_id\x18\x05 \x01(\x03R\n" +
+	"customerId\x12#\n" +
+	"\rcustomer_name\x18\x06 \x01(\tR\fcustomerName\"\x1e\n" +
 	"\fGetIpRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"/\n" +
 	"\rGetIpResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x0e\n" +
-	"\x02ip\x18\x02 \x01(\tR\x02ip2\xa1\x01\n" +
+	"\x02ip\x18\x02 \x01(\tR\x02ip2\xa5\x01\n" +
 	"\tIpService\x125\n" +
 	"\bCreateIp\x12\x13.ip.CreateIpRequest\x1a\x14.ip.CreateIpResponse\x12/\n" +
-	"\x06GetIps\x12\x11.ip.GetIpsRequest\x1a\x12.ip.GetIpsResponse\x12,\n" +
-	"\x05GetIp\x12\x10.ip.GetIpRequest\x1a\x11.ip.GetIpResponseB*Z(github.com/magomedcoder/ipmanager/api/pbb\x06proto3"
+	"\x06GetIps\x12\x11.ip.GetIpsRequest\x1a\x12.ip.GetIpsResponse\x120\n" +
+	"\tGetIpById\x12\x10.ip.GetIpRequest\x1a\x11.ip.GetIpResponseB*Z(github.com/magomedcoder/ipmanager/api/pbb\x06proto3"
 
 var (
 	file_ip_proto_rawDescOnce sync.Once
@@ -416,10 +453,10 @@ var file_ip_proto_depIdxs = []int32{
 	4, // 0: ip.GetIpsResponse.items:type_name -> ip.IpItem
 	0, // 1: ip.IpService.CreateIp:input_type -> ip.CreateIpRequest
 	2, // 2: ip.IpService.GetIps:input_type -> ip.GetIpsRequest
-	5, // 3: ip.IpService.GetIp:input_type -> ip.GetIpRequest
+	5, // 3: ip.IpService.GetIpById:input_type -> ip.GetIpRequest
 	1, // 4: ip.IpService.CreateIp:output_type -> ip.CreateIpResponse
 	3, // 5: ip.IpService.GetIps:output_type -> ip.GetIpsResponse
-	6, // 6: ip.IpService.GetIp:output_type -> ip.GetIpResponse
+	6, // 6: ip.IpService.GetIpById:output_type -> ip.GetIpResponse
 	4, // [4:7] is the sub-list for method output_type
 	1, // [1:4] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

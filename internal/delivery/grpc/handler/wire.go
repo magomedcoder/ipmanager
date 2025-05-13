@@ -13,4 +13,12 @@ var ProviderSet = wire.NewSet(
 	wire.Struct(new(IpHandler), "*"),
 	wire.Struct(new(pb.UnimplementedIpServiceServer), "*"),
 	wire.Bind(new(pb.IpServiceServer), new(*IpHandler)),
+
+	wire.Struct(new(CustomerHandler), "*"),
+	wire.Struct(new(pb.UnimplementedCustomerServiceServer), "*"),
+	wire.Bind(new(pb.CustomerServiceServer), new(*CustomerHandler)),
+
+	wire.Struct(new(VlanHandler), "*"),
+	wire.Struct(new(pb.UnimplementedVlanServiceServer), "*"),
+	wire.Bind(new(pb.VlanServiceServer), new(*VlanHandler)),
 )

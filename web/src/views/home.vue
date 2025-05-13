@@ -18,6 +18,9 @@ interface IColumn {
 interface IItem {
   id: number
   ip: string
+  vlanName: string
+  customerName: string
+  description: string
 }
 
 const loading = ref<boolean>(false)
@@ -27,7 +30,7 @@ const pageSize = ref<number>(15)
 const items = ref<IItem[]>([])
 const showCreation = ref<boolean>(false)
 const showCard = ref<boolean>(false)
-const ipId = ref<number>()
+const id = ref<number>()
 
 const columns = ref<IColumn[]>([
   {
@@ -35,7 +38,25 @@ const columns = ref<IColumn[]>([
     dataKey: "ip",
     title: "IP",
     width: 350
-  }
+  },
+  {
+    key: "vlanName",
+    dataKey: "vlanName",
+    title: "Vlan",
+    width: 350
+  },
+  {
+    key: "customerName",
+    dataKey: "customerName",
+    title: "Клиент",
+    width: 350
+  },
+  {
+    key: "description",
+    dataKey: "description",
+    title: "Описание",
+    width: 350
+  },
 ])
 
 const load = async (_page: number) => {
@@ -51,7 +72,7 @@ const load = async (_page: number) => {
 
 const rowEventHandlers = {
   onClick: (e: any) => {
-    ipId.value = e.rowData.id
+    id.value = e.rowData.id
     showCard.value = true
   }
 }
@@ -65,7 +86,7 @@ load(-1)
       <el-card>
         <template #header>
           <div class="flex justify-between">
-            <h1 class="sm:text-2xl pt-1 font-extrabold dark:text-white tracking-tight">Управление IP</h1>
+            <h1 class="sm:text-2xl pt-1 font-extrabold dark:text-white tracking-tight">IP</h1>
             <el-button
               type="primary"
               @click="showCreation = true"
@@ -106,7 +127,7 @@ load(-1)
     <ip-card
       v-if="showCard"
       v-model="showCard"
-      :id="ipId"
+      :id="id"
       @on-reset="load"
     />
   </DefaultLayout>

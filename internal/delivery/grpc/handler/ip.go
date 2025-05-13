@@ -50,8 +50,12 @@ func (i *IpHandler) GetIps(ctx context.Context, in *pb.GetIpsRequest) (*pb.GetIp
 	items := make([]*pb.IpItem, 0)
 	for _, item := range ips {
 		items = append(items, &pb.IpItem{
-			Id: item.Id,
-			Ip: item.Ip,
+			Id:           item.Id,
+			Ip:           item.Ip,
+			CustomerId:   item.CustomerId,
+			CustomerName: item.CustomerName,
+			VlanId:       item.VlanId,
+			VlanName:     item.VlanName,
 		})
 	}
 
@@ -61,8 +65,8 @@ func (i *IpHandler) GetIps(ctx context.Context, in *pb.GetIpsRequest) (*pb.GetIp
 	}, nil
 }
 
-func (i *IpHandler) GetIp(ctx context.Context, in *pb.GetIpRequest) (*pb.GetIpResponse, error) {
-	ip, _ := i.IpUseCase.GetIpById(ctx, in.Id)
+func (i *IpHandler) GetIpById(ctx context.Context, in *pb.GetIpRequest) (*pb.GetIpResponse, error) {
+	ip, _ := i.IpUseCase.GetById(ctx, in.Id)
 	if ip.Id == 0 {
 		return nil, status.Error(codes.NotFound, "Ip не найден")
 	}

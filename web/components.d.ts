@@ -9,6 +9,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BaseTable: typeof import('./src/components/base/BaseTable.vue')['default']
+    CustomerCard: typeof import('./src/components/customer/CustomerCard.vue')['default']
+    CustomerCreate: typeof import('./src/components/customer/CustomerCreate.vue')['default']
     ElAutoResizer: typeof import('element-plus/es')['ElAutoResizer']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
@@ -36,6 +38,8 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     UserCard: typeof import('./src/components/user/UserCard.vue')['default']
     UserCreate: typeof import('./src/components/user/UserCreate.vue')['default']
+    VlanCard: typeof import('./src/components/vlan/VlanCard.vue')['default']
+    VlanCreate: typeof import('./src/components/vlan/VlanCreate.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']

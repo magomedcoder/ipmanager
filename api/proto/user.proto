@@ -13,7 +13,7 @@ service UserService {
 
   rpc GetUsers(GetUsersRequest) returns (GetUsersResponse);
 
-  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc GetUserById(GetUserRequest) returns (GetUserResponse);
 }
 
 message UserLoginRequest {

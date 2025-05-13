@@ -49,10 +49,32 @@ func NewGrpcInjector(conf *config.Config) *AppProvider {
 		UnimplementedIpServiceServer: unimplementedIpServiceServer,
 		IpUseCase:                    ipUseCase,
 	}
+	unimplementedCustomerServiceServer := pb.UnimplementedCustomerServiceServer{}
+	customerRepository := repository.NewCustomerRepository(db)
+	customerUseCase := &usecase.CustomerUseCase{
+		Conf:         conf,
+		CustomerRepo: customerRepository,
+	}
+	customerHandler := &handler.CustomerHandler{
+		UnimplementedCustomerServiceServer: unimplementedCustomerServiceServer,
+		CustomerUseCase:                    customerUseCase,
+	}
+	unimplementedVlanServiceServer := pb.UnimplementedVlanServiceServer{}
+	vlanRepository := repository.NewVlanRepository(db)
+	vlanUseCase := &usecase.VlanUseCase{
+		Conf:     conf,
+		VlanRepo: vlanRepository,
+	}
+	vlanHandler := &handler.VlanHandler{
+		UnimplementedVlanServiceServer: unimplementedVlanServiceServer,
+		VlanUseCase:                    vlanUseCase,
+	}
 	appProvider := &AppProvider{
-		Middleware:  authMiddleware,
-		UserHandler: userHandler,
-		IpHandler:   ipHandler,
+		Middleware:      authMiddleware,
+		UserHandler:     userHandler,
+		IpHandler:       ipHandler,
+		CustomerHandler: customerHandler,
+		VlanHandler:     vlanHandler,
 	}
 	return appProvider
 }

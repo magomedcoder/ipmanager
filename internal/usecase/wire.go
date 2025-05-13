@@ -8,4 +8,10 @@ var ProviderSet = wire.NewSet(
 
 	wire.Struct(new(IpUseCase), "*"),
 	wire.Bind(new(IIpUseCase), new(*IpUseCase)),
+
+	wire.Struct(new(CustomerUseCase), "*"),
+	wire.Bind(new(ICustomerUseCase), new(*CustomerUseCase)),
+
+	wire.Struct(new(VlanUseCase), "*"),
+	wire.Bind(new(IVlanUseCase), new(*VlanUseCase)),
 )

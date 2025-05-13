@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	IpService_CreateIp_FullMethodName = "/ip.IpService/CreateIp"
-	IpService_GetIps_FullMethodName   = "/ip.IpService/GetIps"
-	IpService_GetIp_FullMethodName    = "/ip.IpService/GetIp"
+	IpService_CreateIp_FullMethodName  = "/ip.IpService/CreateIp"
+	IpService_GetIps_FullMethodName    = "/ip.IpService/GetIps"
+	IpService_GetIpById_FullMethodName = "/ip.IpService/GetIpById"
 )
 
 // IpServiceClient is the client API for IpService service.
@@ -30,7 +30,7 @@ const (
 type IpServiceClient interface {
 	CreateIp(ctx context.Context, in *CreateIpRequest, opts ...grpc.CallOption) (*CreateIpResponse, error)
 	GetIps(ctx context.Context, in *GetIpsRequest, opts ...grpc.CallOption) (*GetIpsResponse, error)
-	GetIp(ctx context.Context, in *GetIpRequest, opts ...grpc.CallOption) (*GetIpResponse, error)
+	GetIpById(ctx context.Context, in *GetIpRequest, opts ...grpc.CallOption) (*GetIpResponse, error)
 }
 
 type ipServiceClient struct {
@@ -61,10 +61,10 @@ func (c *ipServiceClient) GetIps(ctx context.Context, in *GetIpsRequest, opts ..
 	return out, nil
 }
 
-func (c *ipServiceClient) GetIp(ctx context.Context, in *GetIpRequest, opts ...grpc.CallOption) (*GetIpResponse, error) {
+func (c *ipServiceClient) GetIpById(ctx context.Context, in *GetIpRequest, opts ...grpc.CallOption) (*GetIpResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetIpResponse)
-	err := c.cc.Invoke(ctx, IpService_GetIp_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, IpService_GetIpById_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -77,7 +77,7 @@ func (c *ipServiceClient) GetIp(ctx context.Context, in *GetIpRequest, opts ...g
 type IpServiceServer interface {
 	CreateIp(context.Context, *CreateIpRequest) (*CreateIpResponse, error)
 	GetIps(context.Context, *GetIpsRequest) (*GetIpsResponse, error)
-	GetIp(context.Context, *GetIpRequest) (*GetIpResponse, error)
+	GetIpById(context.Context, *GetIpRequest) (*GetIpResponse, error)
 	mustEmbedUnimplementedIpServiceServer()
 }
 
@@ -94,8 +94,8 @@ func (UnimplementedIpServiceServer) CreateIp(context.Context, *CreateIpRequest) 
 func (UnimplementedIpServiceServer) GetIps(context.Context, *GetIpsRequest) (*GetIpsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetIps not implemented")
 }
-func (UnimplementedIpServiceServer) GetIp(context.Context, *GetIpRequest) (*GetIpResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetIp not implemented")
+func (UnimplementedIpServiceServer) GetIpById(context.Context, *GetIpRequest) (*GetIpResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetIpById not implemented")
 }
 func (UnimplementedIpServiceServer) mustEmbedUnimplementedIpServiceServer() {}
 func (UnimplementedIpServiceServer) testEmbeddedByValue()                   {}
@@ -154,20 +154,20 @@ func _IpService_GetIps_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _IpService_GetIp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _IpService_GetIpById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetIpRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(IpServiceServer).GetIp(ctx, in)
+		return srv.(IpServiceServer).GetIpById(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: IpService_GetIp_FullMethodName,
+		FullMethod: IpService_GetIpById_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IpServiceServer).GetIp(ctx, req.(*GetIpRequest))
+		return srv.(IpServiceServer).GetIpById(ctx, req.(*GetIpRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -188,8 +188,8 @@ var IpService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _IpService_GetIps_Handler,
 		},
 		{
-			MethodName: "GetIp",
-			Handler:    _IpService_GetIp_Handler,
+			MethodName: "GetIpById",
+			Handler:    _IpService_GetIpById_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

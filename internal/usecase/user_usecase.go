@@ -199,7 +199,7 @@ func (u *UserUseCase) GetUsers(ctx context.Context, arg ...func(*gorm.DB)) ([]*e
 }
 
 func (u *UserUseCase) GetUserById(ctx context.Context, id int64) (*entity.User, error) {
-	user, err := u.UserRepo.Get(ctx, id)
+	user, err := u.UserRepo.GetById(ctx, id)
 	if err != nil {
 		return nil, errors.New(fmt.Sprintf("Не удалось получить пользователя: %v", id))
 	}

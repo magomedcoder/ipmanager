@@ -14,7 +14,7 @@ type IUserRepository interface {
 
 	GetUsers(ctx context.Context, arg ...func(*gorm.DB)) ([]*model.User, error)
 
-	Get(ctx context.Context, id int64) (*model.User, error)
+	GetById(ctx context.Context, id int64) (*model.User, error)
 
 	GetByUsername(username string) (*model.User, error)
 }
@@ -47,7 +47,7 @@ func (u *UserRepository) GetUsers(ctx context.Context, arg ...func(*gorm.DB)) ([
 	return users, nil
 }
 
-func (u *UserRepository) Get(ctx context.Context, id int64) (*model.User, error) {
+func (u *UserRepository) GetById(ctx context.Context, id int64) (*model.User, error) {
 	user, err := u.Repo.FindById(ctx, id)
 	if err != nil {
 		return nil, err

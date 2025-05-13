@@ -8,9 +8,11 @@ import (
 )
 
 type AppProvider struct {
-	Middleware  middleware.AuthMiddleware
-	UserHandler pb.UserServiceServer
-	IpHandler   pb.IpServiceServer
+	Middleware      middleware.AuthMiddleware
+	UserHandler     pb.UserServiceServer
+	IpHandler       pb.IpServiceServer
+	CustomerHandler pb.CustomerServiceServer
+	VlanHandler     pb.VlanServiceServer
 }
 
 var GRPCProviderSet = wire.NewSet(

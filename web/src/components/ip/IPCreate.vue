@@ -37,7 +37,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid: boolean) => {
     if (valid) {
-      ipStore.CreateIp({
+      ipStore.createIp({
         ip: form.ip,
       }).then(async (res: any) => {
         if (res.id !=0) {

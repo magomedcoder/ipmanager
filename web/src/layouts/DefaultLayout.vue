@@ -169,11 +169,23 @@ const showChangePasswordBox = () => {
             :route="{ path: '/' }"
             index="1"
           >
-            Главная
+            IP
+          </el-menu-item>
+          <el-menu-item
+            :route="{ path: '/vlans' }"
+            index="2"
+          >
+            VLAN
+          </el-menu-item>
+          <el-menu-item
+            :route="{ path: '/customers' }"
+            index="3"
+          >
+            Клиенты
           </el-menu-item>
           <el-menu-item
             :route="{ path: '/users' }"
-            index="2"
+            index="4"
           >
             Пользователи
           </el-menu-item>

@@ -10,7 +10,7 @@ export const useIpStore = defineStore('ip', {
 
   }),
   actions: {
-    CreateIp(ipData: { ip: string }): Promise<any> {
+    createIp(ipData: { ip: string }): Promise<any> {
       return new Promise(async (resolve, reject) => {
         try {
           const res = await ipService.createIp({
@@ -43,10 +43,10 @@ export const useIpStore = defineStore('ip', {
       })
     },
 
-    getIp(id: number): Promise<any> {
+    getIpById(id: number): Promise<any> {
       return new Promise(async (resolve, reject) => {
         try {
-          const res = await ipService.getIp({ id: id })
+          const res = await ipService.getIpById({ id: id })
           resolve(res)
         } catch (err) {
           if (err instanceof ConnectError) {

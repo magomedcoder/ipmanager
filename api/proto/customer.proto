@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package customer;
+
+option go_package = "github.com/magomedcoder/ipmanager/api/pb";
+
+service CustomerService {
+  rpc CreateCustomer(CreateCustomerRequest) returns (CreateCustomerResponse);
+
+  rpc GetCustomers(GetCustomersRequest) returns (GetCustomersResponse);
+
+  rpc GetCustomerById(GetCustomerRequest) returns (GetCustomerResponse);
+}
+
+message CreateCustomerRequest{
+  string name = 1;
+  string surname = 2;
+}
+
+message CreateCustomerResponse{
+  int64 id = 1;
+}
+
+message GetCustomersRequest {
+  int64 page = 1;
+  int64 pageSize = 2;
+}
+
+message GetCustomersResponse {
+  int64 total = 1;
+  repeated CustomerItem items = 2;
+}
+
+message CustomerItem {
+  int64 id = 1;
+  string name = 3;
+  string surname = 4;
+}
+
+message GetCustomerRequest {
+  int64 id = 1;
+}
+
+message GetCustomerResponse {
+  int64 id = 1;
+  string name = 2;
+  string surname = 3;
+}

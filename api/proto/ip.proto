@@ -9,7 +9,7 @@ service IpService {
 
   rpc GetIps(GetIpsRequest) returns (GetIpsResponse);
 
-  rpc GetIp(GetIpRequest) returns (GetIpResponse);
+  rpc GetIpById(GetIpRequest) returns (GetIpResponse);
 }
 
 message CreateIpRequest{
@@ -33,6 +33,10 @@ message GetIpsResponse {
 message IpItem {
   int64 id = 1;
   string ip = 2;
+  int64 vlan_id = 3;
+  string vlan_name = 4;
+  int64 customer_id = 5;
+  string customer_name = 6;
 }
 
 message GetIpRequest {

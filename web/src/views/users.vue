@@ -29,7 +29,7 @@ const pageSize = ref<number>(15)
 const items = ref<IItem[]>([])
 const showCreation = ref<boolean>(false)
 const showCard = ref<boolean>(false)
-const userId = ref<number>()
+const id = ref<number>()
 
 const columns = ref<IColumn[]>([
   {
@@ -65,7 +65,7 @@ const load = async (_page: number) => {
 
 const rowEventHandlers = {
   onClick: (e: any) => {
-    userId.value = e.rowData.id
+    id.value = e.rowData.id
     showCard.value = true
   }
 }
@@ -120,7 +120,7 @@ load(-1)
     <user-card
       v-if="showCard"
       v-model="showCard"
-      :id="userId"
+      :id="id"
       @on-reset="load"
     />
   </DefaultLayout>

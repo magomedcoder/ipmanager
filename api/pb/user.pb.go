@@ -631,14 +631,14 @@ const file_user_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x18\n" +
-	"\asurname\x18\x04 \x01(\tR\asurname2\xb8\x02\n" +
+	"\asurname\x18\x04 \x01(\tR\asurname2\xbc\x02\n" +
 	"\vUserService\x128\n" +
 	"\x05Login\x12\x16.user.UserLoginRequest\x1a\x17.user.UserLoginResponse\x12;\n" +
 	"\x06Logout\x12\x17.user.UserLogoutRequest\x1a\x18.user.UserLogoutResponse\x12?\n" +
 	"\n" +
 	"CreateUser\x12\x17.user.CreateUserRequest\x1a\x18.user.CreateUserResponse\x129\n" +
-	"\bGetUsers\x12\x15.user.GetUsersRequest\x1a\x16.user.GetUsersResponse\x126\n" +
-	"\aGetUser\x12\x14.user.GetUserRequest\x1a\x15.user.GetUserResponseB*Z(github.com/magomedcoder/ipmanager/api/pbb\x06proto3"
+	"\bGetUsers\x12\x15.user.GetUsersRequest\x1a\x16.user.GetUsersResponse\x12:\n" +
+	"\vGetUserById\x12\x14.user.GetUserRequest\x1a\x15.user.GetUserResponseB*Z(github.com/magomedcoder/ipmanager/api/pbb\x06proto3"
 
 var (
 	file_user_proto_rawDescOnce sync.Once
@@ -672,12 +672,12 @@ var file_user_proto_depIdxs = []int32{
 	2,  // 2: user.UserService.Logout:input_type -> user.UserLogoutRequest
 	4,  // 3: user.UserService.CreateUser:input_type -> user.CreateUserRequest
 	6,  // 4: user.UserService.GetUsers:input_type -> user.GetUsersRequest
-	9,  // 5: user.UserService.GetUser:input_type -> user.GetUserRequest
+	9,  // 5: user.UserService.GetUserById:input_type -> user.GetUserRequest
 	1,  // 6: user.UserService.Login:output_type -> user.UserLoginResponse
 	3,  // 7: user.UserService.Logout:output_type -> user.UserLogoutResponse
 	5,  // 8: user.UserService.CreateUser:output_type -> user.CreateUserResponse
 	7,  // 9: user.UserService.GetUsers:output_type -> user.GetUsersResponse
-	10, // 10: user.UserService.GetUser:output_type -> user.GetUserResponse
+	10, // 10: user.UserService.GetUserById:output_type -> user.GetUserResponse
 	6,  // [6:11] is the sub-list for method output_type
 	1,  // [1:6] is the sub-list for method input_type
 	1,  // [1:1] is the sub-list for extension type_name

@@ -79,7 +79,7 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid: boolean) => {
     if (valid) {
-      userStore.CreateUser({
+      userStore.createUser({
         username: form.username,
         password: form.password,
         name: form.name,

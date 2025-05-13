@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file ip.proto.
  */
 export const file_ip: GenFile = /*@__PURE__*/
-  fileDesc("CghpcC5wcm90bxICaXAiHQoPQ3JlYXRlSXBSZXF1ZXN0EgoKAmlwGAEgASgJIh4KEENyZWF0ZUlwUmVzcG9uc2USCgoCaWQYASABKAMiLwoNR2V0SXBzUmVxdWVzdBIMCgRwYWdlGAEgASgDEhAKCHBhZ2VTaXplGAIgASgDIjoKDkdldElwc1Jlc3BvbnNlEg0KBXRvdGFsGAEgASgDEhkKBWl0ZW1zGAIgAygLMgouaXAuSXBJdGVtIiAKBklwSXRlbRIKCgJpZBgBIAEoAxIKCgJpcBgCIAEoCSIaCgxHZXRJcFJlcXVlc3QSCgoCaWQYASABKAMiJwoNR2V0SXBSZXNwb25zZRIKCgJpZBgBIAEoAxIKCgJpcBgCIAEoCTKhAQoJSXBTZXJ2aWNlEjUKCENyZWF0ZUlwEhMuaXAuQ3JlYXRlSXBSZXF1ZXN0GhQuaXAuQ3JlYXRlSXBSZXNwb25zZRIvCgZHZXRJcHMSES5pcC5HZXRJcHNSZXF1ZXN0GhIuaXAuR2V0SXBzUmVzcG9uc2USLAoFR2V0SXASEC5pcC5HZXRJcFJlcXVlc3QaES5pcC5HZXRJcFJlc3BvbnNlQipaKGdpdGh1Yi5jb20vbWFnb21lZGNvZGVyL2lwbWFuYWdlci9hcGkvcGJiBnByb3RvMw");
+  fileDesc("CghpcC5wcm90bxICaXAiHQoPQ3JlYXRlSXBSZXF1ZXN0EgoKAmlwGAEgASgJIh4KEENyZWF0ZUlwUmVzcG9uc2USCgoCaWQYASABKAMiLwoNR2V0SXBzUmVxdWVzdBIMCgRwYWdlGAEgASgDEhAKCHBhZ2VTaXplGAIgASgDIjoKDkdldElwc1Jlc3BvbnNlEg0KBXRvdGFsGAEgASgDEhkKBWl0ZW1zGAIgAygLMgouaXAuSXBJdGVtInAKBklwSXRlbRIKCgJpZBgBIAEoAxIKCgJpcBgCIAEoCRIPCgd2bGFuX2lkGAMgASgDEhEKCXZsYW5fbmFtZRgEIAEoCRITCgtjdXN0b21lcl9pZBgFIAEoAxIVCg1jdXN0b21lcl9uYW1lGAYgASgJIhoKDEdldElwUmVxdWVzdBIKCgJpZBgBIAEoAyInCg1HZXRJcFJlc3BvbnNlEgoKAmlkGAEgASgDEgoKAmlwGAIgASgJMqUBCglJcFNlcnZpY2USNQoIQ3JlYXRlSXASEy5pcC5DcmVhdGVJcFJlcXVlc3QaFC5pcC5DcmVhdGVJcFJlc3BvbnNlEi8KBkdldElwcxIRLmlwLkdldElwc1JlcXVlc3QaEi5pcC5HZXRJcHNSZXNwb25zZRIwCglHZXRJcEJ5SWQSEC5pcC5HZXRJcFJlcXVlc3QaES5pcC5HZXRJcFJlc3BvbnNlQipaKGdpdGh1Yi5jb20vbWFnb21lZGNvZGVyL2lwbWFuYWdlci9hcGkvcGJiBnByb3RvMw");
 
 /**
  * @generated from message ip.CreateIpRequest
@@ -103,6 +103,26 @@ export type IpItem = Message<"ip.IpItem"> & {
    * @generated from field: string ip = 2;
    */
   ip: string;
+
+  /**
+   * @generated from field: int64 vlan_id = 3;
+   */
+  vlanId: bigint;
+
+  /**
+   * @generated from field: string vlan_name = 4;
+   */
+  vlanName: string;
+
+  /**
+   * @generated from field: int64 customer_id = 5;
+   */
+  customerId: bigint;
+
+  /**
+   * @generated from field: string customer_name = 6;
+   */
+  customerName: string;
 };
 
 /**
@@ -172,9 +192,9 @@ export const IpService: GenService<{
     output: typeof GetIpsResponseSchema;
   },
   /**
-   * @generated from rpc ip.IpService.GetIp
+   * @generated from rpc ip.IpService.GetIpById
    */
-  getIp: {
+  getIpById: {
     methodKind: "unary";
     input: typeof GetIpRequestSchema;
     output: typeof GetIpResponseSchema;

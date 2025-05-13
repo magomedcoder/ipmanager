@@ -93,7 +93,7 @@ func (u *UserHandler) GetUsers(ctx context.Context, in *pb.GetUsersRequest) (*pb
 	}, nil
 }
 
-func (u *UserHandler) GetUser(ctx context.Context, in *pb.GetUserRequest) (*pb.GetUserResponse, error) {
+func (u *UserHandler) GetUserById(ctx context.Context, in *pb.GetUserRequest) (*pb.GetUserResponse, error) {
 	user, _ := u.UserUseCase.GetUserById(ctx, in.Id)
 	if user.Id == 0 {
 		return nil, status.Error(codes.NotFound, "Пользователь не найден")
