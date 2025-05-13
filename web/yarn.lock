@@ -261,6 +261,86 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.27.1"
 
+"@bufbuild/buf-darwin-arm64@1.54.0":
+  version "1.54.0"
+  resolved "https://registry.yarnpkg.com/@bufbuild/buf-darwin-arm64/-/buf-darwin-arm64-1.54.0.tgz#4c315ebaf882c96d157296cede4cb1de1369e061"
+  integrity sha512-MkwlxcuHH8YO2wyQ2nGAv5SwBRCR4PtA8zcQb7AR6q93Cgy314ac8blGjfpenprjI3kAAhxc9BQK4t+/hkIS/A==
+
+"@bufbuild/buf-darwin-x64@1.54.0":
+  version "1.54.0"
+  resolved "https://registry.yarnpkg.com/@bufbuild/buf-darwin-x64/-/buf-darwin-x64-1.54.0.tgz#7e64cecb18d66fb524e125f93cd25762baec3190"
+  integrity sha512-59Z+6BxvVwBbcpLOAwD8TLobngb9YUvUZ1nnP1IyIJnay/tIY+yfmgAdgMwm3VUZlbaFlURGmD34UAwEsxodGQ==
+
+"@bufbuild/buf-linux-aarch64@1.54.0":
+  version "1.54.0"
+  resolved "https://registry.yarnpkg.com/@bufbuild/buf-linux-aarch64/-/buf-linux-aarch64-1.54.0.tgz#2a9cf513d90dcbbb77dca5847aba5863781b8817"
+  integrity sha512-cUbvujfoAQGsnRH/+UfKxt0Hfe6PGHjM/gLiC2Kgv8fcoIWjPJMBBgdl/TLbq1QrVcCXSvMc16hW5ias7Jdyfw==
+
+"@bufbuild/buf-linux-armv7@1.54.0":
+  version "1.54.0"
+  resolved "https://registry.yarnpkg.com/@bufbuild/buf-linux-armv7/-/buf-linux-armv7-1.54.0.tgz#d73414aa8650cb61d58e5a3be7932294c9b23d6d"
+  integrity sha512-xdKjzPsOo6E2eth3uGIRoVG9TpPVHOUucr0MeCRVhM2hb5gbM8KQLn6iDxVGbQFq6eL2qe+B0b8k9HfuwzirWA==
+
+"@bufbuild/buf-linux-x64@1.54.0":
+  version "1.54.0"
+  resolved "https://registry.yarnpkg.com/@bufbuild/buf-linux-x64/-/buf-linux-x64-1.54.0.tgz#b84832098d6092e0806e125118738944e2f0b217"
+  integrity sha512-ZnfaE5GLAhyvR/ponDgG+s6FbtMEm+RaS2f0EoBLORYC7sK/Elfmw2Q0XcjHyEl83u4hELCqej9T0eUxbgxtow==
+
+"@bufbuild/buf-win32-arm64@1.54.0":
+  version "1.54.0"
+  resolved "https://registry.yarnpkg.com/@bufbuild/buf-win32-arm64/-/buf-win32-arm64-1.54.0.tgz#75b3576b15ee5c9991467c041cbcc652b28490f6"
+  integrity sha512-N5YlX8c6p+KZIWYmx03viYF/FLuY5GyzHgor17nuJUYhF1xFyIJL8v4mhqcQ8Pq0xua9IyRwmSxHJKyrdNatcg==
+
+"@bufbuild/buf-win32-x64@1.54.0":
+  version "1.54.0"
+  resolved "https://registry.yarnpkg.com/@bufbuild/buf-win32-x64/-/buf-win32-x64-1.54.0.tgz#3c82508446c91dafc113a62e5af0b798189f9202"
+  integrity sha512-PepTA9RcLCjukQhFPFBqKXF9mVwct+ZSBeuLjFuUVcHovdGUZXspNTb5LnuIDjWXx2fcALs0xb/FNUNd6pNjbA==
+
+"@bufbuild/buf@^1.54.0":
+  version "1.54.0"
+  resolved "https://registry.yarnpkg.com/@bufbuild/buf/-/buf-1.54.0.tgz#8612a205e95b81cbb2c66a417eeb0f037602a1f6"
+  integrity sha512-UkjZmVslA7YAxhUQVxE2O4HX4qD7aMspjkuG3vsjnvmAkiV6Jhz47z3focCuPI28e59H20TiQNhc9Y3fkffWPw==
+  optionalDependencies:
+    "@bufbuild/buf-darwin-arm64" "1.54.0"
+    "@bufbuild/buf-darwin-x64" "1.54.0"
+    "@bufbuild/buf-linux-aarch64" "1.54.0"
+    "@bufbuild/buf-linux-armv7" "1.54.0"
+    "@bufbuild/buf-linux-x64" "1.54.0"
+    "@bufbuild/buf-win32-arm64" "1.54.0"
+    "@bufbuild/buf-win32-x64" "1.54.0"
+
+"@bufbuild/protobuf@2.4.0", "@bufbuild/protobuf@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@bufbuild/protobuf/-/protobuf-2.4.0.tgz#ef6bfd2fc0374a95a4904cdc5fd8e02cc999cf73"
+  integrity sha512-RN9M76x7N11QRihKovEglEjjVCQEA9PRBVnDgk9xw8JHLrcUrp4FpAVSPSH91cNbcTft3u2vpLN4GMbiKY9PJw==
+
+"@bufbuild/protoc-gen-es@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@bufbuild/protoc-gen-es/-/protoc-gen-es-2.4.0.tgz#e0cd860bf741e89ee365a316f8e87400ddd02788"
+  integrity sha512-f5nm7HxXwVJKcAqpUTevKeLJOjy9WWqAuYORx3AnlB7w+XHPo/qrjQgMh4a9Dy1/aixYvBw2CnNK5d0DZ6CRgw==
+  dependencies:
+    "@bufbuild/protobuf" "^2.4.0"
+    "@bufbuild/protoplugin" "2.4.0"
+
+"@bufbuild/protoplugin@2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@bufbuild/protoplugin/-/protoplugin-2.4.0.tgz#554d678e059a1a0a39634e11e692d543d582cc30"
+  integrity sha512-Y7Wxis00uKM58UOM21aVECsMoPHzKvHJBH05bpmAhlOWXhVjtFDStOwB2gIiUB1rumbwOmjHTDe/bGP5M4HxmA==
+  dependencies:
+    "@bufbuild/protobuf" "2.4.0"
+    "@typescript/vfs" "^1.5.2"
+    typescript "5.4.5"
+
+"@connectrpc/connect-web@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@connectrpc/connect-web/-/connect-web-2.0.2.tgz#02f109e21eb06b31ee2558eeed39b1bf03cc9089"
+  integrity sha512-QANMFPiL2o66BdBEctg4TsQLe5ozsBLqcle3dCBp7BwGlNGTY6NnNnqmt+YRnpeMW88GgomJwWNMGCrRD9pRKA==
+
+"@connectrpc/connect@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@connectrpc/connect/-/connect-2.0.2.tgz#acd05e1408737c860e732137dc6f960321d2c628"
+  integrity sha512-xZuylIUNvNlH52e/4eQsZvY4QZyDJRtEFEDnn/yBrv5Xi5ZZI/p8X+GAHH35ucVaBvv9u7OzHZo8+tEh1EFTxA==
+
 "@esbuild/aix-ppc64@0.25.4":
   version "0.25.4"
   resolved "https://registry.yarnpkg.com/@esbuild/aix-ppc64/-/aix-ppc64-0.25.4.tgz#830d6476cbbca0c005136af07303646b419f1162"
@@ -781,6 +861,13 @@
     "@typescript-eslint/types" "8.32.1"
     eslint-visitor-keys "^4.2.0"
 
+"@typescript/vfs@^1.5.2":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@typescript/vfs/-/vfs-1.6.1.tgz#fe7087d5a43715754f7ea9bf6e0b905176c9eebd"
+  integrity sha512-JwoxboBh7Oz1v38tPbkrZ62ZXNHAk9bJ7c9x0eI5zBfBnBYGhURdbnh7Z4smN/MV48Y5OCcZb58n972UtbazsA==
+  dependencies:
+    debug "^4.1.1"
+
 "@vitejs/plugin-vue@^5.2.3":
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-5.2.4.tgz#9e8a512eb174bfc2a333ba959bbf9de428d89ad8"
@@ -1248,7 +1335,7 @@ de-indent@^1.0.2:
   resolved "https://registry.yarnpkg.com/de-indent/-/de-indent-1.0.2.tgz#b2038e846dc33baa5796128d0804b455b8c1e21d"
   integrity sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==
 
-debug@^4.1.0, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4, debug@^4.3.5, debug@^4.3.7, debug@^4.4.0:
+debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4, debug@^4.3.5, debug@^4.3.7, debug@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.4.0.tgz#2b3f2aea2ffeb776477460267377dc8710faba8a"
   integrity sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==
@@ -2707,6 +2794,11 @@ typescript-eslint@^8.26.0:
     "@typescript-eslint/eslint-plugin" "8.32.1"
     "@typescript-eslint/parser" "8.32.1"
     "@typescript-eslint/utils" "8.32.1"
+
+typescript@5.4.5:
+  version "5.4.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.4.5.tgz#42ccef2c571fdbd0f6718b1d1f5e6e5ef006f611"
+  integrity sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==
 
 typescript@~5.8.0:
   version "5.8.3"

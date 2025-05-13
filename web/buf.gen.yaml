@@ -1,0 +1,8 @@
+version: v2
+inputs:
+  - directory: ../api/proto
+plugins:
+  - local: protoc-gen-es
+    out: src/api/pb
+    include_imports: true
+    opt: target=ts

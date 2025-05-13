@@ -3,7 +3,7 @@ postgres:
   port: 5432
   username: postgres
   password: postgres
-  database: gskeleton
+  database: ipmanager
 
 jwt:
   secret: "github.com/magomedcoder/ipmanager"
