@@ -31,6 +31,7 @@ func (i *IpHandler) GetIps(ctx context.Context, in *pb.GetIpsRequest) (*pb.GetIp
 		items = append(items, &pb.IpItem{
 			Id:           item.Id,
 			Ip:           item.Ip,
+			Busy:         item.Busy,
 			CustomerId:   item.CustomerId,
 			CustomerName: item.CustomerName,
 			Description:  item.Description,
@@ -52,6 +53,7 @@ func (i *IpHandler) GetIpById(ctx context.Context, in *pb.GetIpRequest) (*pb.Get
 	return &pb.GetIpResponse{
 		Id:           ip.Id,
 		Ip:           ip.Ip,
+		Busy:         ip.Busy,
 		CustomerId:   ip.CustomerId,
 		CustomerName: ip.CustomerName,
 		Description:  ip.Description,

@@ -54,7 +54,7 @@ const loadVlan = async () => {
     .then((res: { total: number; items: IVlan[] }) => {
       vlans.value = res.items.map((item) => {
         return {
-          value: item.id,
+          value: Number(item.id),
           label: item.name
         }
       })
@@ -67,11 +67,8 @@ const onSubmit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid: boolean) => {
     if (valid) {
-      subnetStore.createSubnet({
-        ip: form.ip,
-        vlanId: form.vlanId,
-        description: form.description,
-      }).then(async (res: any) => {
+      subnetStore.createSubnet(form.ip, form.vlanId, form.description)
+        .then(async (res: any) => {
         if (res.id !=0) {
           onClose()
           emit('onReset')
@@ -108,7 +105,7 @@ loadVlan()
         <el-input v-model="form.ip" />
       </el-form-item>
       <el-form-item
-        label="Vlan"
+        label="VLAN"
         prop="vlan"
       >
         <el-select-v2

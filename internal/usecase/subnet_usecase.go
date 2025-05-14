@@ -101,11 +101,12 @@ func (s *SubnetUseCase) GetSubnets(ctx context.Context, arg ...func(*gorm.DB)) (
 	items := make([]*entity.Subnet, 0)
 	for _, item := range subnets {
 		res := &entity.Subnet{
-			Id: int64(item.ID),
-			Ip: item.Ip,
+			Id:          int64(item.ID),
+			Ip:          item.Ip,
+			Description: item.Description,
 		}
 
-		if item.Vlan.ID != 0 {
+		if item.Vlan != nil {
 			res.VlanId = int64(item.Vlan.ID)
 			res.VlanName = item.Vlan.Name
 		}
@@ -137,7 +138,6 @@ func (s *SubnetUseCase) GetById(ctx context.Context, id int64) (*entity.Subnet, 
 
 func (s *SubnetUseCase) EditVlanById(ctx context.Context, id int64, vlanId int64) error {
 	if err := s.SubnetRepo.EditVlanById(ctx, id, vlanId); err != nil {
-		fmt.Println(err)
 		return errors.New(fmt.Sprintf("Не удалось получить ip: %v", id))
 	}
 

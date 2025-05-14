@@ -26,6 +26,8 @@ type IIpUseCase interface {
 	EditServiceById(ctx context.Context, id int64, serviceId int64) error
 
 	EditDescriptionById(ctx context.Context, id int64, description string) error
+
+	CountByCustomerBinding(ctx context.Context, id int64) (int64, int64, error)
 }
 
 var _ IIpUseCase = (*IpUseCase)(nil)
@@ -88,6 +90,10 @@ func (i *IpUseCase) GetIps(ctx context.Context, arg ...func(*gorm.DB)) ([]*entit
 		}
 
 		if item.Customer != nil {
+			res.Busy = true
+		}
+
+		if item.Customer != nil {
 			res.CustomerId = int64(item.Customer.ID)
 			res.CustomerName = item.Customer.Name
 		}
@@ -110,6 +116,10 @@ func (i *IpUseCase) GetById(ctx context.Context, id int64) (*entity.Ip, error) {
 		SubnetId:    int64(ip.SubnetID),
 		SubnetName:  ip.Ip,
 		Description: ip.Description,
+	}
+
+	if ip.Customer != nil {
+		res.Busy = true
 	}
 
 	if ip.Customer != nil {
@@ -142,4 +152,13 @@ func (i *IpUseCase) EditDescriptionById(ctx context.Context, id int64, descripti
 	}
 
 	return nil
+}
+
+func (i *IpUseCase) CountByCustomerBinding(ctx context.Context, id int64) (int64, int64, error) {
+	withoutCustomer, withCustomer, err := i.IpRepo.CountByCustomerBinding(ctx, id)
+	if err != nil {
+		return 0, 0, status.Error(codes.Internal, "Ошибка при подсчете IP-адресов")
+	}
+
+	return withoutCustomer, withCustomer, nil
 }

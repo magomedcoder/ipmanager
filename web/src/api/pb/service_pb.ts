@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file service.proto.
  */
 export const file_service: GenFile = /*@__PURE__*/
-  fileDesc("Cg1zZXJ2aWNlLnByb3RvEgdzZXJ2aWNlIiQKFENyZWF0ZVNlcnZpY2VSZXF1ZXN0EgwKBG5hbWUYASABKAkiIwoVQ3JlYXRlU2VydmljZVJlc3BvbnNlEgoKAmlkGAEgASgDIjQKEkdldFNlcnZpY2VzUmVxdWVzdBIMCgRwYWdlGAEgASgDEhAKCHBhZ2VTaXplGAIgASgDIkkKE0dldFNlcnZpY2VzUmVzcG9uc2USDQoFdG90YWwYASABKAMSIwoFaXRlbXMYAiADKAsyFC5zZXJ2aWNlLlNlcnZpY2VJdGVtIicKC1NlcnZpY2VJdGVtEgoKAmlkGAEgASgDEgwKBG5hbWUYAiABKAkiHwoRR2V0U2VydmljZVJlcXVlc3QSCgoCaWQYASABKAMiLgoSR2V0U2VydmljZVJlc3BvbnNlEgoKAmlkGAEgASgDEgwKBG5hbWUYAiABKAky9QEKDlNlcnZpY2VTZXJ2aWNlEk4KDUNyZWF0ZVNlcnZpY2USHS5zZXJ2aWNlLkNyZWF0ZVNlcnZpY2VSZXF1ZXN0Gh4uc2VydmljZS5DcmVhdGVTZXJ2aWNlUmVzcG9uc2USSAoLR2V0U2VydmljZXMSGy5zZXJ2aWNlLkdldFNlcnZpY2VzUmVxdWVzdBocLnNlcnZpY2UuR2V0U2VydmljZXNSZXNwb25zZRJJCg5HZXRTZXJ2aWNlQnlJZBIaLnNlcnZpY2UuR2V0U2VydmljZVJlcXVlc3QaGy5zZXJ2aWNlLkdldFNlcnZpY2VSZXNwb25zZUIqWihnaXRodWIuY29tL21hZ29tZWRjb2Rlci9pcG1hbmFnZXIvYXBpL3BiYgZwcm90bzM");
+  fileDesc("Cg1zZXJ2aWNlLnByb3RvEgdzZXJ2aWNlIiQKFENyZWF0ZVNlcnZpY2VSZXF1ZXN0EgwKBG5hbWUYASABKAkiIwoVQ3JlYXRlU2VydmljZVJlc3BvbnNlEgoKAmlkGAEgASgDIjQKEkdldFNlcnZpY2VzUmVxdWVzdBIMCgRwYWdlGAEgASgDEhAKCHBhZ2VTaXplGAIgASgDIkkKE0dldFNlcnZpY2VzUmVzcG9uc2USDQoFdG90YWwYASABKAMSIwoFaXRlbXMYAiADKAsyFC5zZXJ2aWNlLlNlcnZpY2VJdGVtIrcBCgtTZXJ2aWNlSXRlbRIKCgJpZBgBIAEoAxIMCgRuYW1lGAIgASgJEigKBXZsYW5zGAMgAygLMhkuc2VydmljZS5TZXJ2aWNlSXRlbS5WbGFuEiQKA2lwcxgEIAMoCzIXLnNlcnZpY2UuU2VydmljZUl0ZW0uSXAaIAoEVmxhbhIKCgJpZBgBIAEoAxIMCgRuYW1lGAIgASgJGhwKAklwEgoKAmlkGAEgASgDEgoKAmlwGAIgASgJIh8KEUdldFNlcnZpY2VSZXF1ZXN0EgoKAmlkGAEgASgDIi4KEkdldFNlcnZpY2VSZXNwb25zZRIKCgJpZBgBIAEoAxIMCgRuYW1lGAIgASgJMvUBCg5TZXJ2aWNlU2VydmljZRJOCg1DcmVhdGVTZXJ2aWNlEh0uc2VydmljZS5DcmVhdGVTZXJ2aWNlUmVxdWVzdBoeLnNlcnZpY2UuQ3JlYXRlU2VydmljZVJlc3BvbnNlEkgKC0dldFNlcnZpY2VzEhsuc2VydmljZS5HZXRTZXJ2aWNlc1JlcXVlc3QaHC5zZXJ2aWNlLkdldFNlcnZpY2VzUmVzcG9uc2USSQoOR2V0U2VydmljZUJ5SWQSGi5zZXJ2aWNlLkdldFNlcnZpY2VSZXF1ZXN0Ghsuc2VydmljZS5HZXRTZXJ2aWNlUmVzcG9uc2VCKlooZ2l0aHViLmNvbS9tYWdvbWVkY29kZXIvaXBtYW5hZ2VyL2FwaS9wYmIGcHJvdG8z");
 
 /**
  * @generated from message service.CreateServiceRequest
@@ -103,6 +103,16 @@ export type ServiceItem = Message<"service.ServiceItem"> & {
    * @generated from field: string name = 2;
    */
   name: string;
+
+  /**
+   * @generated from field: repeated service.ServiceItem.Vlan vlans = 3;
+   */
+  vlans: ServiceItem_Vlan[];
+
+  /**
+   * @generated from field: repeated service.ServiceItem.Ip ips = 4;
+   */
+  ips: ServiceItem_Ip[];
 };
 
 /**
@@ -111,6 +121,50 @@ export type ServiceItem = Message<"service.ServiceItem"> & {
  */
 export const ServiceItemSchema: GenMessage<ServiceItem> = /*@__PURE__*/
   messageDesc(file_service, 4);
+
+/**
+ * @generated from message service.ServiceItem.Vlan
+ */
+export type ServiceItem_Vlan = Message<"service.ServiceItem.Vlan"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name: string;
+};
+
+/**
+ * Describes the message service.ServiceItem.Vlan.
+ * Use `create(ServiceItem_VlanSchema)` to create a new message.
+ */
+export const ServiceItem_VlanSchema: GenMessage<ServiceItem_Vlan> = /*@__PURE__*/
+  messageDesc(file_service, 4, 0);
+
+/**
+ * @generated from message service.ServiceItem.Ip
+ */
+export type ServiceItem_Ip = Message<"service.ServiceItem.Ip"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+
+  /**
+   * @generated from field: string ip = 2;
+   */
+  ip: string;
+};
+
+/**
+ * Describes the message service.ServiceItem.Ip.
+ * Use `create(ServiceItem_IpSchema)` to create a new message.
+ */
+export const ServiceItem_IpSchema: GenMessage<ServiceItem_Ip> = /*@__PURE__*/
+  messageDesc(file_service, 4, 1);
 
 /**
  * @generated from message service.GetServiceRequest

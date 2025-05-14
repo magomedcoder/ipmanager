@@ -24,6 +24,7 @@ func (m *Migrate) Migrate(ctx context.Context) error {
 		&model.Subnet{},
 		&model.Ip{},
 		&model.Service{},
+		&model.ServiceVlan{},
 	); err != nil {
 		return err
 	}

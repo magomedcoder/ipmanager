@@ -13,6 +13,7 @@ import (
 type SubnetHandler struct {
 	pb.UnimplementedSubnetServiceServer
 	SubnetUseCase usecase.ISubnetUseCase
+	IpUseCase     usecase.IIpUseCase
 }
 
 func (s *SubnetHandler) CreateSubnet(ctx context.Context, in *pb.CreateSubnetRequest) (*pb.CreateSubnetResponse, error) {
@@ -61,6 +62,7 @@ func (s *SubnetHandler) GetSubnets(ctx context.Context, in *pb.GetSubnetsRequest
 			CustomerName: item.CustomerName,
 			VlanId:       item.VlanId,
 			VlanName:     item.VlanName,
+			Description:  item.Description,
 		})
 	}
 
@@ -76,11 +78,12 @@ func (s *SubnetHandler) GetSubnetById(ctx context.Context, in *pb.GetSubnetReque
 		return nil, status.Error(codes.NotFound, "Подсеть не найден")
 	}
 
-	var charts []int64
-	///
-	charts = append(charts, 40)
-	charts = append(charts, 60)
-	//
+	withoutCustomer, withCustomer, err := s.IpUseCase.CountByCustomerBinding(ctx, in.Id)
+	if err != nil {
+		return nil, status.Error(codes.Internal, "Ошибка при подсчете IP-адресов")
+	}
+
+	charts := []int64{withCustomer, withoutCustomer}
 
 	return &pb.GetSubnetResponse{
 		Id:          subnet.Id,

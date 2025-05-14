@@ -11,8 +11,6 @@ const props = defineProps(['id'])
 
 const ipStore = useIpStore()
 
-const onClose = () => modelValue.value = false
-
 const form = ref<IIp>({
   id: 0,
   ip: '',
@@ -36,6 +34,8 @@ const load = async () => {
   })
 }
 
+const onClose = () => ipStore.getIps().then(() => {})
+
 load()
 </script>
 
@@ -45,6 +45,7 @@ load()
     :title="`Карточка IP (${form.ip})`"
     width="500"
     align-center
+    @close="onClose"
   >
     <el-descriptions :column="1">
       <el-descriptions-item label="IP:">{{form.ip}}</el-descriptions-item>
@@ -82,18 +83,6 @@ load()
         </el-button>
       </el-descriptions-item>
     </el-descriptions>
-    <el-button
-      type="primary"
-      @click=""
-    >
-      Зарезервировать
-    </el-button>
-    <el-button
-      type="primary"
-      @click=""
-    >
-      Освободить
-    </el-button>
   </el-dialog>
 </template>
 

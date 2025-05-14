@@ -48,16 +48,39 @@ func (v *ServiceUseCase) Create(ctx context.Context, opt *ServiceOpt) (*entity.S
 }
 
 func (v *ServiceUseCase) GetServices(ctx context.Context, arg ...func(*gorm.DB)) ([]*entity.Service, error) {
-	services, err := v.ServiceRepo.GetServices(ctx, arg...)
+	services, err := v.ServiceRepo.GetServices(ctx, func(db *gorm.DB) {
+		for _, fn := range arg {
+			fn(db)
+		}
+		db.Preload("Vlans").Preload("Ips")
+	})
 	if err != nil {
 		return nil, err
 	}
 
 	items := make([]*entity.Service, 0)
 	for _, item := range services {
+		var vlans []entity.ServiceVlan
+		for _, _vlan := range item.Vlans {
+			vlans = append(vlans, entity.ServiceVlan{
+				Id:   int64(_vlan.ID),
+				Name: _vlan.Name,
+			})
+		}
+
+		var ips []entity.ServiceIp
+		for _, _ip := range item.Ips {
+			ips = append(ips, entity.ServiceIp{
+				Id: int64(_ip.ID),
+				Ip: _ip.Ip,
+			})
+		}
+
 		items = append(items, &entity.Service{
-			Id:   int64(item.ID),
-			Name: item.Name,
+			Id:    int64(item.ID),
+			Name:  item.Name,
+			Ips:   ips,
+			Vlans: vlans,
 		})
 	}
 

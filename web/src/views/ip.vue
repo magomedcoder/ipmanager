@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {reactive, ref} from 'vue'
+import { reactive, ref, computed } from 'vue'
 import IpCard from '@/components/ip/IpCard.vue'
 import BaseTable from '@/components/base/BaseTable.vue'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
@@ -37,7 +37,7 @@ const subnet = ref<ISubnet>({
 })
 
 const total = ref<number>(0)
-const items = ref<IIp[]>([])
+const items = computed<IIp[]>(() => ipStore.getItems)
 const showCard = ref<boolean>(false)
 const id = ref<number>()
 
@@ -83,17 +83,8 @@ const getDetail = async () => {
 
 const load = async (_page: number) => {
   loading.value = true
-  ipStore.getIps(params.id)
-    .then((res: { total: number; items: IIp[] }) => {
-      total.value = Number(res.total)
-      items.value = res.items.map((item) => {
-        return {
-          ...item,
-          id: Number(item.id),
-          customerId: Number(item.customerId)
-        }
-      })
-    }).finally(() => {
+  ipStore.setSubnetId(params.id)
+  ipStore.getIps().finally(() => {
     loading.value = false
   })
 }
@@ -170,6 +161,7 @@ getDetail()
                 <el-button
                   @click="onClick(item.id)"
                   class="ip-table"
+                  :class="{ active: item.busy }"
                 >
                   {{ getLastOctet(item.ip) }}
                 </el-button>
@@ -208,5 +200,13 @@ getDetail()
 .ip-table {
   width: 28px;
   height: 22px;
+
+  &.active {
+    background: #af0000;
+  }
+
+  &.active:hover {
+    background: #c1d4e3;
+  }
 }
 </style>

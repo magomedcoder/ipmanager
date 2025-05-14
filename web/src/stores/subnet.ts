@@ -8,10 +8,12 @@ const subnetService = client(SubnetService)
 export const useSubnetStore = defineStore('subnet', {
   state: () => ({}),
   actions: {
-    async createSubnet(subnetData: { ip: string }) {
+    async createSubnet(ip: string, vlanId: number, description: string) {
       try {
         return await subnetService.createSubnet({
-          ip: subnetData.ip,
+          ip: ip,
+          vlanId: vlanId,
+          description: description,
         })
       } catch (err) {
         if (err instanceof ConnectError) {

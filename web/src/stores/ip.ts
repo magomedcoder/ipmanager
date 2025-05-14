@@ -1,19 +1,33 @@
 import { defineStore } from 'pinia'
 import { client } from '@/api/client'
 import { IpService } from '@/api/pb/ip_pb'
-import { ServiceService } from '@/api/pb/service_pb'
 import { ConnectError } from '@connectrpc/connect'
 
 const ipService = client(IpService)
-const serviceService = client(ServiceService)
 
 export const useIpStore = defineStore('ip', {
-  state: () => ({}),
+  state: () => ({
+    subnetId: 0,
+    total: 0,
+    items: []
+  }),
   actions: {
-    async getIps(subnetId: number) {
+    setSubnetId(subnetId: number) {
+      this.subnetId = subnetId
+    },
+
+    async getIps() {
       try {
-        return await ipService.getIps({
-          subnetId: subnetId
+        const { total, items } = await ipService.getIps({
+          subnetId: this.subnetId
+        })
+        this.total = total
+        this.items = items?.map((item) => {
+          return {
+            ...item,
+            id: Number(item.id),
+            customerId: Number(item.customerId)
+          }
         })
       } catch (err) {
         if (err instanceof ConnectError) {
@@ -76,5 +90,9 @@ export const useIpStore = defineStore('ip', {
       }
     }
   },
-  getters: {}
+  getters: {
+    getTotal: state => state.total,
+
+    getItems: state => state.items
+  }
 })

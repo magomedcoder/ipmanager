@@ -47,15 +47,16 @@ func NewGrpcInjector(conf *config.Config) *AppProvider {
 		SubnetRepo: subnetRepository,
 		IpRepo:     ipRepository,
 	}
-	subnetHandler := &handler.SubnetHandler{
-		UnimplementedSubnetServiceServer: unimplementedSubnetServiceServer,
-		SubnetUseCase:                    subnetUseCase,
-	}
-	unimplementedIpServiceServer := pb.UnimplementedIpServiceServer{}
 	ipUseCase := &usecase.IpUseCase{
 		Conf:   conf,
 		IpRepo: ipRepository,
 	}
+	subnetHandler := &handler.SubnetHandler{
+		UnimplementedSubnetServiceServer: unimplementedSubnetServiceServer,
+		SubnetUseCase:                    subnetUseCase,
+		IpUseCase:                        ipUseCase,
+	}
+	unimplementedIpServiceServer := pb.UnimplementedIpServiceServer{}
 	ipHandler := &handler.IpHandler{
 		UnimplementedIpServiceServer: unimplementedIpServiceServer,
 		IpUseCase:                    ipUseCase,

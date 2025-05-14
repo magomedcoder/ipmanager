@@ -26,4 +26,7 @@ var ProviderSet = wire.NewSet(
 
 	wire.Bind(new(repository.IServiceRepository), new(*repository.ServiceRepository)),
 	repository.NewServiceRepository,
+
+	wire.Bind(new(repository.IServiceVlanRepository), new(*repository.ServiceVlanRepository)),
+	repository.NewServiceVlanRepository,
 )

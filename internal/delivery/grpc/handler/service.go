@@ -49,9 +49,27 @@ func (v *ServiceHandler) GetServices(ctx context.Context, in *pb.GetServicesRequ
 
 	items := make([]*pb.ServiceItem, 0)
 	for _, item := range services {
+		var vlans []*pb.ServiceItem_Vlan
+		for _, _vlan := range item.Vlans {
+			vlans = append(vlans, &pb.ServiceItem_Vlan{
+				Id:   _vlan.Id,
+				Name: _vlan.Name,
+			})
+		}
+
+		var ips []*pb.ServiceItem_Ip
+		for _, _ip := range item.Ips {
+			ips = append(ips, &pb.ServiceItem_Ip{
+				Id: _ip.Id,
+				Ip: _ip.Ip,
+			})
+		}
+
 		items = append(items, &pb.ServiceItem{
-			Id:   item.Id,
-			Name: item.Name,
+			Id:    item.Id,
+			Name:  item.Name,
+			Vlans: vlans,
+			Ips:   ips,
 		})
 	}
 

@@ -37,14 +37,14 @@ const columns = ref<IColumn[]>([
     width: 350
   },
   {
-    key: "vlans",
-    dataKey: "vlans",
+    key: "vlanName",
+    dataKey: "vlanName",
     title: "VLAN",
     width: 350
   },
   {
-    key: "ips",
-    dataKey: "ips",
+    key: "ipName",
+    dataKey: "ipName",
     title: "IP",
     width: 350
   },
@@ -61,10 +61,12 @@ const load = async (_page: number) => {
   serviceStore.getServices(page.value, pageSize.value)
     .then((res: { total: number; items: IItem[] }) => {
       total.value = Number(res.total)
-      items.value = res.items.map((item) => {
+      items.value = res.items.map((item: any) => {
         return {
           ...item,
-          id: Number(item.id)
+          id: Number(item.id),
+          vlanName: item.vlans.map((ip) => ip.name).join(', '),
+          ipName: item.ips.map((ip) => ip.ip).join(', ')
         }
       })
     }).finally(() => {

@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file ip.proto.
  */
 export const file_ip: GenFile = /*@__PURE__*/
-  fileDesc("CghpcC5wcm90bxICaXAiIgoNR2V0SXBzUmVxdWVzdBIRCglzdWJuZXRfaWQYASABKAMiOgoOR2V0SXBzUmVzcG9uc2USDQoFdG90YWwYASABKAMSGQoFaXRlbXMYAiADKAsyCi5pcC5JcEl0ZW0ihQEKBklwSXRlbRIKCgJpZBgBIAEoAxIKCgJpcBgCIAEoCRIPCgd2bGFuX2lkGAMgASgDEhEKCXZsYW5fbmFtZRgEIAEoCRITCgtjdXN0b21lcl9pZBgFIAEoAxIVCg1jdXN0b21lcl9uYW1lGAYgASgJEhMKC2Rlc2NyaXB0aW9uGAcgASgJIhoKDEdldElwUmVxdWVzdBIKCgJpZBgBIAEoAyKSAQoNR2V0SXBSZXNwb25zZRIKCgJpZBgBIAEoAxIKCgJpcBgCIAEoCRITCgtjdXN0b21lcl9pZBgDIAEoAxIVCg1jdXN0b21lcl9uYW1lGAQgASgJEhIKCnNlcnZpY2VfaWQYBSABKAMSFAoMc2VydmljZV9uYW1lGAYgASgJEhMKC2Rlc2NyaXB0aW9uGAcgASgJIjgKFUVkaXRJcEN1c3RvbWVyUmVxdWVzdBIKCgJpZBgBIAEoAxITCgtjdXN0b21lcl9pZBgCIAEoAyIpChZFZGl0SXBDdXN0b21lclJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgiNgoURWRpdElwU2VydmljZVJlcXVlc3QSCgoCaWQYASABKAMSEgoKc2VydmljZV9pZBgCIAEoAyIoChVFZGl0SXBTZXJ2aWNlUmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCCI7ChhFZGl0SXBEZXNjcmlwdGlvblJlcXVlc3QSCgoCaWQYASABKAMSEwoLZGVzY3JpcHRpb24YAiABKAkiLAoZRWRpdElwRGVzY3JpcHRpb25SZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIMs8CCglJcFNlcnZpY2USLwoGR2V0SXBzEhEuaXAuR2V0SXBzUmVxdWVzdBoSLmlwLkdldElwc1Jlc3BvbnNlEjAKCUdldElwQnlJZBIQLmlwLkdldElwUmVxdWVzdBoRLmlwLkdldElwUmVzcG9uc2USRwoORWRpdElwQ3VzdG9tZXISGS5pcC5FZGl0SXBDdXN0b21lclJlcXVlc3QaGi5pcC5FZGl0SXBDdXN0b21lclJlc3BvbnNlEkQKDUVkaXRJcFNlcnZpY2USGC5pcC5FZGl0SXBTZXJ2aWNlUmVxdWVzdBoZLmlwLkVkaXRJcFNlcnZpY2VSZXNwb25zZRJQChFFZGl0SXBEZXNjcmlwdGlvbhIcLmlwLkVkaXRJcERlc2NyaXB0aW9uUmVxdWVzdBodLmlwLkVkaXRJcERlc2NyaXB0aW9uUmVzcG9uc2VCKlooZ2l0aHViLmNvbS9tYWdvbWVkY29kZXIvaXBtYW5hZ2VyL2FwaS9wYmIGcHJvdG8z");
+  fileDesc("CghpcC5wcm90bxICaXAiIgoNR2V0SXBzUmVxdWVzdBIRCglzdWJuZXRfaWQYASABKAMiOgoOR2V0SXBzUmVzcG9uc2USDQoFdG90YWwYASABKAMSGQoFaXRlbXMYAiADKAsyCi5pcC5JcEl0ZW0imQEKBklwSXRlbRIKCgJpZBgBIAEoAxIKCgJpcBgCIAEoCRIMCgRidXN5GAMgASgIEhMKC2N1c3RvbWVyX2lkGAQgASgDEhUKDWN1c3RvbWVyX25hbWUYBSABKAkSEgoKc2VydmljZV9pZBgGIAEoAxIUCgxzZXJ2aWNlX25hbWUYByABKAkSEwoLZGVzY3JpcHRpb24YCCABKAkiGgoMR2V0SXBSZXF1ZXN0EgoKAmlkGAEgASgDIqABCg1HZXRJcFJlc3BvbnNlEgoKAmlkGAEgASgDEgoKAmlwGAIgASgJEgwKBGJ1c3kYAyABKAgSEwoLY3VzdG9tZXJfaWQYBCABKAMSFQoNY3VzdG9tZXJfbmFtZRgFIAEoCRISCgpzZXJ2aWNlX2lkGAYgASgDEhQKDHNlcnZpY2VfbmFtZRgHIAEoCRITCgtkZXNjcmlwdGlvbhgIIAEoCSI4ChVFZGl0SXBDdXN0b21lclJlcXVlc3QSCgoCaWQYASABKAMSEwoLY3VzdG9tZXJfaWQYAiABKAMiKQoWRWRpdElwQ3VzdG9tZXJSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIIjYKFEVkaXRJcFNlcnZpY2VSZXF1ZXN0EgoKAmlkGAEgASgDEhIKCnNlcnZpY2VfaWQYAiABKAMiKAoVRWRpdElwU2VydmljZVJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgiOwoYRWRpdElwRGVzY3JpcHRpb25SZXF1ZXN0EgoKAmlkGAEgASgDEhMKC2Rlc2NyaXB0aW9uGAIgASgJIiwKGUVkaXRJcERlc2NyaXB0aW9uUmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCDLPAgoJSXBTZXJ2aWNlEi8KBkdldElwcxIRLmlwLkdldElwc1JlcXVlc3QaEi5pcC5HZXRJcHNSZXNwb25zZRIwCglHZXRJcEJ5SWQSEC5pcC5HZXRJcFJlcXVlc3QaES5pcC5HZXRJcFJlc3BvbnNlEkcKDkVkaXRJcEN1c3RvbWVyEhkuaXAuRWRpdElwQ3VzdG9tZXJSZXF1ZXN0GhouaXAuRWRpdElwQ3VzdG9tZXJSZXNwb25zZRJECg1FZGl0SXBTZXJ2aWNlEhguaXAuRWRpdElwU2VydmljZVJlcXVlc3QaGS5pcC5FZGl0SXBTZXJ2aWNlUmVzcG9uc2USUAoRRWRpdElwRGVzY3JpcHRpb24SHC5pcC5FZGl0SXBEZXNjcmlwdGlvblJlcXVlc3QaHS5pcC5FZGl0SXBEZXNjcmlwdGlvblJlc3BvbnNlQipaKGdpdGh1Yi5jb20vbWFnb21lZGNvZGVyL2lwbWFuYWdlci9hcGkvcGJiBnByb3RvMw");
 
 /**
  * @generated from message ip.GetIpsRequest
@@ -66,27 +66,32 @@ export type IpItem = Message<"ip.IpItem"> & {
   ip: string;
 
   /**
-   * @generated from field: int64 vlan_id = 3;
+   * @generated from field: bool busy = 3;
    */
-  vlanId: bigint;
+  busy: boolean;
 
   /**
-   * @generated from field: string vlan_name = 4;
-   */
-  vlanName: string;
-
-  /**
-   * @generated from field: int64 customer_id = 5;
+   * @generated from field: int64 customer_id = 4;
    */
   customerId: bigint;
 
   /**
-   * @generated from field: string customer_name = 6;
+   * @generated from field: string customer_name = 5;
    */
   customerName: string;
 
   /**
-   * @generated from field: string description = 7;
+   * @generated from field: int64 service_id = 6;
+   */
+  serviceId: bigint;
+
+  /**
+   * @generated from field: string service_name = 7;
+   */
+  serviceName: string;
+
+  /**
+   * @generated from field: string description = 8;
    */
   description: string;
 };
@@ -130,27 +135,32 @@ export type GetIpResponse = Message<"ip.GetIpResponse"> & {
   ip: string;
 
   /**
-   * @generated from field: int64 customer_id = 3;
+   * @generated from field: bool busy = 3;
+   */
+  busy: boolean;
+
+  /**
+   * @generated from field: int64 customer_id = 4;
    */
   customerId: bigint;
 
   /**
-   * @generated from field: string customer_name = 4;
+   * @generated from field: string customer_name = 5;
    */
   customerName: string;
 
   /**
-   * @generated from field: int64 service_id = 5;
+   * @generated from field: int64 service_id = 6;
    */
   serviceId: bigint;
 
   /**
-   * @generated from field: string service_name = 6;
+   * @generated from field: string service_name = 7;
    */
   serviceName: string;
 
   /**
-   * @generated from field: string description = 7;
+   * @generated from field: string description = 8;
    */
   description: string;
 };

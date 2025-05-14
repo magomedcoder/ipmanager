@@ -237,6 +237,7 @@ type SubnetItem struct {
 	VlanName      string                 `protobuf:"bytes,4,opt,name=vlan_name,json=vlanName,proto3" json:"vlan_name,omitempty"`
 	CustomerId    int64                  `protobuf:"varint,5,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
 	CustomerName  string                 `protobuf:"bytes,6,opt,name=customer_name,json=customerName,proto3" json:"customer_name,omitempty"`
+	Description   string                 `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -309,6 +310,13 @@ func (x *SubnetItem) GetCustomerId() int64 {
 func (x *SubnetItem) GetCustomerName() string {
 	if x != nil {
 		return x.CustomerName
+	}
+	return ""
+}
+
+func (x *SubnetItem) GetDescription() string {
+	if x != nil {
+		return x.Description
 	}
 	return ""
 }
@@ -657,7 +665,7 @@ const file_subnet_proto_rawDesc = "" +
 	"\bpageSize\x18\x02 \x01(\x03R\bpageSize\"T\n" +
 	"\x12GetSubnetsResponse\x12\x14\n" +
 	"\x05total\x18\x01 \x01(\x03R\x05total\x12(\n" +
-	"\x05items\x18\x02 \x03(\v2\x12.subnet.SubnetItemR\x05items\"\xa8\x01\n" +
+	"\x05items\x18\x02 \x03(\v2\x12.subnet.SubnetItemR\x05items\"\xca\x01\n" +
 	"\n" +
 	"SubnetItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x0e\n" +
@@ -666,7 +674,8 @@ const file_subnet_proto_rawDesc = "" +
 	"\tvlan_name\x18\x04 \x01(\tR\bvlanName\x12\x1f\n" +
 	"\vcustomer_id\x18\x05 \x01(\x03R\n" +
 	"customerId\x12#\n" +
-	"\rcustomer_name\x18\x06 \x01(\tR\fcustomerName\"\"\n" +
+	"\rcustomer_name\x18\x06 \x01(\tR\fcustomerName\x12 \n" +
+	"\vdescription\x18\a \x01(\tR\vdescription\"\"\n" +
 	"\x10GetSubnetRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"\xb7\x01\n" +
 	"\x11GetSubnetResponse\x12\x0e\n" +

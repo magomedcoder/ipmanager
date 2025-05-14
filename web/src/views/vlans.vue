@@ -65,7 +65,7 @@ load(-1)
     <el-card class="container mx-auto">
       <template #header>
         <div class="flex justify-between">
-          <h1 class="sm:text-2xl pt-1 font-extrabold dark:text-white tracking-tight">Vlan</h1>
+          <h1 class="sm:text-2xl pt-1 font-extrabold dark:text-white tracking-tight">VLAN</h1>
           <el-button
             type="primary"
             @click="showCreation = true"

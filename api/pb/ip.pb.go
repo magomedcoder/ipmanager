@@ -121,11 +121,12 @@ type IpItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Ip            string                 `protobuf:"bytes,2,opt,name=ip,proto3" json:"ip,omitempty"`
-	VlanId        int64                  `protobuf:"varint,3,opt,name=vlan_id,json=vlanId,proto3" json:"vlan_id,omitempty"`
-	VlanName      string                 `protobuf:"bytes,4,opt,name=vlan_name,json=vlanName,proto3" json:"vlan_name,omitempty"`
-	CustomerId    int64                  `protobuf:"varint,5,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
-	CustomerName  string                 `protobuf:"bytes,6,opt,name=customer_name,json=customerName,proto3" json:"customer_name,omitempty"`
-	Description   string                 `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
+	Busy          bool                   `protobuf:"varint,3,opt,name=busy,proto3" json:"busy,omitempty"`
+	CustomerId    int64                  `protobuf:"varint,4,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
+	CustomerName  string                 `protobuf:"bytes,5,opt,name=customer_name,json=customerName,proto3" json:"customer_name,omitempty"`
+	ServiceId     int64                  `protobuf:"varint,6,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+	ServiceName   string                 `protobuf:"bytes,7,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
+	Description   string                 `protobuf:"bytes,8,opt,name=description,proto3" json:"description,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -174,18 +175,11 @@ func (x *IpItem) GetIp() string {
 	return ""
 }
 
-func (x *IpItem) GetVlanId() int64 {
+func (x *IpItem) GetBusy() bool {
 	if x != nil {
-		return x.VlanId
+		return x.Busy
 	}
-	return 0
-}
-
-func (x *IpItem) GetVlanName() string {
-	if x != nil {
-		return x.VlanName
-	}
-	return ""
+	return false
 }
 
 func (x *IpItem) GetCustomerId() int64 {
@@ -198,6 +192,20 @@ func (x *IpItem) GetCustomerId() int64 {
 func (x *IpItem) GetCustomerName() string {
 	if x != nil {
 		return x.CustomerName
+	}
+	return ""
+}
+
+func (x *IpItem) GetServiceId() int64 {
+	if x != nil {
+		return x.ServiceId
+	}
+	return 0
+}
+
+func (x *IpItem) GetServiceName() string {
+	if x != nil {
+		return x.ServiceName
 	}
 	return ""
 }
@@ -257,11 +265,12 @@ type GetIpResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Ip            string                 `protobuf:"bytes,2,opt,name=ip,proto3" json:"ip,omitempty"`
-	CustomerId    int64                  `protobuf:"varint,3,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
-	CustomerName  string                 `protobuf:"bytes,4,opt,name=customer_name,json=customerName,proto3" json:"customer_name,omitempty"`
-	ServiceId     int64                  `protobuf:"varint,5,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
-	ServiceName   string                 `protobuf:"bytes,6,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
-	Description   string                 `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
+	Busy          bool                   `protobuf:"varint,3,opt,name=busy,proto3" json:"busy,omitempty"`
+	CustomerId    int64                  `protobuf:"varint,4,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
+	CustomerName  string                 `protobuf:"bytes,5,opt,name=customer_name,json=customerName,proto3" json:"customer_name,omitempty"`
+	ServiceId     int64                  `protobuf:"varint,6,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+	ServiceName   string                 `protobuf:"bytes,7,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
+	Description   string                 `protobuf:"bytes,8,opt,name=description,proto3" json:"description,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -308,6 +317,13 @@ func (x *GetIpResponse) GetIp() string {
 		return x.Ip
 	}
 	return ""
+}
+
+func (x *GetIpResponse) GetBusy() bool {
+	if x != nil {
+		return x.Busy
+	}
+	return false
 }
 
 func (x *GetIpResponse) GetCustomerId() int64 {
@@ -643,28 +659,31 @@ const file_ip_proto_rawDesc = "" +
 	"\x0eGetIpsResponse\x12\x14\n" +
 	"\x05total\x18\x01 \x01(\x03R\x05total\x12 \n" +
 	"\x05items\x18\x02 \x03(\v2\n" +
-	".ip.IpItemR\x05items\"\xc6\x01\n" +
+	".ip.IpItemR\x05items\"\xe6\x01\n" +
 	"\x06IpItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x0e\n" +
-	"\x02ip\x18\x02 \x01(\tR\x02ip\x12\x17\n" +
-	"\avlan_id\x18\x03 \x01(\x03R\x06vlanId\x12\x1b\n" +
-	"\tvlan_name\x18\x04 \x01(\tR\bvlanName\x12\x1f\n" +
-	"\vcustomer_id\x18\x05 \x01(\x03R\n" +
+	"\x02ip\x18\x02 \x01(\tR\x02ip\x12\x12\n" +
+	"\x04busy\x18\x03 \x01(\bR\x04busy\x12\x1f\n" +
+	"\vcustomer_id\x18\x04 \x01(\x03R\n" +
 	"customerId\x12#\n" +
-	"\rcustomer_name\x18\x06 \x01(\tR\fcustomerName\x12 \n" +
-	"\vdescription\x18\a \x01(\tR\vdescription\"\x1e\n" +
+	"\rcustomer_name\x18\x05 \x01(\tR\fcustomerName\x12\x1d\n" +
+	"\n" +
+	"service_id\x18\x06 \x01(\x03R\tserviceId\x12!\n" +
+	"\fservice_name\x18\a \x01(\tR\vserviceName\x12 \n" +
+	"\vdescription\x18\b \x01(\tR\vdescription\"\x1e\n" +
 	"\fGetIpRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"\xd9\x01\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"\xed\x01\n" +
 	"\rGetIpResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x0e\n" +
-	"\x02ip\x18\x02 \x01(\tR\x02ip\x12\x1f\n" +
-	"\vcustomer_id\x18\x03 \x01(\x03R\n" +
+	"\x02ip\x18\x02 \x01(\tR\x02ip\x12\x12\n" +
+	"\x04busy\x18\x03 \x01(\bR\x04busy\x12\x1f\n" +
+	"\vcustomer_id\x18\x04 \x01(\x03R\n" +
 	"customerId\x12#\n" +
-	"\rcustomer_name\x18\x04 \x01(\tR\fcustomerName\x12\x1d\n" +
+	"\rcustomer_name\x18\x05 \x01(\tR\fcustomerName\x12\x1d\n" +
 	"\n" +
-	"service_id\x18\x05 \x01(\x03R\tserviceId\x12!\n" +
-	"\fservice_name\x18\x06 \x01(\tR\vserviceName\x12 \n" +
-	"\vdescription\x18\a \x01(\tR\vdescription\"H\n" +
+	"service_id\x18\x06 \x01(\x03R\tserviceId\x12!\n" +
+	"\fservice_name\x18\a \x01(\tR\vserviceName\x12 \n" +
+	"\vdescription\x18\b \x01(\tR\vdescription\"H\n" +
 	"\x15EditIpCustomerRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1f\n" +
 	"\vcustomer_id\x18\x02 \x01(\x03R\n" +

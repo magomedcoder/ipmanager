@@ -28,11 +28,12 @@ message GetIpsResponse {
 message IpItem {
   int64 id = 1;
   string ip = 2;
-  int64 vlan_id = 3;
-  string vlan_name = 4;
-  int64 customer_id = 5;
-  string customer_name = 6;
-  string description = 7;
+  bool busy = 3;
+  int64 customer_id = 4;
+  string customer_name = 5;
+  int64 service_id = 6;
+  string service_name = 7;
+  string description = 8;
 }
 
 message GetIpRequest {
@@ -42,11 +43,12 @@ message GetIpRequest {
 message GetIpResponse {
   int64 id = 1;
   string ip = 2;
-  int64 customer_id = 3;
-  string customer_name = 4;
-  int64 service_id = 5;
-  string service_name = 6;
-  string description = 7;
+  bool busy = 3;
+  int64 customer_id = 4;
+  string customer_name = 5;
+  int64 service_id = 6;
+  string service_name = 7;
+  string description = 8;
 }
 
 message EditIpCustomerRequest {

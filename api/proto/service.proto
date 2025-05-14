@@ -31,8 +31,20 @@ message GetServicesResponse {
 }
 
 message ServiceItem {
+  message Vlan {
+    int64 id = 1;
+    string name = 2;
+  }
+
+  message Ip {
+    int64 id = 1;
+    string ip = 2;
+  }
+
   int64 id = 1;
   string name = 2;
+  repeated Vlan vlans = 3;
+  repeated Ip ips = 4;
 }
 
 message GetServiceRequest {

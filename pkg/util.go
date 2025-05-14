@@ -14,9 +14,9 @@ func GenerateIPPool(cidr string) ([]string, error) {
 	}
 
 	// .0 и .255
-	//if len(ips) > 2 {
-	//	ips = ips[1 : len(ips)-1]
-	//}
+	if len(ips) > 2 {
+		ips = ips[1 : len(ips)-1]
+	}
 
 	return ips, nil
 }

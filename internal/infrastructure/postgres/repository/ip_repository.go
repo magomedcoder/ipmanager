@@ -23,6 +23,8 @@ type IIpRepository interface {
 	EditCustomerById(ctx context.Context, id int64, customerId int64) error
 
 	EditDescriptionById(ctx context.Context, id int64, description string) error
+
+	CountByCustomerBinding(ctx context.Context, subnetID int64) (int64, int64, error)
 }
 
 var _ IIpRepository = (*IpRepository)(nil)
@@ -108,4 +110,23 @@ func (i *IpRepository) EditDescriptionById(ctx context.Context, id int64, descri
 	}
 
 	return nil
+}
+
+func (i *IpRepository) CountByCustomerBinding(ctx context.Context, subnetID int64) (int64, int64, error) {
+	var withoutCustomer int64
+	var withCustomer int64
+
+	if err := i.Repo.Model(ctx).
+		Where("subnet_id = ? AND customer_id IS NULL", subnetID).
+		Count(&withoutCustomer).Error; err != nil {
+		return 0, 0, err
+	}
+
+	if err := i.Repo.Model(ctx).
+		Where("subnet_id = ? AND customer_id IS NOT NULL", subnetID).
+		Count(&withCustomer).Error; err != nil {
+		return 0, 0, err
+	}
+
+	return withoutCustomer, withCustomer, nil
 }

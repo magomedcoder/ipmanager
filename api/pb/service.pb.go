@@ -217,6 +217,8 @@ type ServiceItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Vlans         []*ServiceItem_Vlan    `protobuf:"bytes,3,rep,name=vlans,proto3" json:"vlans,omitempty"`
+	Ips           []*ServiceItem_Ip      `protobuf:"bytes,4,rep,name=ips,proto3" json:"ips,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -263,6 +265,20 @@ func (x *ServiceItem) GetName() string {
 		return x.Name
 	}
 	return ""
+}
+
+func (x *ServiceItem) GetVlans() []*ServiceItem_Vlan {
+	if x != nil {
+		return x.Vlans
+	}
+	return nil
+}
+
+func (x *ServiceItem) GetIps() []*ServiceItem_Ip {
+	if x != nil {
+		return x.Ips
+	}
+	return nil
 }
 
 type GetServiceRequest struct {
@@ -361,6 +377,110 @@ func (x *GetServiceResponse) GetName() string {
 	return ""
 }
 
+type ServiceItem_Vlan struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ServiceItem_Vlan) Reset() {
+	*x = ServiceItem_Vlan{}
+	mi := &file_service_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ServiceItem_Vlan) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ServiceItem_Vlan) ProtoMessage() {}
+
+func (x *ServiceItem_Vlan) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ServiceItem_Vlan.ProtoReflect.Descriptor instead.
+func (*ServiceItem_Vlan) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{4, 0}
+}
+
+func (x *ServiceItem_Vlan) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *ServiceItem_Vlan) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type ServiceItem_Ip struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Ip            string                 `protobuf:"bytes,2,opt,name=ip,proto3" json:"ip,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ServiceItem_Ip) Reset() {
+	*x = ServiceItem_Ip{}
+	mi := &file_service_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ServiceItem_Ip) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ServiceItem_Ip) ProtoMessage() {}
+
+func (x *ServiceItem_Ip) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ServiceItem_Ip.ProtoReflect.Descriptor instead.
+func (*ServiceItem_Ip) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{4, 1}
+}
+
+func (x *ServiceItem_Ip) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *ServiceItem_Ip) GetIp() string {
+	if x != nil {
+		return x.Ip
+	}
+	return ""
+}
+
 var File_service_proto protoreflect.FileDescriptor
 
 const file_service_proto_rawDesc = "" +
@@ -375,10 +495,18 @@ const file_service_proto_rawDesc = "" +
 	"\bpageSize\x18\x02 \x01(\x03R\bpageSize\"W\n" +
 	"\x13GetServicesResponse\x12\x14\n" +
 	"\x05total\x18\x01 \x01(\x03R\x05total\x12*\n" +
-	"\x05items\x18\x02 \x03(\v2\x14.service.ServiceItemR\x05items\"1\n" +
+	"\x05items\x18\x02 \x03(\v2\x14.service.ServiceItemR\x05items\"\xdf\x01\n" +
 	"\vServiceItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"#\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12/\n" +
+	"\x05vlans\x18\x03 \x03(\v2\x19.service.ServiceItem.VlanR\x05vlans\x12)\n" +
+	"\x03ips\x18\x04 \x03(\v2\x17.service.ServiceItem.IpR\x03ips\x1a*\n" +
+	"\x04Vlan\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x1a$\n" +
+	"\x02Ip\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x0e\n" +
+	"\x02ip\x18\x02 \x01(\tR\x02ip\"#\n" +
 	"\x11GetServiceRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"8\n" +
 	"\x12GetServiceResponse\x12\x0e\n" +
@@ -401,7 +529,7 @@ func file_service_proto_rawDescGZIP() []byte {
 	return file_service_proto_rawDescData
 }
 
-var file_service_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_service_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_service_proto_goTypes = []any{
 	(*CreateServiceRequest)(nil),  // 0: service.CreateServiceRequest
 	(*CreateServiceResponse)(nil), // 1: service.CreateServiceResponse
@@ -410,20 +538,24 @@ var file_service_proto_goTypes = []any{
 	(*ServiceItem)(nil),           // 4: service.ServiceItem
 	(*GetServiceRequest)(nil),     // 5: service.GetServiceRequest
 	(*GetServiceResponse)(nil),    // 6: service.GetServiceResponse
+	(*ServiceItem_Vlan)(nil),      // 7: service.ServiceItem.Vlan
+	(*ServiceItem_Ip)(nil),        // 8: service.ServiceItem.Ip
 }
 var file_service_proto_depIdxs = []int32{
 	4, // 0: service.GetServicesResponse.items:type_name -> service.ServiceItem
-	0, // 1: service.ServiceService.CreateService:input_type -> service.CreateServiceRequest
-	2, // 2: service.ServiceService.GetServices:input_type -> service.GetServicesRequest
-	5, // 3: service.ServiceService.GetServiceById:input_type -> service.GetServiceRequest
-	1, // 4: service.ServiceService.CreateService:output_type -> service.CreateServiceResponse
-	3, // 5: service.ServiceService.GetServices:output_type -> service.GetServicesResponse
-	6, // 6: service.ServiceService.GetServiceById:output_type -> service.GetServiceResponse
-	4, // [4:7] is the sub-list for method output_type
-	1, // [1:4] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	7, // 1: service.ServiceItem.vlans:type_name -> service.ServiceItem.Vlan
+	8, // 2: service.ServiceItem.ips:type_name -> service.ServiceItem.Ip
+	0, // 3: service.ServiceService.CreateService:input_type -> service.CreateServiceRequest
+	2, // 4: service.ServiceService.GetServices:input_type -> service.GetServicesRequest
+	5, // 5: service.ServiceService.GetServiceById:input_type -> service.GetServiceRequest
+	1, // 6: service.ServiceService.CreateService:output_type -> service.CreateServiceResponse
+	3, // 7: service.ServiceService.GetServices:output_type -> service.GetServicesResponse
+	6, // 8: service.ServiceService.GetServiceById:output_type -> service.GetServiceResponse
+	6, // [6:9] is the sub-list for method output_type
+	3, // [3:6] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_service_proto_init() }
@@ -437,7 +569,7 @@ func file_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_service_proto_rawDesc), len(file_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

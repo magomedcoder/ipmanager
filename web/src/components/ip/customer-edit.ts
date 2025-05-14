@@ -13,7 +13,7 @@ const ipStore = useIpStore()
 const formRef = ref<FormInstance>()
 const id = ref<number>()
 const customerList = ref<ICustomer[]>([])
-const selectedCustomer = ref<number>()
+const selected = ref<number>()
 
 const rules: FormRules = {
   customer: [
@@ -27,7 +27,9 @@ const rules: FormRules = {
 
 export const showEditCustomerBox = (form: IIp) => {
   id.value = form.id
-  selectedCustomer.value = form.customerId
+  if (form.customerId !=0) {
+    selected.value = form.customerId
+  }
 
   customerStore.getCustomers(1, 100)
     .then(async (res: { total: number; items: ICustomer[] }) => {
@@ -48,15 +50,15 @@ export const showEditCustomerBox = (form: IIp) => {
       h(ElForm, {
         ref: formRef,
         model: {
-          customer: selectedCustomer.value
+          customer: selected.value
         },
         rules,
         labelPosition: 'top'
       }, [
         h(ElFormItem, { prop: 'customer' }, [
           h(ElSelect, {
-            modelValue: selectedCustomer.value,
-            'onUpdate:modelValue': (value: number) => selectedCustomer.value = value,
+            modelValue: selected.value,
+            'onUpdate:modelValue': (value: number) => selected.value = value,
             placeholder: 'Выберите клиент'
           }, customerList.value.map(customer =>
             h(ElOption, {
@@ -70,7 +72,7 @@ export const showEditCustomerBox = (form: IIp) => {
     beforeClose: (action, instance, done) => {
       if (action === 'confirm') {
         validateForm(formRef).then(() => {
-          ipStore.editCustomerById(id.value, selectedCustomer.value).then(() => done())
+          ipStore.editCustomerById(id.value, selected.value).then(() => done())
         })
       } else {
         done()
