@@ -19,9 +19,10 @@ func (m *Migrate) Migrate(ctx context.Context) error {
 	if err := m.Db.AutoMigrate(
 		&model.User{},
 		&model.UserSession{},
-		&model.Ip{},
 		&model.Customer{},
 		&model.Vlan{},
+		&model.Subnet{},
+		&model.Ip{},
 		&model.Service{},
 	); err != nil {
 		return err

@@ -21,105 +21,16 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type CreateIpRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ip            string                 `protobuf:"bytes,1,opt,name=ip,proto3" json:"ip,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateIpRequest) Reset() {
-	*x = CreateIpRequest{}
-	mi := &file_ip_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateIpRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateIpRequest) ProtoMessage() {}
-
-func (x *CreateIpRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ip_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateIpRequest.ProtoReflect.Descriptor instead.
-func (*CreateIpRequest) Descriptor() ([]byte, []int) {
-	return file_ip_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *CreateIpRequest) GetIp() string {
-	if x != nil {
-		return x.Ip
-	}
-	return ""
-}
-
-type CreateIpResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateIpResponse) Reset() {
-	*x = CreateIpResponse{}
-	mi := &file_ip_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateIpResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateIpResponse) ProtoMessage() {}
-
-func (x *CreateIpResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ip_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateIpResponse.ProtoReflect.Descriptor instead.
-func (*CreateIpResponse) Descriptor() ([]byte, []int) {
-	return file_ip_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *CreateIpResponse) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
 type GetIpsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Page          int64                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int64                  `protobuf:"varint,2,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
+	SubnetId      int64                  `protobuf:"varint,1,opt,name=subnet_id,json=subnetId,proto3" json:"subnet_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetIpsRequest) Reset() {
 	*x = GetIpsRequest{}
-	mi := &file_ip_proto_msgTypes[2]
+	mi := &file_ip_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -131,7 +42,7 @@ func (x *GetIpsRequest) String() string {
 func (*GetIpsRequest) ProtoMessage() {}
 
 func (x *GetIpsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ip_proto_msgTypes[2]
+	mi := &file_ip_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -144,19 +55,12 @@ func (x *GetIpsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetIpsRequest.ProtoReflect.Descriptor instead.
 func (*GetIpsRequest) Descriptor() ([]byte, []int) {
-	return file_ip_proto_rawDescGZIP(), []int{2}
+	return file_ip_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetIpsRequest) GetPage() int64 {
+func (x *GetIpsRequest) GetSubnetId() int64 {
 	if x != nil {
-		return x.Page
-	}
-	return 0
-}
-
-func (x *GetIpsRequest) GetPageSize() int64 {
-	if x != nil {
-		return x.PageSize
+		return x.SubnetId
 	}
 	return 0
 }
@@ -171,7 +75,7 @@ type GetIpsResponse struct {
 
 func (x *GetIpsResponse) Reset() {
 	*x = GetIpsResponse{}
-	mi := &file_ip_proto_msgTypes[3]
+	mi := &file_ip_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -183,7 +87,7 @@ func (x *GetIpsResponse) String() string {
 func (*GetIpsResponse) ProtoMessage() {}
 
 func (x *GetIpsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ip_proto_msgTypes[3]
+	mi := &file_ip_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -196,7 +100,7 @@ func (x *GetIpsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetIpsResponse.ProtoReflect.Descriptor instead.
 func (*GetIpsResponse) Descriptor() ([]byte, []int) {
-	return file_ip_proto_rawDescGZIP(), []int{3}
+	return file_ip_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetIpsResponse) GetTotal() int64 {
@@ -221,13 +125,14 @@ type IpItem struct {
 	VlanName      string                 `protobuf:"bytes,4,opt,name=vlan_name,json=vlanName,proto3" json:"vlan_name,omitempty"`
 	CustomerId    int64                  `protobuf:"varint,5,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
 	CustomerName  string                 `protobuf:"bytes,6,opt,name=customer_name,json=customerName,proto3" json:"customer_name,omitempty"`
+	Description   string                 `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *IpItem) Reset() {
 	*x = IpItem{}
-	mi := &file_ip_proto_msgTypes[4]
+	mi := &file_ip_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -239,7 +144,7 @@ func (x *IpItem) String() string {
 func (*IpItem) ProtoMessage() {}
 
 func (x *IpItem) ProtoReflect() protoreflect.Message {
-	mi := &file_ip_proto_msgTypes[4]
+	mi := &file_ip_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -252,7 +157,7 @@ func (x *IpItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IpItem.ProtoReflect.Descriptor instead.
 func (*IpItem) Descriptor() ([]byte, []int) {
-	return file_ip_proto_rawDescGZIP(), []int{4}
+	return file_ip_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *IpItem) GetId() int64 {
@@ -297,6 +202,13 @@ func (x *IpItem) GetCustomerName() string {
 	return ""
 }
 
+func (x *IpItem) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
 type GetIpRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -306,7 +218,7 @@ type GetIpRequest struct {
 
 func (x *GetIpRequest) Reset() {
 	*x = GetIpRequest{}
-	mi := &file_ip_proto_msgTypes[5]
+	mi := &file_ip_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -318,7 +230,7 @@ func (x *GetIpRequest) String() string {
 func (*GetIpRequest) ProtoMessage() {}
 
 func (x *GetIpRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ip_proto_msgTypes[5]
+	mi := &file_ip_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -331,7 +243,7 @@ func (x *GetIpRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetIpRequest.ProtoReflect.Descriptor instead.
 func (*GetIpRequest) Descriptor() ([]byte, []int) {
-	return file_ip_proto_rawDescGZIP(), []int{5}
+	return file_ip_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetIpRequest) GetId() int64 {
@@ -345,13 +257,18 @@ type GetIpResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Ip            string                 `protobuf:"bytes,2,opt,name=ip,proto3" json:"ip,omitempty"`
+	CustomerId    int64                  `protobuf:"varint,3,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
+	CustomerName  string                 `protobuf:"bytes,4,opt,name=customer_name,json=customerName,proto3" json:"customer_name,omitempty"`
+	ServiceId     int64                  `protobuf:"varint,5,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+	ServiceName   string                 `protobuf:"bytes,6,opt,name=service_name,json=serviceName,proto3" json:"service_name,omitempty"`
+	Description   string                 `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetIpResponse) Reset() {
 	*x = GetIpResponse{}
-	mi := &file_ip_proto_msgTypes[6]
+	mi := &file_ip_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -363,7 +280,7 @@ func (x *GetIpResponse) String() string {
 func (*GetIpResponse) ProtoMessage() {}
 
 func (x *GetIpResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ip_proto_msgTypes[6]
+	mi := &file_ip_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -376,7 +293,7 @@ func (x *GetIpResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetIpResponse.ProtoReflect.Descriptor instead.
 func (*GetIpResponse) Descriptor() ([]byte, []int) {
-	return file_ip_proto_rawDescGZIP(), []int{6}
+	return file_ip_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetIpResponse) GetId() int64 {
@@ -393,22 +310,340 @@ func (x *GetIpResponse) GetIp() string {
 	return ""
 }
 
+func (x *GetIpResponse) GetCustomerId() int64 {
+	if x != nil {
+		return x.CustomerId
+	}
+	return 0
+}
+
+func (x *GetIpResponse) GetCustomerName() string {
+	if x != nil {
+		return x.CustomerName
+	}
+	return ""
+}
+
+func (x *GetIpResponse) GetServiceId() int64 {
+	if x != nil {
+		return x.ServiceId
+	}
+	return 0
+}
+
+func (x *GetIpResponse) GetServiceName() string {
+	if x != nil {
+		return x.ServiceName
+	}
+	return ""
+}
+
+func (x *GetIpResponse) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+type EditIpCustomerRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	CustomerId    int64                  `protobuf:"varint,2,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EditIpCustomerRequest) Reset() {
+	*x = EditIpCustomerRequest{}
+	mi := &file_ip_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EditIpCustomerRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EditIpCustomerRequest) ProtoMessage() {}
+
+func (x *EditIpCustomerRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ip_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EditIpCustomerRequest.ProtoReflect.Descriptor instead.
+func (*EditIpCustomerRequest) Descriptor() ([]byte, []int) {
+	return file_ip_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *EditIpCustomerRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *EditIpCustomerRequest) GetCustomerId() int64 {
+	if x != nil {
+		return x.CustomerId
+	}
+	return 0
+}
+
+type EditIpCustomerResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EditIpCustomerResponse) Reset() {
+	*x = EditIpCustomerResponse{}
+	mi := &file_ip_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EditIpCustomerResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EditIpCustomerResponse) ProtoMessage() {}
+
+func (x *EditIpCustomerResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ip_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EditIpCustomerResponse.ProtoReflect.Descriptor instead.
+func (*EditIpCustomerResponse) Descriptor() ([]byte, []int) {
+	return file_ip_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *EditIpCustomerResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+type EditIpServiceRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	ServiceId     int64                  `protobuf:"varint,2,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EditIpServiceRequest) Reset() {
+	*x = EditIpServiceRequest{}
+	mi := &file_ip_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EditIpServiceRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EditIpServiceRequest) ProtoMessage() {}
+
+func (x *EditIpServiceRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ip_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EditIpServiceRequest.ProtoReflect.Descriptor instead.
+func (*EditIpServiceRequest) Descriptor() ([]byte, []int) {
+	return file_ip_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *EditIpServiceRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *EditIpServiceRequest) GetServiceId() int64 {
+	if x != nil {
+		return x.ServiceId
+	}
+	return 0
+}
+
+type EditIpServiceResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EditIpServiceResponse) Reset() {
+	*x = EditIpServiceResponse{}
+	mi := &file_ip_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EditIpServiceResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EditIpServiceResponse) ProtoMessage() {}
+
+func (x *EditIpServiceResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ip_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EditIpServiceResponse.ProtoReflect.Descriptor instead.
+func (*EditIpServiceResponse) Descriptor() ([]byte, []int) {
+	return file_ip_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *EditIpServiceResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+type EditIpDescriptionRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EditIpDescriptionRequest) Reset() {
+	*x = EditIpDescriptionRequest{}
+	mi := &file_ip_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EditIpDescriptionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EditIpDescriptionRequest) ProtoMessage() {}
+
+func (x *EditIpDescriptionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ip_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EditIpDescriptionRequest.ProtoReflect.Descriptor instead.
+func (*EditIpDescriptionRequest) Descriptor() ([]byte, []int) {
+	return file_ip_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *EditIpDescriptionRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *EditIpDescriptionRequest) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+type EditIpDescriptionResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EditIpDescriptionResponse) Reset() {
+	*x = EditIpDescriptionResponse{}
+	mi := &file_ip_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EditIpDescriptionResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EditIpDescriptionResponse) ProtoMessage() {}
+
+func (x *EditIpDescriptionResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ip_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EditIpDescriptionResponse.ProtoReflect.Descriptor instead.
+func (*EditIpDescriptionResponse) Descriptor() ([]byte, []int) {
+	return file_ip_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *EditIpDescriptionResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
 var File_ip_proto protoreflect.FileDescriptor
 
 const file_ip_proto_rawDesc = "" +
 	"\n" +
-	"\bip.proto\x12\x02ip\"!\n" +
-	"\x0fCreateIpRequest\x12\x0e\n" +
-	"\x02ip\x18\x01 \x01(\tR\x02ip\"\"\n" +
-	"\x10CreateIpResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"?\n" +
-	"\rGetIpsRequest\x12\x12\n" +
-	"\x04page\x18\x01 \x01(\x03R\x04page\x12\x1a\n" +
-	"\bpageSize\x18\x02 \x01(\x03R\bpageSize\"H\n" +
+	"\bip.proto\x12\x02ip\",\n" +
+	"\rGetIpsRequest\x12\x1b\n" +
+	"\tsubnet_id\x18\x01 \x01(\x03R\bsubnetId\"H\n" +
 	"\x0eGetIpsResponse\x12\x14\n" +
 	"\x05total\x18\x01 \x01(\x03R\x05total\x12 \n" +
 	"\x05items\x18\x02 \x03(\v2\n" +
-	".ip.IpItemR\x05items\"\xa4\x01\n" +
+	".ip.IpItemR\x05items\"\xc6\x01\n" +
 	"\x06IpItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x0e\n" +
 	"\x02ip\x18\x02 \x01(\tR\x02ip\x12\x17\n" +
@@ -416,16 +651,43 @@ const file_ip_proto_rawDesc = "" +
 	"\tvlan_name\x18\x04 \x01(\tR\bvlanName\x12\x1f\n" +
 	"\vcustomer_id\x18\x05 \x01(\x03R\n" +
 	"customerId\x12#\n" +
-	"\rcustomer_name\x18\x06 \x01(\tR\fcustomerName\"\x1e\n" +
+	"\rcustomer_name\x18\x06 \x01(\tR\fcustomerName\x12 \n" +
+	"\vdescription\x18\a \x01(\tR\vdescription\"\x1e\n" +
 	"\fGetIpRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"/\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"\xd9\x01\n" +
 	"\rGetIpResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x0e\n" +
-	"\x02ip\x18\x02 \x01(\tR\x02ip2\xa5\x01\n" +
-	"\tIpService\x125\n" +
-	"\bCreateIp\x12\x13.ip.CreateIpRequest\x1a\x14.ip.CreateIpResponse\x12/\n" +
+	"\x02ip\x18\x02 \x01(\tR\x02ip\x12\x1f\n" +
+	"\vcustomer_id\x18\x03 \x01(\x03R\n" +
+	"customerId\x12#\n" +
+	"\rcustomer_name\x18\x04 \x01(\tR\fcustomerName\x12\x1d\n" +
+	"\n" +
+	"service_id\x18\x05 \x01(\x03R\tserviceId\x12!\n" +
+	"\fservice_name\x18\x06 \x01(\tR\vserviceName\x12 \n" +
+	"\vdescription\x18\a \x01(\tR\vdescription\"H\n" +
+	"\x15EditIpCustomerRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1f\n" +
+	"\vcustomer_id\x18\x02 \x01(\x03R\n" +
+	"customerId\"2\n" +
+	"\x16EditIpCustomerResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"E\n" +
+	"\x14EditIpServiceRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1d\n" +
+	"\n" +
+	"service_id\x18\x02 \x01(\x03R\tserviceId\"1\n" +
+	"\x15EditIpServiceResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"L\n" +
+	"\x18EditIpDescriptionRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12 \n" +
+	"\vdescription\x18\x02 \x01(\tR\vdescription\"5\n" +
+	"\x19EditIpDescriptionResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\xcf\x02\n" +
+	"\tIpService\x12/\n" +
 	"\x06GetIps\x12\x11.ip.GetIpsRequest\x1a\x12.ip.GetIpsResponse\x120\n" +
-	"\tGetIpById\x12\x10.ip.GetIpRequest\x1a\x11.ip.GetIpResponseB*Z(github.com/magomedcoder/ipmanager/api/pbb\x06proto3"
+	"\tGetIpById\x12\x10.ip.GetIpRequest\x1a\x11.ip.GetIpResponse\x12G\n" +
+	"\x0eEditIpCustomer\x12\x19.ip.EditIpCustomerRequest\x1a\x1a.ip.EditIpCustomerResponse\x12D\n" +
+	"\rEditIpService\x12\x18.ip.EditIpServiceRequest\x1a\x19.ip.EditIpServiceResponse\x12P\n" +
+	"\x11EditIpDescription\x12\x1c.ip.EditIpDescriptionRequest\x1a\x1d.ip.EditIpDescriptionResponseB*Z(github.com/magomedcoder/ipmanager/api/pbb\x06proto3"
 
 var (
 	file_ip_proto_rawDescOnce sync.Once
@@ -439,29 +701,37 @@ func file_ip_proto_rawDescGZIP() []byte {
 	return file_ip_proto_rawDescData
 }
 
-var file_ip_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_ip_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_ip_proto_goTypes = []any{
-	(*CreateIpRequest)(nil),  // 0: ip.CreateIpRequest
-	(*CreateIpResponse)(nil), // 1: ip.CreateIpResponse
-	(*GetIpsRequest)(nil),    // 2: ip.GetIpsRequest
-	(*GetIpsResponse)(nil),   // 3: ip.GetIpsResponse
-	(*IpItem)(nil),           // 4: ip.IpItem
-	(*GetIpRequest)(nil),     // 5: ip.GetIpRequest
-	(*GetIpResponse)(nil),    // 6: ip.GetIpResponse
+	(*GetIpsRequest)(nil),             // 0: ip.GetIpsRequest
+	(*GetIpsResponse)(nil),            // 1: ip.GetIpsResponse
+	(*IpItem)(nil),                    // 2: ip.IpItem
+	(*GetIpRequest)(nil),              // 3: ip.GetIpRequest
+	(*GetIpResponse)(nil),             // 4: ip.GetIpResponse
+	(*EditIpCustomerRequest)(nil),     // 5: ip.EditIpCustomerRequest
+	(*EditIpCustomerResponse)(nil),    // 6: ip.EditIpCustomerResponse
+	(*EditIpServiceRequest)(nil),      // 7: ip.EditIpServiceRequest
+	(*EditIpServiceResponse)(nil),     // 8: ip.EditIpServiceResponse
+	(*EditIpDescriptionRequest)(nil),  // 9: ip.EditIpDescriptionRequest
+	(*EditIpDescriptionResponse)(nil), // 10: ip.EditIpDescriptionResponse
 }
 var file_ip_proto_depIdxs = []int32{
-	4, // 0: ip.GetIpsResponse.items:type_name -> ip.IpItem
-	0, // 1: ip.IpService.CreateIp:input_type -> ip.CreateIpRequest
-	2, // 2: ip.IpService.GetIps:input_type -> ip.GetIpsRequest
-	5, // 3: ip.IpService.GetIpById:input_type -> ip.GetIpRequest
-	1, // 4: ip.IpService.CreateIp:output_type -> ip.CreateIpResponse
-	3, // 5: ip.IpService.GetIps:output_type -> ip.GetIpsResponse
-	6, // 6: ip.IpService.GetIpById:output_type -> ip.GetIpResponse
-	4, // [4:7] is the sub-list for method output_type
-	1, // [1:4] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	2,  // 0: ip.GetIpsResponse.items:type_name -> ip.IpItem
+	0,  // 1: ip.IpService.GetIps:input_type -> ip.GetIpsRequest
+	3,  // 2: ip.IpService.GetIpById:input_type -> ip.GetIpRequest
+	5,  // 3: ip.IpService.EditIpCustomer:input_type -> ip.EditIpCustomerRequest
+	7,  // 4: ip.IpService.EditIpService:input_type -> ip.EditIpServiceRequest
+	9,  // 5: ip.IpService.EditIpDescription:input_type -> ip.EditIpDescriptionRequest
+	1,  // 6: ip.IpService.GetIps:output_type -> ip.GetIpsResponse
+	4,  // 7: ip.IpService.GetIpById:output_type -> ip.GetIpResponse
+	6,  // 8: ip.IpService.EditIpCustomer:output_type -> ip.EditIpCustomerResponse
+	8,  // 9: ip.IpService.EditIpService:output_type -> ip.EditIpServiceResponse
+	10, // 10: ip.IpService.EditIpDescription:output_type -> ip.EditIpDescriptionResponse
+	6,  // [6:11] is the sub-list for method output_type
+	1,  // [1:6] is the sub-list for method input_type
+	1,  // [1:1] is the sub-list for extension type_name
+	1,  // [1:1] is the sub-list for extension extendee
+	0,  // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_ip_proto_init() }
@@ -475,7 +745,7 @@ func file_ip_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ip_proto_rawDesc), len(file_ip_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -48,9 +48,14 @@ const columns = ref<IColumn[]>([
 const load = async (_page: number) => {
   loading.value = true
   customerStore.getCustomers(page.value, pageSize.value)
-    .then(async (res: { total: number; items: IItem[] }) => {
+    .then((res: { total: number; items: IItem[] }) => {
       total.value = Number(res.total)
-      items.value = res.items
+      items.value = res.items.map((item) => {
+        return {
+          ...item,
+          id: Number(item.id)
+        }
+      })
     }).finally(() => {
     loading.value = false
   })
@@ -67,7 +72,7 @@ load(-1)
 </script>
 
 <template>
-  <DefaultLayout>
+  <default-layout>
     <div class="container mx-auto">
       <el-card>
         <template #header>
@@ -116,7 +121,7 @@ load(-1)
       :id="id"
       @on-reset="load"
     />
-  </DefaultLayout>
+  </default-layout>
 </template>
 
 <style scoped>

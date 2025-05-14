@@ -10,55 +10,16 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file ip.proto.
  */
 export const file_ip: GenFile = /*@__PURE__*/
-  fileDesc("CghpcC5wcm90bxICaXAiHQoPQ3JlYXRlSXBSZXF1ZXN0EgoKAmlwGAEgASgJIh4KEENyZWF0ZUlwUmVzcG9uc2USCgoCaWQYASABKAMiLwoNR2V0SXBzUmVxdWVzdBIMCgRwYWdlGAEgASgDEhAKCHBhZ2VTaXplGAIgASgDIjoKDkdldElwc1Jlc3BvbnNlEg0KBXRvdGFsGAEgASgDEhkKBWl0ZW1zGAIgAygLMgouaXAuSXBJdGVtInAKBklwSXRlbRIKCgJpZBgBIAEoAxIKCgJpcBgCIAEoCRIPCgd2bGFuX2lkGAMgASgDEhEKCXZsYW5fbmFtZRgEIAEoCRITCgtjdXN0b21lcl9pZBgFIAEoAxIVCg1jdXN0b21lcl9uYW1lGAYgASgJIhoKDEdldElwUmVxdWVzdBIKCgJpZBgBIAEoAyInCg1HZXRJcFJlc3BvbnNlEgoKAmlkGAEgASgDEgoKAmlwGAIgASgJMqUBCglJcFNlcnZpY2USNQoIQ3JlYXRlSXASEy5pcC5DcmVhdGVJcFJlcXVlc3QaFC5pcC5DcmVhdGVJcFJlc3BvbnNlEi8KBkdldElwcxIRLmlwLkdldElwc1JlcXVlc3QaEi5pcC5HZXRJcHNSZXNwb25zZRIwCglHZXRJcEJ5SWQSEC5pcC5HZXRJcFJlcXVlc3QaES5pcC5HZXRJcFJlc3BvbnNlQipaKGdpdGh1Yi5jb20vbWFnb21lZGNvZGVyL2lwbWFuYWdlci9hcGkvcGJiBnByb3RvMw");
-
-/**
- * @generated from message ip.CreateIpRequest
- */
-export type CreateIpRequest = Message<"ip.CreateIpRequest"> & {
-  /**
-   * @generated from field: string ip = 1;
-   */
-  ip: string;
-};
-
-/**
- * Describes the message ip.CreateIpRequest.
- * Use `create(CreateIpRequestSchema)` to create a new message.
- */
-export const CreateIpRequestSchema: GenMessage<CreateIpRequest> = /*@__PURE__*/
-  messageDesc(file_ip, 0);
-
-/**
- * @generated from message ip.CreateIpResponse
- */
-export type CreateIpResponse = Message<"ip.CreateIpResponse"> & {
-  /**
-   * @generated from field: int64 id = 1;
-   */
-  id: bigint;
-};
-
-/**
- * Describes the message ip.CreateIpResponse.
- * Use `create(CreateIpResponseSchema)` to create a new message.
- */
-export const CreateIpResponseSchema: GenMessage<CreateIpResponse> = /*@__PURE__*/
-  messageDesc(file_ip, 1);
+  fileDesc("CghpcC5wcm90bxICaXAiIgoNR2V0SXBzUmVxdWVzdBIRCglzdWJuZXRfaWQYASABKAMiOgoOR2V0SXBzUmVzcG9uc2USDQoFdG90YWwYASABKAMSGQoFaXRlbXMYAiADKAsyCi5pcC5JcEl0ZW0ihQEKBklwSXRlbRIKCgJpZBgBIAEoAxIKCgJpcBgCIAEoCRIPCgd2bGFuX2lkGAMgASgDEhEKCXZsYW5fbmFtZRgEIAEoCRITCgtjdXN0b21lcl9pZBgFIAEoAxIVCg1jdXN0b21lcl9uYW1lGAYgASgJEhMKC2Rlc2NyaXB0aW9uGAcgASgJIhoKDEdldElwUmVxdWVzdBIKCgJpZBgBIAEoAyKSAQoNR2V0SXBSZXNwb25zZRIKCgJpZBgBIAEoAxIKCgJpcBgCIAEoCRITCgtjdXN0b21lcl9pZBgDIAEoAxIVCg1jdXN0b21lcl9uYW1lGAQgASgJEhIKCnNlcnZpY2VfaWQYBSABKAMSFAoMc2VydmljZV9uYW1lGAYgASgJEhMKC2Rlc2NyaXB0aW9uGAcgASgJIjgKFUVkaXRJcEN1c3RvbWVyUmVxdWVzdBIKCgJpZBgBIAEoAxITCgtjdXN0b21lcl9pZBgCIAEoAyIpChZFZGl0SXBDdXN0b21lclJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgiNgoURWRpdElwU2VydmljZVJlcXVlc3QSCgoCaWQYASABKAMSEgoKc2VydmljZV9pZBgCIAEoAyIoChVFZGl0SXBTZXJ2aWNlUmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCCI7ChhFZGl0SXBEZXNjcmlwdGlvblJlcXVlc3QSCgoCaWQYASABKAMSEwoLZGVzY3JpcHRpb24YAiABKAkiLAoZRWRpdElwRGVzY3JpcHRpb25SZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIMs8CCglJcFNlcnZpY2USLwoGR2V0SXBzEhEuaXAuR2V0SXBzUmVxdWVzdBoSLmlwLkdldElwc1Jlc3BvbnNlEjAKCUdldElwQnlJZBIQLmlwLkdldElwUmVxdWVzdBoRLmlwLkdldElwUmVzcG9uc2USRwoORWRpdElwQ3VzdG9tZXISGS5pcC5FZGl0SXBDdXN0b21lclJlcXVlc3QaGi5pcC5FZGl0SXBDdXN0b21lclJlc3BvbnNlEkQKDUVkaXRJcFNlcnZpY2USGC5pcC5FZGl0SXBTZXJ2aWNlUmVxdWVzdBoZLmlwLkVkaXRJcFNlcnZpY2VSZXNwb25zZRJQChFFZGl0SXBEZXNjcmlwdGlvbhIcLmlwLkVkaXRJcERlc2NyaXB0aW9uUmVxdWVzdBodLmlwLkVkaXRJcERlc2NyaXB0aW9uUmVzcG9uc2VCKlooZ2l0aHViLmNvbS9tYWdvbWVkY29kZXIvaXBtYW5hZ2VyL2FwaS9wYmIGcHJvdG8z");
 
 /**
  * @generated from message ip.GetIpsRequest
  */
 export type GetIpsRequest = Message<"ip.GetIpsRequest"> & {
   /**
-   * @generated from field: int64 page = 1;
+   * @generated from field: int64 subnet_id = 1;
    */
-  page: bigint;
-
-  /**
-   * @generated from field: int64 pageSize = 2;
-   */
-  pageSize: bigint;
+  subnetId: bigint;
 };
 
 /**
@@ -66,7 +27,7 @@ export type GetIpsRequest = Message<"ip.GetIpsRequest"> & {
  * Use `create(GetIpsRequestSchema)` to create a new message.
  */
 export const GetIpsRequestSchema: GenMessage<GetIpsRequest> = /*@__PURE__*/
-  messageDesc(file_ip, 2);
+  messageDesc(file_ip, 0);
 
 /**
  * @generated from message ip.GetIpsResponse
@@ -88,7 +49,7 @@ export type GetIpsResponse = Message<"ip.GetIpsResponse"> & {
  * Use `create(GetIpsResponseSchema)` to create a new message.
  */
 export const GetIpsResponseSchema: GenMessage<GetIpsResponse> = /*@__PURE__*/
-  messageDesc(file_ip, 3);
+  messageDesc(file_ip, 1);
 
 /**
  * @generated from message ip.IpItem
@@ -123,6 +84,11 @@ export type IpItem = Message<"ip.IpItem"> & {
    * @generated from field: string customer_name = 6;
    */
   customerName: string;
+
+  /**
+   * @generated from field: string description = 7;
+   */
+  description: string;
 };
 
 /**
@@ -130,7 +96,7 @@ export type IpItem = Message<"ip.IpItem"> & {
  * Use `create(IpItemSchema)` to create a new message.
  */
 export const IpItemSchema: GenMessage<IpItem> = /*@__PURE__*/
-  messageDesc(file_ip, 4);
+  messageDesc(file_ip, 2);
 
 /**
  * @generated from message ip.GetIpRequest
@@ -147,7 +113,7 @@ export type GetIpRequest = Message<"ip.GetIpRequest"> & {
  * Use `create(GetIpRequestSchema)` to create a new message.
  */
 export const GetIpRequestSchema: GenMessage<GetIpRequest> = /*@__PURE__*/
-  messageDesc(file_ip, 5);
+  messageDesc(file_ip, 3);
 
 /**
  * @generated from message ip.GetIpResponse
@@ -162,6 +128,31 @@ export type GetIpResponse = Message<"ip.GetIpResponse"> & {
    * @generated from field: string ip = 2;
    */
   ip: string;
+
+  /**
+   * @generated from field: int64 customer_id = 3;
+   */
+  customerId: bigint;
+
+  /**
+   * @generated from field: string customer_name = 4;
+   */
+  customerName: string;
+
+  /**
+   * @generated from field: int64 service_id = 5;
+   */
+  serviceId: bigint;
+
+  /**
+   * @generated from field: string service_name = 6;
+   */
+  serviceName: string;
+
+  /**
+   * @generated from field: string description = 7;
+   */
+  description: string;
 };
 
 /**
@@ -169,20 +160,129 @@ export type GetIpResponse = Message<"ip.GetIpResponse"> & {
  * Use `create(GetIpResponseSchema)` to create a new message.
  */
 export const GetIpResponseSchema: GenMessage<GetIpResponse> = /*@__PURE__*/
+  messageDesc(file_ip, 4);
+
+/**
+ * @generated from message ip.EditIpCustomerRequest
+ */
+export type EditIpCustomerRequest = Message<"ip.EditIpCustomerRequest"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+
+  /**
+   * @generated from field: int64 customer_id = 2;
+   */
+  customerId: bigint;
+};
+
+/**
+ * Describes the message ip.EditIpCustomerRequest.
+ * Use `create(EditIpCustomerRequestSchema)` to create a new message.
+ */
+export const EditIpCustomerRequestSchema: GenMessage<EditIpCustomerRequest> = /*@__PURE__*/
+  messageDesc(file_ip, 5);
+
+/**
+ * @generated from message ip.EditIpCustomerResponse
+ */
+export type EditIpCustomerResponse = Message<"ip.EditIpCustomerResponse"> & {
+  /**
+   * @generated from field: bool success = 1;
+   */
+  success: boolean;
+};
+
+/**
+ * Describes the message ip.EditIpCustomerResponse.
+ * Use `create(EditIpCustomerResponseSchema)` to create a new message.
+ */
+export const EditIpCustomerResponseSchema: GenMessage<EditIpCustomerResponse> = /*@__PURE__*/
   messageDesc(file_ip, 6);
+
+/**
+ * @generated from message ip.EditIpServiceRequest
+ */
+export type EditIpServiceRequest = Message<"ip.EditIpServiceRequest"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+
+  /**
+   * @generated from field: int64 service_id = 2;
+   */
+  serviceId: bigint;
+};
+
+/**
+ * Describes the message ip.EditIpServiceRequest.
+ * Use `create(EditIpServiceRequestSchema)` to create a new message.
+ */
+export const EditIpServiceRequestSchema: GenMessage<EditIpServiceRequest> = /*@__PURE__*/
+  messageDesc(file_ip, 7);
+
+/**
+ * @generated from message ip.EditIpServiceResponse
+ */
+export type EditIpServiceResponse = Message<"ip.EditIpServiceResponse"> & {
+  /**
+   * @generated from field: bool success = 1;
+   */
+  success: boolean;
+};
+
+/**
+ * Describes the message ip.EditIpServiceResponse.
+ * Use `create(EditIpServiceResponseSchema)` to create a new message.
+ */
+export const EditIpServiceResponseSchema: GenMessage<EditIpServiceResponse> = /*@__PURE__*/
+  messageDesc(file_ip, 8);
+
+/**
+ * @generated from message ip.EditIpDescriptionRequest
+ */
+export type EditIpDescriptionRequest = Message<"ip.EditIpDescriptionRequest"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+
+  /**
+   * @generated from field: string description = 2;
+   */
+  description: string;
+};
+
+/**
+ * Describes the message ip.EditIpDescriptionRequest.
+ * Use `create(EditIpDescriptionRequestSchema)` to create a new message.
+ */
+export const EditIpDescriptionRequestSchema: GenMessage<EditIpDescriptionRequest> = /*@__PURE__*/
+  messageDesc(file_ip, 9);
+
+/**
+ * @generated from message ip.EditIpDescriptionResponse
+ */
+export type EditIpDescriptionResponse = Message<"ip.EditIpDescriptionResponse"> & {
+  /**
+   * @generated from field: bool success = 1;
+   */
+  success: boolean;
+};
+
+/**
+ * Describes the message ip.EditIpDescriptionResponse.
+ * Use `create(EditIpDescriptionResponseSchema)` to create a new message.
+ */
+export const EditIpDescriptionResponseSchema: GenMessage<EditIpDescriptionResponse> = /*@__PURE__*/
+  messageDesc(file_ip, 10);
 
 /**
  * @generated from service ip.IpService
  */
 export const IpService: GenService<{
-  /**
-   * @generated from rpc ip.IpService.CreateIp
-   */
-  createIp: {
-    methodKind: "unary";
-    input: typeof CreateIpRequestSchema;
-    output: typeof CreateIpResponseSchema;
-  },
   /**
    * @generated from rpc ip.IpService.GetIps
    */
@@ -198,6 +298,30 @@ export const IpService: GenService<{
     methodKind: "unary";
     input: typeof GetIpRequestSchema;
     output: typeof GetIpResponseSchema;
+  },
+  /**
+   * @generated from rpc ip.IpService.EditIpCustomer
+   */
+  editIpCustomer: {
+    methodKind: "unary";
+    input: typeof EditIpCustomerRequestSchema;
+    output: typeof EditIpCustomerResponseSchema;
+  },
+  /**
+   * @generated from rpc ip.IpService.EditIpService
+   */
+  editIpService: {
+    methodKind: "unary";
+    input: typeof EditIpServiceRequestSchema;
+    output: typeof EditIpServiceResponseSchema;
+  },
+  /**
+   * @generated from rpc ip.IpService.EditIpDescription
+   */
+  editIpDescription: {
+    methodKind: "unary";
+    input: typeof EditIpDescriptionRequestSchema;
+    output: typeof EditIpDescriptionResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_ip, 0);

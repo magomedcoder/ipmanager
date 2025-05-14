@@ -36,12 +36,12 @@ export const useUserStore = defineStore('user', {
         const { payload } = useJwt(accessToken)
         setAccessToken(accessToken, payload.value?.exp)
         success()
-        loading(false)
       } catch (err) {
-        loading(false)
         if (err instanceof ConnectError) {
           console.log(err.message)
         }
+      } finally {
+        loading(false)
       }
     },
 
@@ -49,13 +49,13 @@ export const useUserStore = defineStore('user', {
       loading(true)
       try {
         const { success } = await userService.logout()
-        loading(false)
         console.log(success)
       } catch (err) {
-        loading(false)
         if (err instanceof ConnectError) {
           console.log(err.message)
         }
+      } finally {
+        loading(false)
       }
     },
 
@@ -76,57 +76,47 @@ export const useUserStore = defineStore('user', {
       }
     },
 
-    createUser(user: { username: string, password: string, name: string, surname: string }): Promise<any> {
-      return new Promise(async (resolve, reject) => {
-        try {
-          const res = await userService.createUser({
-            username: user.username,
-            password: user.password,
-            name: user.name,
-            surname: user.surname
-          })
-          resolve(res)
-        } catch (err) {
-          if (err instanceof ConnectError) {
-            console.log(err.message)
-          }
-          reject()
+    async createUser(user: { username: string, password: string, name: string, surname: string }) {
+      try {
+        const res = await userService.createUser({
+          username: user.username,
+          password: user.password,
+          name: user.name,
+          surname: user.surname
+        })
+        return res
+      } catch (err) {
+        if (err instanceof ConnectError) {
+          console.log(err.message)
         }
-      })
+        throw err
+      }
     },
 
-    getUsers(page: number, pageSize: number): Promise<any> {
-      return new Promise(async (resolve, reject) => {
-        try {
-          const res = await userService.getUsers({
-            page: page,
-            pageSize: pageSize
-          })
-          resolve(res)
-        } catch (err) {
-          if (err instanceof ConnectError) {
-            console.log(err.message)
-          }
-          reject()
+    async getUsers(page: number, pageSize: number) {
+      try {
+        return await userService.getUsers({
+          page: page,
+          pageSize: pageSize
+        })
+      } catch (err) {
+        if (err instanceof ConnectError) {
+          console.log(err.message)
         }
-      })
+        throw err
+      }
     },
 
-    getUser(id: number): Promise<any> {
-      return new Promise(async (resolve, reject) => {
-        try {
-          const res = await userService.getUserById({ id: id })
-          resolve(res)
-        } catch (err) {
-          if (err instanceof ConnectError) {
-            console.log(err.message)
-          }
-          reject()
+    async getUser(id: number) {
+      try {
+        return await userService.getUserById({ id: id })
+      } catch (err) {
+        if (err instanceof ConnectError) {
+          console.log(err.message)
         }
-      })
+        throw err
+      }
     }
   },
-  getters: {
-
-  }
+  getters: {}
 })

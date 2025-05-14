@@ -39,8 +39,19 @@ func NewGrpcInjector(conf *config.Config) *AppProvider {
 		UnimplementedUserServiceServer: unimplementedUserServiceServer,
 		UserUseCase:                    userUseCase,
 	}
-	unimplementedIpServiceServer := pb.UnimplementedIpServiceServer{}
+	unimplementedSubnetServiceServer := pb.UnimplementedSubnetServiceServer{}
+	subnetRepository := repository.NewSubnetRepository(db)
 	ipRepository := repository.NewIPRepository(db)
+	subnetUseCase := &usecase.SubnetUseCase{
+		Conf:       conf,
+		SubnetRepo: subnetRepository,
+		IpRepo:     ipRepository,
+	}
+	subnetHandler := &handler.SubnetHandler{
+		UnimplementedSubnetServiceServer: unimplementedSubnetServiceServer,
+		SubnetUseCase:                    subnetUseCase,
+	}
+	unimplementedIpServiceServer := pb.UnimplementedIpServiceServer{}
 	ipUseCase := &usecase.IpUseCase{
 		Conf:   conf,
 		IpRepo: ipRepository,
@@ -48,6 +59,7 @@ func NewGrpcInjector(conf *config.Config) *AppProvider {
 	ipHandler := &handler.IpHandler{
 		UnimplementedIpServiceServer: unimplementedIpServiceServer,
 		IpUseCase:                    ipUseCase,
+		SubnetUseCase:                subnetUseCase,
 	}
 	unimplementedCustomerServiceServer := pb.UnimplementedCustomerServiceServer{}
 	customerRepository := repository.NewCustomerRepository(db)
@@ -82,6 +94,7 @@ func NewGrpcInjector(conf *config.Config) *AppProvider {
 	appProvider := &AppProvider{
 		Middleware:      authMiddleware,
 		UserHandler:     userHandler,
+		SubnetHandler:   subnetHandler,
 		IpHandler:       ipHandler,
 		CustomerHandler: customerHandler,
 		VlanHandler:     vlanHandler,

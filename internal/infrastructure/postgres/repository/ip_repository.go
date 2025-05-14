@@ -12,11 +12,17 @@ import (
 type IIpRepository interface {
 	Create(ctx context.Context, ip *model.Ip) (*model.Ip, error)
 
+	CreateBatches(ctx context.Context, ip []model.Ip) error
+
 	GetIps(ctx context.Context, arg ...func(*gorm.DB)) ([]*model.Ip, error)
 
 	GetById(ctx context.Context, id int64) (*model.Ip, error)
 
 	GetByIp(ip string) (*model.Ip, error)
+
+	EditCustomerById(ctx context.Context, id int64, customerId int64) error
+
+	EditDescriptionById(ctx context.Context, id int64, description string) error
 }
 
 var _ IIpRepository = (*IpRepository)(nil)
@@ -38,6 +44,15 @@ func (i *IpRepository) Create(ctx context.Context, ip *model.Ip) (*model.Ip, err
 	return ip, nil
 }
 
+func (i *IpRepository) CreateBatches(ctx context.Context, ip []model.Ip) error {
+	if err := i.Repo.CreateInBatches(ctx, ip, 225); err != nil {
+		log.Printf("Не удалось создать ip: %s", err)
+		return err
+	}
+
+	return nil
+}
+
 func (i *IpRepository) GetIps(ctx context.Context, arg ...func(*gorm.DB)) ([]*model.Ip, error) {
 	ips, err := i.FindAll(ctx, arg...)
 	if err != nil {
@@ -48,8 +63,13 @@ func (i *IpRepository) GetIps(ctx context.Context, arg ...func(*gorm.DB)) ([]*mo
 }
 
 func (i *IpRepository) GetById(ctx context.Context, id int64) (*model.Ip, error) {
-	ip, err := i.Repo.FindById(ctx, id)
+	ip, err := i.Repo.FindByWhereWithQuery(ctx, "id = ?", []any{id}, func(db *gorm.DB) {
+		db.Preload("Customer")
+	})
 	if err != nil {
+		if !errors.Is(err, gorm.ErrRecordNotFound) {
+			log.Printf("Не удалось получить: %s", err)
+		}
 		return nil, err
 	}
 
@@ -66,4 +86,26 @@ func (i *IpRepository) GetByIp(ip string) (*model.Ip, error) {
 	}
 
 	return ipData, nil
+}
+
+func (i *IpRepository) EditCustomerById(ctx context.Context, id int64, customerId int64) error {
+	_, err := i.Repo.UpdateById(ctx, id, map[string]any{
+		"customer_id": customerId,
+	})
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (i *IpRepository) EditDescriptionById(ctx context.Context, id int64, description string) error {
+	_, err := i.Repo.UpdateById(ctx, id, map[string]any{
+		"description": description,
+	})
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

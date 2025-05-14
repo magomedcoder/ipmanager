@@ -19,18 +19,22 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	IpService_CreateIp_FullMethodName  = "/ip.IpService/CreateIp"
-	IpService_GetIps_FullMethodName    = "/ip.IpService/GetIps"
-	IpService_GetIpById_FullMethodName = "/ip.IpService/GetIpById"
+	IpService_GetIps_FullMethodName            = "/ip.IpService/GetIps"
+	IpService_GetIpById_FullMethodName         = "/ip.IpService/GetIpById"
+	IpService_EditIpCustomer_FullMethodName    = "/ip.IpService/EditIpCustomer"
+	IpService_EditIpService_FullMethodName     = "/ip.IpService/EditIpService"
+	IpService_EditIpDescription_FullMethodName = "/ip.IpService/EditIpDescription"
 )
 
 // IpServiceClient is the client API for IpService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type IpServiceClient interface {
-	CreateIp(ctx context.Context, in *CreateIpRequest, opts ...grpc.CallOption) (*CreateIpResponse, error)
 	GetIps(ctx context.Context, in *GetIpsRequest, opts ...grpc.CallOption) (*GetIpsResponse, error)
 	GetIpById(ctx context.Context, in *GetIpRequest, opts ...grpc.CallOption) (*GetIpResponse, error)
+	EditIpCustomer(ctx context.Context, in *EditIpCustomerRequest, opts ...grpc.CallOption) (*EditIpCustomerResponse, error)
+	EditIpService(ctx context.Context, in *EditIpServiceRequest, opts ...grpc.CallOption) (*EditIpServiceResponse, error)
+	EditIpDescription(ctx context.Context, in *EditIpDescriptionRequest, opts ...grpc.CallOption) (*EditIpDescriptionResponse, error)
 }
 
 type ipServiceClient struct {
@@ -39,16 +43,6 @@ type ipServiceClient struct {
 
 func NewIpServiceClient(cc grpc.ClientConnInterface) IpServiceClient {
 	return &ipServiceClient{cc}
-}
-
-func (c *ipServiceClient) CreateIp(ctx context.Context, in *CreateIpRequest, opts ...grpc.CallOption) (*CreateIpResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateIpResponse)
-	err := c.cc.Invoke(ctx, IpService_CreateIp_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *ipServiceClient) GetIps(ctx context.Context, in *GetIpsRequest, opts ...grpc.CallOption) (*GetIpsResponse, error) {
@@ -71,13 +65,45 @@ func (c *ipServiceClient) GetIpById(ctx context.Context, in *GetIpRequest, opts 
 	return out, nil
 }
 
+func (c *ipServiceClient) EditIpCustomer(ctx context.Context, in *EditIpCustomerRequest, opts ...grpc.CallOption) (*EditIpCustomerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EditIpCustomerResponse)
+	err := c.cc.Invoke(ctx, IpService_EditIpCustomer_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ipServiceClient) EditIpService(ctx context.Context, in *EditIpServiceRequest, opts ...grpc.CallOption) (*EditIpServiceResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EditIpServiceResponse)
+	err := c.cc.Invoke(ctx, IpService_EditIpService_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *ipServiceClient) EditIpDescription(ctx context.Context, in *EditIpDescriptionRequest, opts ...grpc.CallOption) (*EditIpDescriptionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EditIpDescriptionResponse)
+	err := c.cc.Invoke(ctx, IpService_EditIpDescription_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IpServiceServer is the server API for IpService service.
 // All implementations must embed UnimplementedIpServiceServer
 // for forward compatibility.
 type IpServiceServer interface {
-	CreateIp(context.Context, *CreateIpRequest) (*CreateIpResponse, error)
 	GetIps(context.Context, *GetIpsRequest) (*GetIpsResponse, error)
 	GetIpById(context.Context, *GetIpRequest) (*GetIpResponse, error)
+	EditIpCustomer(context.Context, *EditIpCustomerRequest) (*EditIpCustomerResponse, error)
+	EditIpService(context.Context, *EditIpServiceRequest) (*EditIpServiceResponse, error)
+	EditIpDescription(context.Context, *EditIpDescriptionRequest) (*EditIpDescriptionResponse, error)
 	mustEmbedUnimplementedIpServiceServer()
 }
 
@@ -88,14 +114,20 @@ type IpServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedIpServiceServer struct{}
 
-func (UnimplementedIpServiceServer) CreateIp(context.Context, *CreateIpRequest) (*CreateIpResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateIp not implemented")
-}
 func (UnimplementedIpServiceServer) GetIps(context.Context, *GetIpsRequest) (*GetIpsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetIps not implemented")
 }
 func (UnimplementedIpServiceServer) GetIpById(context.Context, *GetIpRequest) (*GetIpResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetIpById not implemented")
+}
+func (UnimplementedIpServiceServer) EditIpCustomer(context.Context, *EditIpCustomerRequest) (*EditIpCustomerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditIpCustomer not implemented")
+}
+func (UnimplementedIpServiceServer) EditIpService(context.Context, *EditIpServiceRequest) (*EditIpServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditIpService not implemented")
+}
+func (UnimplementedIpServiceServer) EditIpDescription(context.Context, *EditIpDescriptionRequest) (*EditIpDescriptionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditIpDescription not implemented")
 }
 func (UnimplementedIpServiceServer) mustEmbedUnimplementedIpServiceServer() {}
 func (UnimplementedIpServiceServer) testEmbeddedByValue()                   {}
@@ -116,24 +148,6 @@ func RegisterIpServiceServer(s grpc.ServiceRegistrar, srv IpServiceServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&IpService_ServiceDesc, srv)
-}
-
-func _IpService_CreateIp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateIpRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(IpServiceServer).CreateIp(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: IpService_CreateIp_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IpServiceServer).CreateIp(ctx, req.(*CreateIpRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _IpService_GetIps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -172,6 +186,60 @@ func _IpService_GetIpById_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _IpService_EditIpCustomer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EditIpCustomerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IpServiceServer).EditIpCustomer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IpService_EditIpCustomer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IpServiceServer).EditIpCustomer(ctx, req.(*EditIpCustomerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IpService_EditIpService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EditIpServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IpServiceServer).EditIpService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IpService_EditIpService_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IpServiceServer).EditIpService(ctx, req.(*EditIpServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IpService_EditIpDescription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EditIpDescriptionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IpServiceServer).EditIpDescription(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IpService_EditIpDescription_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IpServiceServer).EditIpDescription(ctx, req.(*EditIpDescriptionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // IpService_ServiceDesc is the grpc.ServiceDesc for IpService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -180,16 +248,24 @@ var IpService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*IpServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateIp",
-			Handler:    _IpService_CreateIp_Handler,
-		},
-		{
 			MethodName: "GetIps",
 			Handler:    _IpService_GetIps_Handler,
 		},
 		{
 			MethodName: "GetIpById",
 			Handler:    _IpService_GetIpById_Handler,
+		},
+		{
+			MethodName: "EditIpCustomer",
+			Handler:    _IpService_EditIpCustomer_Handler,
+		},
+		{
+			MethodName: "EditIpService",
+			Handler:    _IpService_EditIpService_Handler,
+		},
+		{
+			MethodName: "EditIpDescription",
+			Handler:    _IpService_EditIpDescription_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

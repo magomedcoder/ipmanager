@@ -4,7 +4,6 @@ import (
 	"context"
 	"github.com/magomedcoder/ipmanager/api/pb"
 	"github.com/magomedcoder/ipmanager/internal/usecase"
-	"github.com/magomedcoder/ipmanager/pkg/gormutil"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"gorm.io/gorm"
@@ -12,35 +11,15 @@ import (
 
 type IpHandler struct {
 	pb.UnimplementedIpServiceServer
-	IpUseCase usecase.IIpUseCase
-}
-
-func (i *IpHandler) CreateIp(ctx context.Context, in *pb.CreateIpRequest) (*pb.CreateIpResponse, error) {
-	ipOpt := &usecase.IpOpt{
-		Ip: in.Ip,
-	}
-
-	ip, err := i.IpUseCase.Create(ctx, ipOpt)
-	if err != nil {
-		return nil, status.Error(codes.InvalidArgument, "Ошибка")
-	}
-
-	return &pb.CreateIpResponse{
-		Id: ip.Id,
-	}, nil
+	IpUseCase     usecase.IIpUseCase
+	SubnetUseCase usecase.ISubnetUseCase
 }
 
 func (i *IpHandler) GetIps(ctx context.Context, in *pb.GetIpsRequest) (*pb.GetIpsResponse, error) {
-	pagination := &gormutil.Pagination{
-		Page:     1,
-		PageSize: 15,
-	}
-	pagination.SetPage(int(in.GetPage()))
-	pagination.SetPageSize(int(in.GetPageSize()))
-
 	var total int64
 	ips, err := i.IpUseCase.GetIps(ctx, func(db *gorm.DB) {
-		db.Scopes(gormutil.Paginate(pagination)).
+		db.Where("subnet_id = ?", in.SubnetId).
+			Order("id ASC").
 			Count(&total)
 	})
 	if err != nil {
@@ -54,8 +33,7 @@ func (i *IpHandler) GetIps(ctx context.Context, in *pb.GetIpsRequest) (*pb.GetIp
 			Ip:           item.Ip,
 			CustomerId:   item.CustomerId,
 			CustomerName: item.CustomerName,
-			VlanId:       item.VlanId,
-			VlanName:     item.VlanName,
+			Description:  item.Description,
 		})
 	}
 
@@ -67,12 +45,43 @@ func (i *IpHandler) GetIps(ctx context.Context, in *pb.GetIpsRequest) (*pb.GetIp
 
 func (i *IpHandler) GetIpById(ctx context.Context, in *pb.GetIpRequest) (*pb.GetIpResponse, error) {
 	ip, _ := i.IpUseCase.GetById(ctx, in.Id)
-	if ip.Id == 0 {
+	if ip == nil {
 		return nil, status.Error(codes.NotFound, "Ip не найден")
 	}
 
 	return &pb.GetIpResponse{
-		Id: ip.Id,
-		Ip: ip.Ip,
+		Id:           ip.Id,
+		Ip:           ip.Ip,
+		CustomerId:   ip.CustomerId,
+		CustomerName: ip.CustomerName,
+		Description:  ip.Description,
+	}, nil
+}
+
+func (i *IpHandler) EditIpCustomer(ctx context.Context, in *pb.EditIpCustomerRequest) (*pb.EditIpCustomerResponse, error) {
+	if err := i.IpUseCase.EditCustomerById(ctx, in.Id, in.CustomerId); err != nil {
+		return nil, status.Error(codes.NotFound, "Ip не найден")
+	}
+	return &pb.EditIpCustomerResponse{
+		Success: true,
+	}, nil
+}
+
+func (i *IpHandler) EditIpService(ctx context.Context, in *pb.EditIpServiceRequest) (*pb.EditIpServiceResponse, error) {
+	if err := i.IpUseCase.EditServiceById(ctx, in.Id, in.ServiceId); err != nil {
+		return nil, status.Error(codes.NotFound, "Ip не найден")
+	}
+	return &pb.EditIpServiceResponse{
+		Success: true,
+	}, nil
+}
+
+func (i *IpHandler) EditIpDescription(ctx context.Context, in *pb.EditIpDescriptionRequest) (*pb.EditIpDescriptionResponse, error) {
+	if err := i.IpUseCase.EditDescriptionById(ctx, in.Id, in.Description); err != nil {
+		return nil, status.Error(codes.NotFound, "Ip не найден")
+	}
+
+	return &pb.EditIpDescriptionResponse{
+		Success: true,
 	}, nil
 }

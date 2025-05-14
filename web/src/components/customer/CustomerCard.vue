@@ -35,7 +35,7 @@ load()
 <template>
   <el-dialog
     v-model="modelValue"
-    title="Карточка IP"
+    title="Карточка клиента"
     width="500"
     align-center
   >

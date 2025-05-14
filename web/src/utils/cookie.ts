@@ -12,7 +12,7 @@ export const getAccessToken = () => {
   return cookies.get(accessToken) || ''
 }
 
-export const setAccessToken = (token = '', timestamp?: number): void => {
+export const setAccessToken = (token = '', timestamp: number = 2678400): void => {
   const date = new Date(timestamp * 1000)
 
   cookies.set(accessToken, token, {

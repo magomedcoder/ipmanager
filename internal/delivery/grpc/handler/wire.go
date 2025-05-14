@@ -10,6 +10,10 @@ var ProviderSet = wire.NewSet(
 	wire.Struct(new(pb.UnimplementedUserServiceServer), "*"),
 	wire.Bind(new(pb.UserServiceServer), new(*UserHandler)),
 
+	wire.Struct(new(SubnetHandler), "*"),
+	wire.Struct(new(pb.UnimplementedSubnetServiceServer), "*"),
+	wire.Bind(new(pb.SubnetServiceServer), new(*SubnetHandler)),
+
 	wire.Struct(new(IpHandler), "*"),
 	wire.Struct(new(pb.UnimplementedIpServiceServer), "*"),
 	wire.Bind(new(pb.IpServiceServer), new(*IpHandler)),

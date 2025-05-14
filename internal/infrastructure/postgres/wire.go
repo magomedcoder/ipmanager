@@ -12,6 +12,9 @@ var ProviderSet = wire.NewSet(
 	wire.Bind(new(repository.IUserSessionRepository), new(*repository.UserSessionRepository)),
 	repository.NewUserSessionRepository,
 
+	wire.Bind(new(repository.ISubnetRepository), new(*repository.SubnetRepository)),
+	repository.NewSubnetRepository,
+
 	wire.Bind(new(repository.IIpRepository), new(*repository.IpRepository)),
 	repository.NewIPRepository,
 

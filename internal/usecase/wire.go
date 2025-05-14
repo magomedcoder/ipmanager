@@ -6,6 +6,9 @@ var ProviderSet = wire.NewSet(
 	wire.Struct(new(UserUseCase), "*"),
 	wire.Bind(new(IUserUseCase), new(*UserUseCase)),
 
+	wire.Struct(new(SubnetUseCase), "*"),
+	wire.Bind(new(ISubnetUseCase), new(*SubnetUseCase)),
+
 	wire.Struct(new(IpUseCase), "*"),
 	wire.Bind(new(IIpUseCase), new(*IpUseCase)),
 

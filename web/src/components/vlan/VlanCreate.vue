@@ -26,8 +26,8 @@ const rules = reactive<FormRules<IVlan>>({
       trigger: 'blur'
     },
     {
-      min: 3,
-      message: 'Vlan не должен быть короче 4 символов.',
+      min: 1,
+      message: 'Vlan не должен быть короче 1 символов.',
       trigger: 'blur'
     }
   ],

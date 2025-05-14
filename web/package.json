@@ -19,6 +19,7 @@
     "@connectrpc/connect-web": "^2.0.2",
     "@element-plus/icons-vue": "^2.3.1",
     "@vueuse/integrations": "^13.1.0",
+    "chart.js": "4.4.8",
     "element-plus": "^2.9.10",
     "jwt-decode": "^4.0.0",
     "pinia": "^3.0.1",

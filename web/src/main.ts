@@ -2,6 +2,7 @@ import './assets/styles/main.scss'
 import 'element-plus/es/components/message-box/style/css'
 import 'element-plus/es/components/message/style/css'
 import 'element-plus/es/components/text/style/css'
+import 'element-plus/es/components/select-v2/style/css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

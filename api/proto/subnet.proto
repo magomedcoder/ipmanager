@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package subnet;
+
+option go_package = "github.com/magomedcoder/ipmanager/api/pb";
+
+service SubnetService {
+  rpc CreateSubnet(CreateSubnetRequest) returns (CreateSubnetResponse);
+
+  rpc GetSubnets(GetSubnetsRequest) returns (GetSubnetsResponse);
+
+  rpc GetSubnetById(GetSubnetRequest) returns (GetSubnetResponse);
+
+  rpc EditSubnetVlan(EditSubnetVlanRequest) returns (EditSubnetVlanResponse);
+
+  rpc EditSubnetDescription(EditSubnetDescriptionRequest) returns (EditSubnetDescriptionResponse);
+}
+
+message CreateSubnetRequest{
+  string ip = 1;
+  int64 vlan_id = 2;
+  string description = 3;
+}
+
+message CreateSubnetResponse{
+  int64 id = 1;
+}
+
+message GetSubnetsRequest {
+  int64 page = 1;
+  int64 pageSize = 2;
+}
+
+message GetSubnetsResponse {
+  int64 total = 1;
+  repeated SubnetItem items = 2;
+}
+
+message SubnetItem {
+  int64 id = 1;
+  string ip = 2;
+  int64 vlan_id = 3;
+  string vlan_name = 4;
+  int64 customer_id = 5;
+  string customer_name = 6;
+}
+
+message GetSubnetRequest {
+  int64 id = 1;
+}
+
+message GetSubnetResponse {
+  int64 id = 1;
+  string ip = 2;
+  string name = 3;
+  int64 vlan_id = 4;
+  string vlan_name = 5;
+  string description = 6;
+  repeated int64 charts = 7;
+}
+
+message EditSubnetVlanRequest {
+  int64 id = 1;
+  int64 vlan_id = 2;
+}
+
+message EditSubnetVlanResponse {
+  bool success = 1;
+}
+
+message EditSubnetDescriptionRequest {
+  int64 id = 1;
+  string description = 2;
+}
+
+message EditSubnetDescriptionResponse {
+  bool success = 1;
+}

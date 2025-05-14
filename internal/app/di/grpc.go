@@ -10,6 +10,7 @@ import (
 type AppProvider struct {
 	Middleware      middleware.AuthMiddleware
 	UserHandler     pb.UserServiceServer
+	SubnetHandler   pb.SubnetServiceServer
 	IpHandler       pb.IpServiceServer
 	CustomerHandler pb.CustomerServiceServer
 	VlanHandler     pb.VlanServiceServer

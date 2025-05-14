@@ -16,6 +16,7 @@ test-client:
 
 .PHONY: build
 build:
+	cd web && yarn build-only
 	go run ./tools/vfsgen
 	go build -o ./build/ipmanager ./cmd/ipmanager
 

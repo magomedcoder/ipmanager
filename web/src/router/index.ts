@@ -6,9 +6,21 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'HomeView',
-      component: () => import('../views/home.vue')
+      name: 'SubnetsView',
+      component: () => import('../views/subnets.vue'),
+      meta: {
+        title: 'Подсети'
+      }
     },
+    {
+      path: '/subnets/:id',
+      name: 'IPView',
+      component: () => import('../views/ip.vue'),
+      meta: {
+        title: 'Подсеть'
+      }
+    },
+
     {
       path: '/services',
       name: 'servicesView',

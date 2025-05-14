@@ -39,6 +39,9 @@ load()
   >
     <el-descriptions :column="1">
       <el-descriptions-item label="Название:">{{form.name}}</el-descriptions-item>
+      <el-descriptions-item label="VLAN:">{{form.name}}</el-descriptions-item>
+      <el-descriptions-item label="IP:">{{form.name}}</el-descriptions-item>
+      <el-descriptions-item label="Клиент:">{{form.name}}</el-descriptions-item>
     </el-descriptions>
   </el-dialog>
 </template>

@@ -5,24 +5,19 @@ package ip;
 option go_package = "github.com/magomedcoder/ipmanager/api/pb";
 
 service IpService {
-  rpc CreateIp(CreateIpRequest) returns (CreateIpResponse);
-
   rpc GetIps(GetIpsRequest) returns (GetIpsResponse);
 
   rpc GetIpById(GetIpRequest) returns (GetIpResponse);
-}
 
-message CreateIpRequest{
-  string ip = 1;
-}
+  rpc EditIpCustomer(EditIpCustomerRequest) returns (EditIpCustomerResponse);
 
-message CreateIpResponse{
-  int64 id = 1;
+  rpc EditIpService(EditIpServiceRequest) returns (EditIpServiceResponse);
+
+  rpc EditIpDescription(EditIpDescriptionRequest) returns (EditIpDescriptionResponse);
 }
 
 message GetIpsRequest {
-  int64 page = 1;
-  int64 pageSize = 2;
+  int64 subnet_id = 1;
 }
 
 message GetIpsResponse {
@@ -37,6 +32,7 @@ message IpItem {
   string vlan_name = 4;
   int64 customer_id = 5;
   string customer_name = 6;
+  string description = 7;
 }
 
 message GetIpRequest {
@@ -46,4 +42,36 @@ message GetIpRequest {
 message GetIpResponse {
   int64 id = 1;
   string ip = 2;
+  int64 customer_id = 3;
+  string customer_name = 4;
+  int64 service_id = 5;
+  string service_name = 6;
+  string description = 7;
+}
+
+message EditIpCustomerRequest {
+  int64 id = 1;
+  int64 customer_id = 2;
+}
+
+message EditIpCustomerResponse {
+  bool success = 1;
+}
+
+message EditIpServiceRequest {
+  int64 id = 1;
+  int64 service_id = 2;
+}
+
+message EditIpServiceResponse {
+  bool success = 1;
+}
+
+message EditIpDescriptionRequest {
+  int64 id = 1;
+  string description = 2;
+}
+
+message EditIpDescriptionResponse {
+  bool success = 1;
 }

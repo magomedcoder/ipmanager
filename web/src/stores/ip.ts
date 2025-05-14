@@ -1,63 +1,80 @@
 import { defineStore } from 'pinia'
 import { client } from '@/api/client'
 import { IpService } from '@/api/pb/ip_pb'
+import { ServiceService } from '@/api/pb/service_pb'
 import { ConnectError } from '@connectrpc/connect'
 
 const ipService = client(IpService)
+const serviceService = client(ServiceService)
 
 export const useIpStore = defineStore('ip', {
-  state: () => ({
-
-  }),
+  state: () => ({}),
   actions: {
-    createIp(ipData: { ip: string }): Promise<any> {
-      return new Promise(async (resolve, reject) => {
-        try {
-          const res = await ipService.createIp({
-            ip: ipData.ip,
-          })
-          resolve(res)
-        } catch (err) {
-          if (err instanceof ConnectError) {
-            console.log(err.message)
-          }
-          reject()
+    async getIps(subnetId: number) {
+      try {
+        return await ipService.getIps({
+          subnetId: subnetId
+        })
+      } catch (err) {
+        if (err instanceof ConnectError) {
+          console.log(err.message)
         }
-      })
+        throw err
+      }
     },
 
-    getIps(page: number, pageSize: number): Promise<any> {
-      return new Promise(async (resolve, reject) => {
-        try {
-          const res = await ipService.getIps({
-            page: page,
-            pageSize: pageSize
-          })
-          resolve(res)
-        } catch (err) {
-          if (err instanceof ConnectError) {
-            console.log(err.message)
-          }
-          reject()
+    async getIpById(id: number) {
+      try {
+        return await ipService.getIpById({ id: id })
+      } catch (err) {
+        if (err instanceof ConnectError) {
+          console.log(err.message)
         }
-      })
+        throw err
+      }
     },
 
-    getIpById(id: number): Promise<any> {
-      return new Promise(async (resolve, reject) => {
-        try {
-          const res = await ipService.getIpById({ id: id })
-          resolve(res)
-        } catch (err) {
-          if (err instanceof ConnectError) {
-            console.log(err.message)
-          }
-          reject()
+    async editCustomerById(id: number, customerId: number) {
+      try {
+        return await ipService.editIpCustomer({
+          id: id,
+          customerId: customerId
+        })
+      } catch (err) {
+        if (err instanceof ConnectError) {
+          console.log(err.message)
         }
-      })
+        throw err
+      }
+    },
+
+    async editServiceById(id: number, serviceId: number) {
+      try {
+        return await ipService.editIpService({
+          id: id,
+          serviceId: serviceId
+        })
+      } catch (err) {
+        if (err instanceof ConnectError) {
+          console.log(err.message)
+        }
+        throw err
+      }
+    },
+
+    async editDescriptionById(id: number, description: string) {
+      try {
+        return await ipService.editIpDescription({
+          id: id,
+          description: description
+        })
+      } catch (err) {
+        if (err instanceof ConnectError) {
+          console.log(err.message)
+        }
+        throw err
+      }
     }
   },
-  getters: {
-
-  }
+  getters: {}
 })

@@ -6,58 +6,45 @@ import { ConnectError } from '@connectrpc/connect'
 const serviceService = client(ServiceService)
 
 export const useServiceStore = defineStore('service', {
-  state: () => ({
-
-  }),
+  state: () => ({}),
   actions: {
-    createService(serviceData: { name: string }): Promise<any> {
-      return new Promise(async (resolve, reject) => {
-        try {
-          const res = await serviceService.createService({
-            name: serviceData.name,
-          })
-          resolve(res)
-        } catch (err) {
-          if (err instanceof ConnectError) {
-            console.log(err.message)
-          }
-          reject()
+    async createService(serviceData: { name: string }) {
+      try {
+        return await serviceService.createService({
+          name: serviceData.name,
+        })
+      } catch (err) {
+        if (err instanceof ConnectError) {
+          console.log(err.message)
         }
-      })
+        throw err
+      }
     },
 
-    getServices(page: number, pageSize: number): Promise<any> {
-      return new Promise(async (resolve, reject) => {
-        try {
-          const res = await serviceService.getServices({
-            page: page,
-            pageSize: pageSize
-          })
-          resolve(res)
-        } catch (err) {
-          if (err instanceof ConnectError) {
-            console.log(err.message)
-          }
-          reject()
+    async getServices(page: number, pageSize: number) {
+      try {
+        return await serviceService.getServices({
+          page: page,
+          pageSize: pageSize
+        })
+      } catch (err) {
+        if (err instanceof ConnectError) {
+          console.log(err.message)
         }
-      })
+        throw err
+      }
     },
 
-    getServiceById(id: number): Promise<any> {
-      return new Promise(async (resolve, reject) => {
-        try {
-          const res = await serviceService.getServiceById({ id: id })
-          resolve(res)
-        } catch (err) {
-          if (err instanceof ConnectError) {
-            console.log(err.message)
-          }
-          reject()
+    async getServiceById(id: number) {
+      try {
+        return await serviceService.getServiceById({ id: id })
+      } catch (err) {
+        if (err instanceof ConnectError) {
+          console.log(err.message)
         }
-      })
+        throw err
+      }
     }
   },
-  getters: {
-
-  }
+  getters: {}
 })

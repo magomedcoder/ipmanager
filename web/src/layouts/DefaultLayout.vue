@@ -4,7 +4,8 @@ import { ElMessageBox, ElMessage, ElInput, ElForm, ElFormItem } from 'element-pl
 import type { FormInstance, FormRules } from 'element-plus'
 import router from '@/router'
 import { useUserStore } from '@/stores/user'
-import { User, Operation } from '@element-plus/icons-vue'
+import { User } from '@element-plus/icons-vue'
+import { validateForm } from '@/utils/validate'
 
 const userStore = useUserStore()
 
@@ -13,23 +14,7 @@ const onLogout = async () => userStore.logout(() => router.push('/login'))
 const oldPassword = ref<string>('')
 const newPassword = ref<string>('')
 const confirmPassword = ref<string>('')
-const formRef = ref<FormInstance | null>(null)
-
-const validateForm = (): Promise<boolean> => {
-  return new Promise((resolve, reject) => {
-    if (formRef.value) {
-      formRef.value.validate((valid: boolean) => {
-        if (valid) {
-          resolve(true)
-        } else {
-          reject(false)
-        }
-      })
-    } else {
-      reject(false)
-    }
-  })
-}
+const formRef = ref<FormInstance>()
 
 const rules: FormRules = {
   oldPassword: [
@@ -116,7 +101,7 @@ const showChangePasswordBox = () => {
     ]),
     beforeClose: (action, instance, done) => {
       if (action === 'confirm') {
-        validateForm().then(() => {
+        validateForm(formRef).then(() => {
           if (newPassword.value !== confirmPassword.value) {
             ElMessage({
               type: 'error',
@@ -149,7 +134,6 @@ const showChangePasswordBox = () => {
   })
     .catch(() => { })
 }
-
 </script>
 
 <template>
@@ -169,7 +153,7 @@ const showChangePasswordBox = () => {
             :route="{ path: '/' }"
             index="1"
           >
-            IP
+            Подсети
           </el-menu-item>
           <el-menu-item
             :route="{ path: '/services' }"

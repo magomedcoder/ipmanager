@@ -6,58 +6,45 @@ import { ConnectError } from '@connectrpc/connect'
 const vlanService = client(VlanService)
 
 export const useVlanStore = defineStore('vlan', {
-  state: () => ({
-
-  }),
+  state: () => ({}),
   actions: {
-    createVlan(vlanData: { name: string }): Promise<any> {
-      return new Promise(async (resolve, reject) => {
-        try {
-          const res = await vlanService.createVlan({
-            name: vlanData.name,
-          })
-          resolve(res)
-        } catch (err) {
-          if (err instanceof ConnectError) {
-            console.log(err.message)
-          }
-          reject()
+    async createVlan(vlanData: { name: string }) {
+      try {
+        return await vlanService.createVlan({
+          name: vlanData.name,
+        })
+      } catch (err) {
+        if (err instanceof ConnectError) {
+          console.log(err.message)
         }
-      })
+        throw err // Propagate error
+      }
     },
 
-    getVlans(page: number, pageSize: number): Promise<any> {
-      return new Promise(async (resolve, reject) => {
-        try {
-          const res = await vlanService.getVlans({
-            page: page,
-            pageSize: pageSize
-          })
-          resolve(res)
-        } catch (err) {
-          if (err instanceof ConnectError) {
-            console.log(err.message)
-          }
-          reject()
+    async getVlans(page: number, pageSize: number) {
+      try {
+        return await vlanService.getVlans({
+          page: page,
+          pageSize: pageSize
+        })
+      } catch (err) {
+        if (err instanceof ConnectError) {
+          console.log(err.message)
         }
-      })
+        throw err
+      }
     },
 
-    getVlanById(id: number): Promise<any> {
-      return new Promise(async (resolve, reject) => {
-        try {
-          const res = await vlanService.getVlanById({ id: id })
-          resolve(res)
-        } catch (err) {
-          if (err instanceof ConnectError) {
-            console.log(err.message)
-          }
-          reject()
+    async getVlanById(id: number) {
+      try {
+        return await vlanService.getVlanById({ id: id })
+      } catch (err) {
+        if (err instanceof ConnectError) {
+          console.log(err.message)
         }
-      })
+        throw err
+      }
     }
   },
-  getters: {
-
-  }
+  getters: {}
 })

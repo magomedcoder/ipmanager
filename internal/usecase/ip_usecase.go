@@ -20,6 +20,12 @@ type IIpUseCase interface {
 	GetIps(ctx context.Context, arg ...func(*gorm.DB)) ([]*entity.Ip, error)
 
 	GetById(ctx context.Context, id int64) (*entity.Ip, error)
+
+	EditCustomerById(ctx context.Context, id int64, customerId int64) error
+
+	EditServiceById(ctx context.Context, id int64, serviceId int64) error
+
+	EditDescriptionById(ctx context.Context, id int64, description string) error
 }
 
 var _ IIpUseCase = (*IpUseCase)(nil)
@@ -65,7 +71,7 @@ func (i *IpUseCase) GetIps(ctx context.Context, arg ...func(*gorm.DB)) ([]*entit
 		for _, fn := range arg {
 			fn(db)
 		}
-		db.Preload("Vlan").Preload("Customer")
+		db.Preload("Customer")
 	})
 	if err != nil {
 		return nil, err
@@ -74,19 +80,18 @@ func (i *IpUseCase) GetIps(ctx context.Context, arg ...func(*gorm.DB)) ([]*entit
 	items := make([]*entity.Ip, 0)
 	for _, item := range ips {
 		res := &entity.Ip{
-			Id: int64(item.ID),
-			Ip: item.Ip,
+			Id:          int64(item.ID),
+			Ip:          item.Ip,
+			SubnetId:    int64(item.SubnetID),
+			SubnetName:  item.Ip,
+			Description: item.Description,
 		}
 
-		if item.Vlan.ID != 0 {
-			res.VlanId = int64(item.Vlan.ID)
-			res.VlanName = item.Vlan.Name
-		}
-
-		if item.Customer.ID != 0 {
+		if item.Customer != nil {
 			res.CustomerId = int64(item.Customer.ID)
 			res.CustomerName = item.Customer.Name
 		}
+
 		items = append(items, res)
 	}
 
@@ -99,8 +104,42 @@ func (i *IpUseCase) GetById(ctx context.Context, id int64) (*entity.Ip, error) {
 		return nil, errors.New(fmt.Sprintf("Не удалось получить ip: %v", id))
 	}
 
-	return &entity.Ip{
-		Id: int64(ip.ID),
-		Ip: ip.Ip,
-	}, nil
+	res := &entity.Ip{
+		Id:          int64(ip.ID),
+		Ip:          ip.Ip,
+		SubnetId:    int64(ip.SubnetID),
+		SubnetName:  ip.Ip,
+		Description: ip.Description,
+	}
+
+	if ip.Customer != nil {
+		res.CustomerId = int64(ip.Customer.ID)
+		res.CustomerName = ip.Customer.Name
+	}
+
+	return res, nil
+}
+
+func (i *IpUseCase) EditCustomerById(ctx context.Context, id int64, customerId int64) error {
+	if err := i.IpRepo.EditCustomerById(ctx, id, customerId); err != nil {
+		return errors.New(fmt.Sprintf("Не удалось получить ip: %v", id))
+	}
+
+	return nil
+}
+
+func (i *IpUseCase) EditServiceById(ctx context.Context, id int64, serviceId int64) error {
+	//if err := i.IpRepo.EditServiceById(ctx, id, serviceId); err != nil {
+	//	return errors.New(fmt.Sprintf("Не удалось получить ip: %v", id))
+	//}
+
+	return nil
+}
+
+func (i *IpUseCase) EditDescriptionById(ctx context.Context, id int64, description string) error {
+	if err := i.IpRepo.EditDescriptionById(ctx, id, description); err != nil {
+		return errors.New(fmt.Sprintf("Не удалось получить ip: %v", id))
+	}
+
+	return nil
 }

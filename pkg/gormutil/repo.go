@@ -26,13 +26,17 @@ func (r *Repo[T]) Create(ctx context.Context, data *T) error {
 	return r.Db.WithContext(ctx).Create(data).Error
 }
 
+func (r *Repo[T]) CreateInBatches(ctx context.Context, item []T, batchSize int) error {
+	return r.Db.WithContext(ctx).CreateInBatches(item, batchSize).Error
+}
+
 func (r *Repo[T]) FindAll(ctx context.Context, arg ...func(*gorm.DB)) ([]*T, error) {
 	bd := r.Model(ctx)
 	for _, fn := range arg {
 		fn(bd)
 	}
 	var items []*T
-	if err := bd.Scan(&items).Error; err != nil {
+	if err := bd.Find(&items).Error; err != nil {
 		return nil, err
 	}
 
@@ -60,6 +64,19 @@ func (r *Repo[T]) FindByWhere(ctx context.Context, where string, args ...any) (*
 	return item, nil
 }
 
+func (r *Repo[T]) FindByWhereWithQuery(ctx context.Context, where string, args []any, opts ...func(*gorm.DB)) (*T, error) {
+	var item T
+	db := r.Db.WithContext(ctx).Model(&item).Where(where, args...)
+	for _, opt := range opts {
+		opt(db)
+	}
+	if err := db.First(&item).Error; err != nil {
+		return nil, err
+	}
+
+	return &item, nil
+}
+
 func (r *Repo[T]) QueryExist(ctx context.Context, where string, args ...any) (bool, error) {
 	var count int64
 	if err := r.Model(ctx).Select("1").Where(where, args...).Limit(1).Scan(&count).Error; err != nil {
@@ -67,6 +84,12 @@ func (r *Repo[T]) QueryExist(ctx context.Context, where string, args ...any) (bo
 	}
 
 	return count == 1, nil
+}
+
+func (r *Repo[T]) UpdateById(ctx context.Context, id any, data map[string]any) (int64, error) {
+	res := r.Model(ctx).Where("id = ?", id).Updates(data)
+
+	return res.RowsAffected, res.Error
 }
 
 func (r *Repo[T]) DeleteWhere(ctx context.Context, where string, args ...interface{}) error {
