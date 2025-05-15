@@ -17,6 +17,8 @@ type IUserRepository interface {
 	GetById(ctx context.Context, id int64) (*model.User, error)
 
 	GetByUsername(username string) (*model.User, error)
+
+	UpdatePasswordById(ctx context.Context, id int64, password string) (int64, error)
 }
 
 var _ IUserRepository = (*UserRepository)(nil)
@@ -66,4 +68,15 @@ func (u *UserRepository) GetByUsername(username string) (*model.User, error) {
 	}
 
 	return user, nil
+}
+
+func (u *UserRepository) UpdatePasswordById(ctx context.Context, id int64, password string) (int64, error) {
+	_id, err := u.Repo.UpdateById(ctx, id, map[string]interface{}{
+		"password": password,
+	})
+	if err != nil {
+		return _id, nil
+	}
+
+	return _id, nil
 }

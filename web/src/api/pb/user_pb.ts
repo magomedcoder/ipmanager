@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file user.proto.
  */
 export const file_user: GenFile = /*@__PURE__*/
-  fileDesc("Cgp1c2VyLnByb3RvEgR1c2VyIjYKEFVzZXJMb2dpblJlcXVlc3QSEAoIdXNlcm5hbWUYASABKAkSEAoIcGFzc3dvcmQYAiABKAkiKQoRVXNlckxvZ2luUmVzcG9uc2USFAoMYWNjZXNzX3Rva2VuGAEgASgJIhMKEVVzZXJMb2dvdXRSZXF1ZXN0IiUKElVzZXJMb2dvdXRSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIIlYKEUNyZWF0ZVVzZXJSZXF1ZXN0EhAKCHVzZXJuYW1lGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJEgwKBG5hbWUYAyABKAkSDwoHc3VybmFtZRgEIAEoCSIgChJDcmVhdGVVc2VyUmVzcG9uc2USCgoCaWQYASABKAMiMQoPR2V0VXNlcnNSZXF1ZXN0EgwKBHBhZ2UYASABKAMSEAoIcGFnZVNpemUYAiABKAMiQAoQR2V0VXNlcnNSZXNwb25zZRINCgV0b3RhbBgBIAEoAxIdCgVpdGVtcxgCIAMoCzIOLnVzZXIuVXNlckl0ZW0iRwoIVXNlckl0ZW0SCgoCaWQYASABKAMSEAoIdXNlcm5hbWUYAiABKAkSDAoEbmFtZRgDIAEoCRIPCgdzdXJuYW1lGAQgASgJIhwKDkdldFVzZXJSZXF1ZXN0EgoKAmlkGAEgASgDIk4KD0dldFVzZXJSZXNwb25zZRIKCgJpZBgBIAEoAxIQCgh1c2VybmFtZRgCIAEoCRIMCgRuYW1lGAMgASgJEg8KB3N1cm5hbWUYBCABKAkyvAIKC1VzZXJTZXJ2aWNlEjgKBUxvZ2luEhYudXNlci5Vc2VyTG9naW5SZXF1ZXN0GhcudXNlci5Vc2VyTG9naW5SZXNwb25zZRI7CgZMb2dvdXQSFy51c2VyLlVzZXJMb2dvdXRSZXF1ZXN0GhgudXNlci5Vc2VyTG9nb3V0UmVzcG9uc2USPwoKQ3JlYXRlVXNlchIXLnVzZXIuQ3JlYXRlVXNlclJlcXVlc3QaGC51c2VyLkNyZWF0ZVVzZXJSZXNwb25zZRI5CghHZXRVc2VycxIVLnVzZXIuR2V0VXNlcnNSZXF1ZXN0GhYudXNlci5HZXRVc2Vyc1Jlc3BvbnNlEjoKC0dldFVzZXJCeUlkEhQudXNlci5HZXRVc2VyUmVxdWVzdBoVLnVzZXIuR2V0VXNlclJlc3BvbnNlQipaKGdpdGh1Yi5jb20vbWFnb21lZGNvZGVyL2lwbWFuYWdlci9hcGkvcGJiBnByb3RvMw");
+  fileDesc("Cgp1c2VyLnByb3RvEgR1c2VyIjYKEFVzZXJMb2dpblJlcXVlc3QSEAoIdXNlcm5hbWUYASABKAkSEAoIcGFzc3dvcmQYAiABKAkiKQoRVXNlckxvZ2luUmVzcG9uc2USFAoMYWNjZXNzX3Rva2VuGAEgASgJIhMKEVVzZXJMb2dvdXRSZXF1ZXN0IiUKElVzZXJMb2dvdXRSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIIlYKEUNyZWF0ZVVzZXJSZXF1ZXN0EhAKCHVzZXJuYW1lGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJEgwKBG5hbWUYAyABKAkSDwoHc3VybmFtZRgEIAEoCSIgChJDcmVhdGVVc2VyUmVzcG9uc2USCgoCaWQYASABKAMiMQoPR2V0VXNlcnNSZXF1ZXN0EgwKBHBhZ2UYASABKAMSEAoIcGFnZVNpemUYAiABKAMiQAoQR2V0VXNlcnNSZXNwb25zZRINCgV0b3RhbBgBIAEoAxIdCgVpdGVtcxgCIAMoCzIOLnVzZXIuVXNlckl0ZW0iRwoIVXNlckl0ZW0SCgoCaWQYASABKAMSEAoIdXNlcm5hbWUYAiABKAkSDAoEbmFtZRgDIAEoCRIPCgdzdXJuYW1lGAQgASgJIhwKDkdldFVzZXJSZXF1ZXN0EgoKAmlkGAEgASgDIk4KD0dldFVzZXJSZXNwb25zZRIKCgJpZBgBIAEoAxIQCgh1c2VybmFtZRgCIAEoCRIMCgRuYW1lGAMgASgJEg8KB3N1cm5hbWUYBCABKAkiRwoZQ2hhbmdlUGFzc3dvcmRVc2VyUmVxdWVzdBIUCgxvbGRfcGFzc3dvcmQYASABKAkSFAoMbmV3X3Bhc3N3b3JkGAIgASgJIi0KGkNoYW5nZVBhc3N3b3JkVXNlclJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgyiwMKC1VzZXJTZXJ2aWNlEjgKBUxvZ2luEhYudXNlci5Vc2VyTG9naW5SZXF1ZXN0GhcudXNlci5Vc2VyTG9naW5SZXNwb25zZRI7CgZMb2dvdXQSFy51c2VyLlVzZXJMb2dvdXRSZXF1ZXN0GhgudXNlci5Vc2VyTG9nb3V0UmVzcG9uc2USTQoIUGFzc3dvcmQSHy51c2VyLkNoYW5nZVBhc3N3b3JkVXNlclJlcXVlc3QaIC51c2VyLkNoYW5nZVBhc3N3b3JkVXNlclJlc3BvbnNlEj8KCkNyZWF0ZVVzZXISFy51c2VyLkNyZWF0ZVVzZXJSZXF1ZXN0GhgudXNlci5DcmVhdGVVc2VyUmVzcG9uc2USOQoIR2V0VXNlcnMSFS51c2VyLkdldFVzZXJzUmVxdWVzdBoWLnVzZXIuR2V0VXNlcnNSZXNwb25zZRI6CgtHZXRVc2VyQnlJZBIULnVzZXIuR2V0VXNlclJlcXVlc3QaFS51c2VyLkdldFVzZXJSZXNwb25zZUIqWihnaXRodWIuY29tL21hZ29tZWRjb2Rlci9pcG1hbmFnZXIvYXBpL3BiYgZwcm90bzM");
 
 /**
  * @generated from message user.UserLoginRequest
@@ -256,6 +256,45 @@ export const GetUserResponseSchema: GenMessage<GetUserResponse> = /*@__PURE__*/
   messageDesc(file_user, 10);
 
 /**
+ * @generated from message user.ChangePasswordUserRequest
+ */
+export type ChangePasswordUserRequest = Message<"user.ChangePasswordUserRequest"> & {
+  /**
+   * @generated from field: string old_password = 1;
+   */
+  oldPassword: string;
+
+  /**
+   * @generated from field: string new_password = 2;
+   */
+  newPassword: string;
+};
+
+/**
+ * Describes the message user.ChangePasswordUserRequest.
+ * Use `create(ChangePasswordUserRequestSchema)` to create a new message.
+ */
+export const ChangePasswordUserRequestSchema: GenMessage<ChangePasswordUserRequest> = /*@__PURE__*/
+  messageDesc(file_user, 11);
+
+/**
+ * @generated from message user.ChangePasswordUserResponse
+ */
+export type ChangePasswordUserResponse = Message<"user.ChangePasswordUserResponse"> & {
+  /**
+   * @generated from field: bool success = 1;
+   */
+  success: boolean;
+};
+
+/**
+ * Describes the message user.ChangePasswordUserResponse.
+ * Use `create(ChangePasswordUserResponseSchema)` to create a new message.
+ */
+export const ChangePasswordUserResponseSchema: GenMessage<ChangePasswordUserResponse> = /*@__PURE__*/
+  messageDesc(file_user, 12);
+
+/**
  * @generated from service user.UserService
  */
 export const UserService: GenService<{
@@ -274,6 +313,14 @@ export const UserService: GenService<{
     methodKind: "unary";
     input: typeof UserLogoutRequestSchema;
     output: typeof UserLogoutResponseSchema;
+  },
+  /**
+   * @generated from rpc user.UserService.Password
+   */
+  password: {
+    methodKind: "unary";
+    input: typeof ChangePasswordUserRequestSchema;
+    output: typeof ChangePasswordUserResponseSchema;
   },
   /**
    * @generated from rpc user.UserService.CreateUser

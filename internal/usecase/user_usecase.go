@@ -22,6 +22,8 @@ type IUserUseCase interface {
 
 	Logout(ctx context.Context, accessToken string) error
 
+	ChangePasswordById(ctx context.Context, id int64, password string, newPassword string) error
+
 	ValidateToken(tokenString string) (*UserClaims, error)
 
 	IsTokenRevoked(ctx context.Context, token string) (bool, error)
@@ -93,7 +95,7 @@ func (u *UserUseCase) generateToken(user *postgresModel.User) (*entity.UserLogin
 			ExpiresAt: expiresAt,
 		},
 		entity.UserClaims{
-			UId:      user.ID,
+			UId:      int64(user.ID),
 			Username: user.Username,
 		},
 	}
@@ -133,6 +135,29 @@ func (u *UserUseCase) IsTokenRevoked(ctx context.Context, accessToken string) (b
 	}
 
 	return !isValid, nil
+}
+
+func (u *UserUseCase) ChangePasswordById(ctx context.Context, id int64, password string, newPassword string) error {
+	user, err := u.UserRepo.GetById(ctx, id)
+	if err != nil {
+		return err
+	}
+
+	if _, err := u.checkPasswordHash(password, user.Password); err != nil {
+		return errors.New("Неверно введен пароль")
+	}
+
+	passwordHash, err := u.hashPassword(newPassword)
+	if err != nil {
+		return errors.New("Не удалось хешировать пароль")
+	}
+
+	_, err = u.UserRepo.UpdatePasswordById(ctx, id, passwordHash)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 type UserOpt struct {

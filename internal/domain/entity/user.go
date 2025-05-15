@@ -13,7 +13,7 @@ type UserLogin struct {
 
 type UserClaims struct {
 	Token    string `json:"token,omitempty"`
-	UId      uint   `json:"uid,omitempty"`
+	UId      int64  `json:"uid,omitempty"`
 	Username string `json:"username,omitempty"`
 }
 

@@ -593,6 +593,102 @@ func (x *GetUserResponse) GetSurname() string {
 	return ""
 }
 
+type ChangePasswordUserRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OldPassword   string                 `protobuf:"bytes,1,opt,name=old_password,json=oldPassword,proto3" json:"old_password,omitempty"`
+	NewPassword   string                 `protobuf:"bytes,2,opt,name=new_password,json=newPassword,proto3" json:"new_password,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ChangePasswordUserRequest) Reset() {
+	*x = ChangePasswordUserRequest{}
+	mi := &file_user_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ChangePasswordUserRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChangePasswordUserRequest) ProtoMessage() {}
+
+func (x *ChangePasswordUserRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChangePasswordUserRequest.ProtoReflect.Descriptor instead.
+func (*ChangePasswordUserRequest) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *ChangePasswordUserRequest) GetOldPassword() string {
+	if x != nil {
+		return x.OldPassword
+	}
+	return ""
+}
+
+func (x *ChangePasswordUserRequest) GetNewPassword() string {
+	if x != nil {
+		return x.NewPassword
+	}
+	return ""
+}
+
+type ChangePasswordUserResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ChangePasswordUserResponse) Reset() {
+	*x = ChangePasswordUserResponse{}
+	mi := &file_user_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ChangePasswordUserResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChangePasswordUserResponse) ProtoMessage() {}
+
+func (x *ChangePasswordUserResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChangePasswordUserResponse.ProtoReflect.Descriptor instead.
+func (*ChangePasswordUserResponse) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *ChangePasswordUserResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
 var File_user_proto protoreflect.FileDescriptor
 
 const file_user_proto_rawDesc = "" +
@@ -631,10 +727,16 @@ const file_user_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x18\n" +
-	"\asurname\x18\x04 \x01(\tR\asurname2\xbc\x02\n" +
+	"\asurname\x18\x04 \x01(\tR\asurname\"a\n" +
+	"\x19ChangePasswordUserRequest\x12!\n" +
+	"\fold_password\x18\x01 \x01(\tR\voldPassword\x12!\n" +
+	"\fnew_password\x18\x02 \x01(\tR\vnewPassword\"6\n" +
+	"\x1aChangePasswordUserResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\x8b\x03\n" +
 	"\vUserService\x128\n" +
 	"\x05Login\x12\x16.user.UserLoginRequest\x1a\x17.user.UserLoginResponse\x12;\n" +
-	"\x06Logout\x12\x17.user.UserLogoutRequest\x1a\x18.user.UserLogoutResponse\x12?\n" +
+	"\x06Logout\x12\x17.user.UserLogoutRequest\x1a\x18.user.UserLogoutResponse\x12M\n" +
+	"\bPassword\x12\x1f.user.ChangePasswordUserRequest\x1a .user.ChangePasswordUserResponse\x12?\n" +
 	"\n" +
 	"CreateUser\x12\x17.user.CreateUserRequest\x1a\x18.user.CreateUserResponse\x129\n" +
 	"\bGetUsers\x12\x15.user.GetUsersRequest\x1a\x16.user.GetUsersResponse\x12:\n" +
@@ -652,34 +754,38 @@ func file_user_proto_rawDescGZIP() []byte {
 	return file_user_proto_rawDescData
 }
 
-var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_user_proto_goTypes = []any{
-	(*UserLoginRequest)(nil),   // 0: user.UserLoginRequest
-	(*UserLoginResponse)(nil),  // 1: user.UserLoginResponse
-	(*UserLogoutRequest)(nil),  // 2: user.UserLogoutRequest
-	(*UserLogoutResponse)(nil), // 3: user.UserLogoutResponse
-	(*CreateUserRequest)(nil),  // 4: user.CreateUserRequest
-	(*CreateUserResponse)(nil), // 5: user.CreateUserResponse
-	(*GetUsersRequest)(nil),    // 6: user.GetUsersRequest
-	(*GetUsersResponse)(nil),   // 7: user.GetUsersResponse
-	(*UserItem)(nil),           // 8: user.UserItem
-	(*GetUserRequest)(nil),     // 9: user.GetUserRequest
-	(*GetUserResponse)(nil),    // 10: user.GetUserResponse
+	(*UserLoginRequest)(nil),           // 0: user.UserLoginRequest
+	(*UserLoginResponse)(nil),          // 1: user.UserLoginResponse
+	(*UserLogoutRequest)(nil),          // 2: user.UserLogoutRequest
+	(*UserLogoutResponse)(nil),         // 3: user.UserLogoutResponse
+	(*CreateUserRequest)(nil),          // 4: user.CreateUserRequest
+	(*CreateUserResponse)(nil),         // 5: user.CreateUserResponse
+	(*GetUsersRequest)(nil),            // 6: user.GetUsersRequest
+	(*GetUsersResponse)(nil),           // 7: user.GetUsersResponse
+	(*UserItem)(nil),                   // 8: user.UserItem
+	(*GetUserRequest)(nil),             // 9: user.GetUserRequest
+	(*GetUserResponse)(nil),            // 10: user.GetUserResponse
+	(*ChangePasswordUserRequest)(nil),  // 11: user.ChangePasswordUserRequest
+	(*ChangePasswordUserResponse)(nil), // 12: user.ChangePasswordUserResponse
 }
 var file_user_proto_depIdxs = []int32{
 	8,  // 0: user.GetUsersResponse.items:type_name -> user.UserItem
 	0,  // 1: user.UserService.Login:input_type -> user.UserLoginRequest
 	2,  // 2: user.UserService.Logout:input_type -> user.UserLogoutRequest
-	4,  // 3: user.UserService.CreateUser:input_type -> user.CreateUserRequest
-	6,  // 4: user.UserService.GetUsers:input_type -> user.GetUsersRequest
-	9,  // 5: user.UserService.GetUserById:input_type -> user.GetUserRequest
-	1,  // 6: user.UserService.Login:output_type -> user.UserLoginResponse
-	3,  // 7: user.UserService.Logout:output_type -> user.UserLogoutResponse
-	5,  // 8: user.UserService.CreateUser:output_type -> user.CreateUserResponse
-	7,  // 9: user.UserService.GetUsers:output_type -> user.GetUsersResponse
-	10, // 10: user.UserService.GetUserById:output_type -> user.GetUserResponse
-	6,  // [6:11] is the sub-list for method output_type
-	1,  // [1:6] is the sub-list for method input_type
+	11, // 3: user.UserService.Password:input_type -> user.ChangePasswordUserRequest
+	4,  // 4: user.UserService.CreateUser:input_type -> user.CreateUserRequest
+	6,  // 5: user.UserService.GetUsers:input_type -> user.GetUsersRequest
+	9,  // 6: user.UserService.GetUserById:input_type -> user.GetUserRequest
+	1,  // 7: user.UserService.Login:output_type -> user.UserLoginResponse
+	3,  // 8: user.UserService.Logout:output_type -> user.UserLogoutResponse
+	12, // 9: user.UserService.Password:output_type -> user.ChangePasswordUserResponse
+	5,  // 10: user.UserService.CreateUser:output_type -> user.CreateUserResponse
+	7,  // 11: user.UserService.GetUsers:output_type -> user.GetUsersResponse
+	10, // 12: user.UserService.GetUserById:output_type -> user.GetUserResponse
+	7,  // [7:13] is the sub-list for method output_type
+	1,  // [1:7] is the sub-list for method input_type
 	1,  // [1:1] is the sub-list for extension type_name
 	1,  // [1:1] is the sub-list for extension extendee
 	0,  // [0:1] is the sub-list for field type_name
@@ -696,7 +802,7 @@ func file_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_proto_rawDesc), len(file_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

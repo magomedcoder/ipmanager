@@ -9,6 +9,8 @@ service UserService {
 
   rpc Logout(UserLogoutRequest) returns (UserLogoutResponse);
 
+  rpc Password(ChangePasswordUserRequest) returns (ChangePasswordUserResponse);
+
   rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
 
   rpc GetUsers(GetUsersRequest) returns (GetUsersResponse);
@@ -68,4 +70,13 @@ message GetUserResponse {
   string username = 2;
   string name = 3;
   string surname = 4;
+}
+
+message ChangePasswordUserRequest {
+  string old_password = 1;
+  string new_password = 2;
+}
+
+message ChangePasswordUserResponse {
+  bool success = 1;
 }

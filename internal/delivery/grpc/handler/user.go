@@ -6,6 +6,7 @@ import (
 	"github.com/magomedcoder/ipmanager/internal/domain/entity"
 	"github.com/magomedcoder/ipmanager/internal/usecase"
 	"github.com/magomedcoder/ipmanager/pkg/gormutil"
+	"github.com/magomedcoder/ipmanager/pkg/grpcutil"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"gorm.io/gorm"
@@ -38,6 +39,18 @@ func (u *UserHandler) Logout(ctx context.Context, in *pb.UserLogoutRequest) (*pb
 	}
 
 	return &pb.UserLogoutResponse{
+		Success: true,
+	}, nil
+}
+
+func (u *UserHandler) Password(ctx context.Context, in *pb.ChangePasswordUserRequest) (*pb.ChangePasswordUserResponse, error) {
+	uid := grpcutil.UserId(ctx)
+
+	if err := u.UserUseCase.ChangePasswordById(ctx, uid, in.OldPassword, in.NewPassword); err != nil {
+		return nil, status.Error(codes.InvalidArgument, "Ошибка")
+	}
+
+	return &pb.ChangePasswordUserResponse{
 		Success: true,
 	}, nil
 }

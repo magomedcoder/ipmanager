@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	UserService_Login_FullMethodName       = "/user.UserService/Login"
 	UserService_Logout_FullMethodName      = "/user.UserService/Logout"
+	UserService_Password_FullMethodName    = "/user.UserService/Password"
 	UserService_CreateUser_FullMethodName  = "/user.UserService/CreateUser"
 	UserService_GetUsers_FullMethodName    = "/user.UserService/GetUsers"
 	UserService_GetUserById_FullMethodName = "/user.UserService/GetUserById"
@@ -32,6 +33,7 @@ const (
 type UserServiceClient interface {
 	Login(ctx context.Context, in *UserLoginRequest, opts ...grpc.CallOption) (*UserLoginResponse, error)
 	Logout(ctx context.Context, in *UserLogoutRequest, opts ...grpc.CallOption) (*UserLogoutResponse, error)
+	Password(ctx context.Context, in *ChangePasswordUserRequest, opts ...grpc.CallOption) (*ChangePasswordUserResponse, error)
 	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
 	GetUsers(ctx context.Context, in *GetUsersRequest, opts ...grpc.CallOption) (*GetUsersResponse, error)
 	GetUserById(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
@@ -59,6 +61,16 @@ func (c *userServiceClient) Logout(ctx context.Context, in *UserLogoutRequest, o
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UserLogoutResponse)
 	err := c.cc.Invoke(ctx, UserService_Logout_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) Password(ctx context.Context, in *ChangePasswordUserRequest, opts ...grpc.CallOption) (*ChangePasswordUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ChangePasswordUserResponse)
+	err := c.cc.Invoke(ctx, UserService_Password_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -101,6 +113,7 @@ func (c *userServiceClient) GetUserById(ctx context.Context, in *GetUserRequest,
 type UserServiceServer interface {
 	Login(context.Context, *UserLoginRequest) (*UserLoginResponse, error)
 	Logout(context.Context, *UserLogoutRequest) (*UserLogoutResponse, error)
+	Password(context.Context, *ChangePasswordUserRequest) (*ChangePasswordUserResponse, error)
 	CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
 	GetUsers(context.Context, *GetUsersRequest) (*GetUsersResponse, error)
 	GetUserById(context.Context, *GetUserRequest) (*GetUserResponse, error)
@@ -119,6 +132,9 @@ func (UnimplementedUserServiceServer) Login(context.Context, *UserLoginRequest) 
 }
 func (UnimplementedUserServiceServer) Logout(context.Context, *UserLogoutRequest) (*UserLogoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
+}
+func (UnimplementedUserServiceServer) Password(context.Context, *ChangePasswordUserRequest) (*ChangePasswordUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Password not implemented")
 }
 func (UnimplementedUserServiceServer) CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
@@ -182,6 +198,24 @@ func _UserService_Logout_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).Logout(ctx, req.(*UserLogoutRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_Password_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangePasswordUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).Password(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_Password_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).Password(ctx, req.(*ChangePasswordUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -254,6 +288,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Logout",
 			Handler:    _UserService_Logout_Handler,
+		},
+		{
+			MethodName: "Password",
+			Handler:    _UserService_Password_Handler,
 		},
 		{
 			MethodName: "CreateUser",

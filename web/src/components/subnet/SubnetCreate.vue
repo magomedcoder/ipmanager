@@ -4,8 +4,8 @@ import type { FormInstance, FormRules } from 'element-plus'
 import { ElSelectV2 } from 'element-plus'
 import { useSubnetStore } from '@/stores/subnet'
 import { useVlanStore } from '@/stores/vlan'
-import { IVlan } from '@/types/vlan'
-import { ISubnet } from '@/types/subnet'
+import type { IVlan } from '@/types/vlan'
+import type { ISubnet } from '@/types/subnet'
 
 const modelValue = defineModel()
 const emit = defineEmits(['onReset'])

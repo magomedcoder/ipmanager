@@ -64,11 +64,11 @@ export const useUserStore = defineStore('user', {
       success: (value: boolean) => void
     ) {
       try {
-        const { success } = await userService.password({
+        const res = await userService.password({
           oldPassword: form.oldPassword,
-          password: form.password
+          newPassword: form.password
         })
-        success(success)
+        success(res.success)
       } catch (err) {
         if (err instanceof ConnectError) {
           console.log(err.message)
@@ -78,13 +78,12 @@ export const useUserStore = defineStore('user', {
 
     async createUser(user: { username: string, password: string, name: string, surname: string }) {
       try {
-        const res = await userService.createUser({
+        return await userService.createUser({
           username: user.username,
           password: user.password,
           name: user.name,
           surname: user.surname
         })
-        return res
       } catch (err) {
         if (err instanceof ConnectError) {
           console.log(err.message)
