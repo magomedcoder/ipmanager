@@ -28,15 +28,9 @@ interface IColumn {
 
 const loading = ref<boolean>(false)
 
-const subnet = ref<ISubnet>({
-  id: 0,
-  ip: null,
-  vlanId: null,
-  vlanName: null,
-  description: null
-})
-
 const total = ref<number>(0)
+const subnet = computed<ISubnet[]>(() => subnetStore.getItem)
+const getChart = computed<ISubnet[]>(() => subnetStore.getChart)
 const items = computed<IIp[]>(() => ipStore.getItems)
 const showCard = ref<boolean>(false)
 const id = ref<number>()
@@ -46,6 +40,12 @@ const columns = ref<IColumn[]>([
     key: "ip",
     dataKey: "ip",
     title: "IP",
+    width: 350
+  },
+  {
+    key: "serviceName",
+    dataKey: "serviceName",
+    title: "Сервис",
     width: 350
   },
   {
@@ -62,27 +62,12 @@ const columns = ref<IColumn[]>([
   },
 ])
 
-const chart = reactive({
-  labels: ['Занято', 'Свободно'],
-  data: []
-})
-
-const getDetail = async () => {
-  subnetStore.getSubnetById(params.id)
-    .then((res: any) => {
-      subnet.value = res
-      chart.data = [
-        {
-          data: res.charts.map((item) => Number(item)),
-          backgroundColor: ['#ff0000', '#1E252B']
-        }
-      ]
-    }).finally(() => {
-  })
-}
-
 const load = async (_page: number) => {
   loading.value = true
+
+  subnetStore.setId(params.id)
+  await subnetStore.getSubnetById()
+
   ipStore.setSubnetId(params.id)
   ipStore.getIps().finally(() => {
     loading.value = false
@@ -101,8 +86,6 @@ const rowEventHandlers = {
 }
 
 load(-1)
-getDetail()
-
 </script>
 
 <template>
@@ -142,9 +125,9 @@ getDetail()
           </el-descriptions>
           <el-divider />
           <base-chart
-            v-if="chart.data.length > 0"
-            :labels="chart.labels"
-            :data="chart.data"
+            v-if="getChart.data && getChart.data.length > 0"
+            :labels="getChart.labels"
+            :data="getChart.data"
           />
           </el-card>
         </el-col>

@@ -213,19 +213,123 @@ func (x *GetServicesResponse) GetItems() []*ServiceItem {
 	return nil
 }
 
+type ServiceVlan struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ServiceVlan) Reset() {
+	*x = ServiceVlan{}
+	mi := &file_service_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ServiceVlan) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ServiceVlan) ProtoMessage() {}
+
+func (x *ServiceVlan) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ServiceVlan.ProtoReflect.Descriptor instead.
+func (*ServiceVlan) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ServiceVlan) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *ServiceVlan) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type ServiceIp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Ip            string                 `protobuf:"bytes,2,opt,name=ip,proto3" json:"ip,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ServiceIp) Reset() {
+	*x = ServiceIp{}
+	mi := &file_service_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ServiceIp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ServiceIp) ProtoMessage() {}
+
+func (x *ServiceIp) ProtoReflect() protoreflect.Message {
+	mi := &file_service_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ServiceIp.ProtoReflect.Descriptor instead.
+func (*ServiceIp) Descriptor() ([]byte, []int) {
+	return file_service_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ServiceIp) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *ServiceIp) GetIp() string {
+	if x != nil {
+		return x.Ip
+	}
+	return ""
+}
+
 type ServiceItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Vlans         []*ServiceItem_Vlan    `protobuf:"bytes,3,rep,name=vlans,proto3" json:"vlans,omitempty"`
-	Ips           []*ServiceItem_Ip      `protobuf:"bytes,4,rep,name=ips,proto3" json:"ips,omitempty"`
+	Vlans         []*ServiceVlan         `protobuf:"bytes,3,rep,name=vlans,proto3" json:"vlans,omitempty"`
+	Ips           []*ServiceIp           `protobuf:"bytes,4,rep,name=ips,proto3" json:"ips,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ServiceItem) Reset() {
 	*x = ServiceItem{}
-	mi := &file_service_proto_msgTypes[4]
+	mi := &file_service_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -237,7 +341,7 @@ func (x *ServiceItem) String() string {
 func (*ServiceItem) ProtoMessage() {}
 
 func (x *ServiceItem) ProtoReflect() protoreflect.Message {
-	mi := &file_service_proto_msgTypes[4]
+	mi := &file_service_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -250,7 +354,7 @@ func (x *ServiceItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ServiceItem.ProtoReflect.Descriptor instead.
 func (*ServiceItem) Descriptor() ([]byte, []int) {
-	return file_service_proto_rawDescGZIP(), []int{4}
+	return file_service_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ServiceItem) GetId() int64 {
@@ -267,14 +371,14 @@ func (x *ServiceItem) GetName() string {
 	return ""
 }
 
-func (x *ServiceItem) GetVlans() []*ServiceItem_Vlan {
+func (x *ServiceItem) GetVlans() []*ServiceVlan {
 	if x != nil {
 		return x.Vlans
 	}
 	return nil
 }
 
-func (x *ServiceItem) GetIps() []*ServiceItem_Ip {
+func (x *ServiceItem) GetIps() []*ServiceIp {
 	if x != nil {
 		return x.Ips
 	}
@@ -290,7 +394,7 @@ type GetServiceRequest struct {
 
 func (x *GetServiceRequest) Reset() {
 	*x = GetServiceRequest{}
-	mi := &file_service_proto_msgTypes[5]
+	mi := &file_service_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -302,7 +406,7 @@ func (x *GetServiceRequest) String() string {
 func (*GetServiceRequest) ProtoMessage() {}
 
 func (x *GetServiceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_service_proto_msgTypes[5]
+	mi := &file_service_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -315,7 +419,7 @@ func (x *GetServiceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetServiceRequest.ProtoReflect.Descriptor instead.
 func (*GetServiceRequest) Descriptor() ([]byte, []int) {
-	return file_service_proto_rawDescGZIP(), []int{5}
+	return file_service_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetServiceRequest) GetId() int64 {
@@ -329,13 +433,15 @@ type GetServiceResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Vlans         []*ServiceVlan         `protobuf:"bytes,3,rep,name=vlans,proto3" json:"vlans,omitempty"`
+	Ips           []*ServiceIp           `protobuf:"bytes,4,rep,name=ips,proto3" json:"ips,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetServiceResponse) Reset() {
 	*x = GetServiceResponse{}
-	mi := &file_service_proto_msgTypes[6]
+	mi := &file_service_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -347,7 +453,7 @@ func (x *GetServiceResponse) String() string {
 func (*GetServiceResponse) ProtoMessage() {}
 
 func (x *GetServiceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_service_proto_msgTypes[6]
+	mi := &file_service_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -360,7 +466,7 @@ func (x *GetServiceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetServiceResponse.ProtoReflect.Descriptor instead.
 func (*GetServiceResponse) Descriptor() ([]byte, []int) {
-	return file_service_proto_rawDescGZIP(), []int{6}
+	return file_service_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetServiceResponse) GetId() int64 {
@@ -377,108 +483,18 @@ func (x *GetServiceResponse) GetName() string {
 	return ""
 }
 
-type ServiceItem_Vlan struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ServiceItem_Vlan) Reset() {
-	*x = ServiceItem_Vlan{}
-	mi := &file_service_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ServiceItem_Vlan) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ServiceItem_Vlan) ProtoMessage() {}
-
-func (x *ServiceItem_Vlan) ProtoReflect() protoreflect.Message {
-	mi := &file_service_proto_msgTypes[7]
+func (x *GetServiceResponse) GetVlans() []*ServiceVlan {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
+		return x.Vlans
 	}
-	return mi.MessageOf(x)
+	return nil
 }
 
-// Deprecated: Use ServiceItem_Vlan.ProtoReflect.Descriptor instead.
-func (*ServiceItem_Vlan) Descriptor() ([]byte, []int) {
-	return file_service_proto_rawDescGZIP(), []int{4, 0}
-}
-
-func (x *ServiceItem_Vlan) GetId() int64 {
+func (x *GetServiceResponse) GetIps() []*ServiceIp {
 	if x != nil {
-		return x.Id
+		return x.Ips
 	}
-	return 0
-}
-
-func (x *ServiceItem_Vlan) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-type ServiceItem_Ip struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Ip            string                 `protobuf:"bytes,2,opt,name=ip,proto3" json:"ip,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ServiceItem_Ip) Reset() {
-	*x = ServiceItem_Ip{}
-	mi := &file_service_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ServiceItem_Ip) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ServiceItem_Ip) ProtoMessage() {}
-
-func (x *ServiceItem_Ip) ProtoReflect() protoreflect.Message {
-	mi := &file_service_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ServiceItem_Ip.ProtoReflect.Descriptor instead.
-func (*ServiceItem_Ip) Descriptor() ([]byte, []int) {
-	return file_service_proto_rawDescGZIP(), []int{4, 1}
-}
-
-func (x *ServiceItem_Ip) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *ServiceItem_Ip) GetIp() string {
-	if x != nil {
-		return x.Ip
-	}
-	return ""
+	return nil
 }
 
 var File_service_proto protoreflect.FileDescriptor
@@ -495,23 +511,25 @@ const file_service_proto_rawDesc = "" +
 	"\bpageSize\x18\x02 \x01(\x03R\bpageSize\"W\n" +
 	"\x13GetServicesResponse\x12\x14\n" +
 	"\x05total\x18\x01 \x01(\x03R\x05total\x12*\n" +
-	"\x05items\x18\x02 \x03(\v2\x14.service.ServiceItemR\x05items\"\xdf\x01\n" +
+	"\x05items\x18\x02 \x03(\v2\x14.service.ServiceItemR\x05items\"1\n" +
+	"\vServiceVlan\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\"+\n" +
+	"\tServiceIp\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x0e\n" +
+	"\x02ip\x18\x02 \x01(\tR\x02ip\"\x83\x01\n" +
 	"\vServiceItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12/\n" +
-	"\x05vlans\x18\x03 \x03(\v2\x19.service.ServiceItem.VlanR\x05vlans\x12)\n" +
-	"\x03ips\x18\x04 \x03(\v2\x17.service.ServiceItem.IpR\x03ips\x1a*\n" +
-	"\x04Vlan\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x1a$\n" +
-	"\x02Ip\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x0e\n" +
-	"\x02ip\x18\x02 \x01(\tR\x02ip\"#\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12*\n" +
+	"\x05vlans\x18\x03 \x03(\v2\x14.service.ServiceVlanR\x05vlans\x12$\n" +
+	"\x03ips\x18\x04 \x03(\v2\x12.service.ServiceIpR\x03ips\"#\n" +
 	"\x11GetServiceRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"8\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"\x8a\x01\n" +
 	"\x12GetServiceResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name2\xf5\x01\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12*\n" +
+	"\x05vlans\x18\x03 \x03(\v2\x14.service.ServiceVlanR\x05vlans\x12$\n" +
+	"\x03ips\x18\x04 \x03(\v2\x12.service.ServiceIpR\x03ips2\xf5\x01\n" +
 	"\x0eServiceService\x12N\n" +
 	"\rCreateService\x12\x1d.service.CreateServiceRequest\x1a\x1e.service.CreateServiceResponse\x12H\n" +
 	"\vGetServices\x12\x1b.service.GetServicesRequest\x1a\x1c.service.GetServicesResponse\x12I\n" +
@@ -535,27 +553,29 @@ var file_service_proto_goTypes = []any{
 	(*CreateServiceResponse)(nil), // 1: service.CreateServiceResponse
 	(*GetServicesRequest)(nil),    // 2: service.GetServicesRequest
 	(*GetServicesResponse)(nil),   // 3: service.GetServicesResponse
-	(*ServiceItem)(nil),           // 4: service.ServiceItem
-	(*GetServiceRequest)(nil),     // 5: service.GetServiceRequest
-	(*GetServiceResponse)(nil),    // 6: service.GetServiceResponse
-	(*ServiceItem_Vlan)(nil),      // 7: service.ServiceItem.Vlan
-	(*ServiceItem_Ip)(nil),        // 8: service.ServiceItem.Ip
+	(*ServiceVlan)(nil),           // 4: service.ServiceVlan
+	(*ServiceIp)(nil),             // 5: service.ServiceIp
+	(*ServiceItem)(nil),           // 6: service.ServiceItem
+	(*GetServiceRequest)(nil),     // 7: service.GetServiceRequest
+	(*GetServiceResponse)(nil),    // 8: service.GetServiceResponse
 }
 var file_service_proto_depIdxs = []int32{
-	4, // 0: service.GetServicesResponse.items:type_name -> service.ServiceItem
-	7, // 1: service.ServiceItem.vlans:type_name -> service.ServiceItem.Vlan
-	8, // 2: service.ServiceItem.ips:type_name -> service.ServiceItem.Ip
-	0, // 3: service.ServiceService.CreateService:input_type -> service.CreateServiceRequest
-	2, // 4: service.ServiceService.GetServices:input_type -> service.GetServicesRequest
-	5, // 5: service.ServiceService.GetServiceById:input_type -> service.GetServiceRequest
-	1, // 6: service.ServiceService.CreateService:output_type -> service.CreateServiceResponse
-	3, // 7: service.ServiceService.GetServices:output_type -> service.GetServicesResponse
-	6, // 8: service.ServiceService.GetServiceById:output_type -> service.GetServiceResponse
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	6, // 0: service.GetServicesResponse.items:type_name -> service.ServiceItem
+	4, // 1: service.ServiceItem.vlans:type_name -> service.ServiceVlan
+	5, // 2: service.ServiceItem.ips:type_name -> service.ServiceIp
+	4, // 3: service.GetServiceResponse.vlans:type_name -> service.ServiceVlan
+	5, // 4: service.GetServiceResponse.ips:type_name -> service.ServiceIp
+	0, // 5: service.ServiceService.CreateService:input_type -> service.CreateServiceRequest
+	2, // 6: service.ServiceService.GetServices:input_type -> service.GetServicesRequest
+	7, // 7: service.ServiceService.GetServiceById:input_type -> service.GetServiceRequest
+	1, // 8: service.ServiceService.CreateService:output_type -> service.CreateServiceResponse
+	3, // 9: service.ServiceService.GetServices:output_type -> service.GetServicesResponse
+	8, // 10: service.ServiceService.GetServiceById:output_type -> service.GetServiceResponse
+	8, // [8:11] is the sub-list for method output_type
+	5, // [5:8] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_service_proto_init() }

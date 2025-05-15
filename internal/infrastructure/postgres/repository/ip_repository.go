@@ -22,6 +22,8 @@ type IIpRepository interface {
 
 	EditCustomerById(ctx context.Context, id int64, customerId int64) error
 
+	EditServiceById(ctx context.Context, id int64, serviceId int64) error
+
 	EditDescriptionById(ctx context.Context, id int64, description string) error
 
 	CountByCustomerBinding(ctx context.Context, subnetID int64) (int64, int64, error)
@@ -66,7 +68,7 @@ func (i *IpRepository) GetIps(ctx context.Context, arg ...func(*gorm.DB)) ([]*mo
 
 func (i *IpRepository) GetById(ctx context.Context, id int64) (*model.Ip, error) {
 	ip, err := i.Repo.FindByWhereWithQuery(ctx, "id = ?", []any{id}, func(db *gorm.DB) {
-		db.Preload("Customer")
+		db.Preload("Customer").Preload("Service")
 	})
 	if err != nil {
 		if !errors.Is(err, gorm.ErrRecordNotFound) {
@@ -91,9 +93,32 @@ func (i *IpRepository) GetByIp(ip string) (*model.Ip, error) {
 }
 
 func (i *IpRepository) EditCustomerById(ctx context.Context, id int64, customerId int64) error {
-	_, err := i.Repo.UpdateById(ctx, id, map[string]any{
-		"customer_id": customerId,
-	})
+	data := map[string]any{
+		"customer_id": nil,
+	}
+
+	if customerId != 0 {
+		data["customer_id"] = customerId
+	}
+
+	_, err := i.Repo.UpdateById(ctx, id, data)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (i *IpRepository) EditServiceById(ctx context.Context, id int64, serviceId int64) error {
+	data := map[string]any{
+		"service_id": nil,
+	}
+
+	if serviceId != 0 {
+		data["service_id"] = serviceId
+	}
+
+	_, err := i.Repo.UpdateById(ctx, id, data)
 	if err != nil {
 		return err
 	}

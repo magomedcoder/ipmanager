@@ -13,12 +13,12 @@ const ipStore = useIpStore()
 const formRef = ref<FormInstance>()
 const id = ref<number>()
 const customerList = ref<ICustomer[]>([])
-const selected = ref<number>()
+const selected = ref<number | null>(null)
 
 const rules: FormRules = {
   customer: [
     {
-      required: true,
+      required: false,
       message: 'Клиент не должен быть пустым.',
       trigger: 'blur'
     }
@@ -27,9 +27,7 @@ const rules: FormRules = {
 
 export const showEditCustomerBox = (form: IIp) => {
   id.value = form.id
-  if (form.customerId !=0) {
-    selected.value = form.customerId
-  }
+  selected.value = (form.customerId !=0) ? form.customerId : null
 
   customerStore.getCustomers(1, 100)
     .then(async (res: { total: number; items: ICustomer[] }) => {
@@ -59,7 +57,8 @@ export const showEditCustomerBox = (form: IIp) => {
           h(ElSelect, {
             modelValue: selected.value,
             'onUpdate:modelValue': (value: number) => selected.value = value,
-            placeholder: 'Выберите клиент'
+            placeholder: 'Выберите клиент',
+            clearable: true
           }, customerList.value.map(customer =>
             h(ElOption, {
               label: customer.name,
@@ -73,6 +72,7 @@ export const showEditCustomerBox = (form: IIp) => {
       if (action === 'confirm') {
         validateForm(formRef).then(() => {
           ipStore.editCustomerById(id.value, selected.value).then(() => done())
+          ipStore.getIpById()
         })
       } else {
         done()

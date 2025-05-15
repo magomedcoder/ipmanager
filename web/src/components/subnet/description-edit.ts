@@ -54,6 +54,7 @@ export const showEditDescriptionBox = (form: IIp) => {
       if (action === 'confirm') {
         validateForm(formRef).then(() => {
           subnetStore.editDescriptionById(id.value, description.value).then(() => done())
+          subnetStore.getSubnetById()
         })
       } else {
         done()

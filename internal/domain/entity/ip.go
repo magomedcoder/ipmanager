@@ -6,8 +6,8 @@ type Ip struct {
 	Busy         bool
 	SubnetId     int64
 	SubnetName   string
-	VlanId       int64
-	VlanName     string
+	ServiceId    int64
+	ServiceName  string
 	CustomerId   int64
 	CustomerName string
 	Description  string

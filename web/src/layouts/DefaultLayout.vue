@@ -146,7 +146,10 @@ const showChangePasswordBox = () => {
           :router="true"
           :ellipsis="false"
         >
-          <el-menu-item :route="{ path: '/' }">
+          <el-menu-item
+            :route="{ path: '/' }"
+            index="0"
+          >
             <h3 class="header__logo">IP Manager</h3>
           </el-menu-item>
           <el-menu-item

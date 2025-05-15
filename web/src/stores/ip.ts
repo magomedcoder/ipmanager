@@ -7,13 +7,28 @@ const ipService = client(IpService)
 
 export const useIpStore = defineStore('ip', {
   state: () => ({
+    loading: false,
     subnetId: 0,
     total: 0,
-    items: []
+    items: [],
+    id: 0,
+    item: {
+      id: 0,
+      ip: '',
+      customerId: 0,
+      customerName: '',
+      serviceId: 0,
+      serviceName: '',
+      description: '',
+    }
   }),
   actions: {
     setSubnetId(subnetId: number) {
       this.subnetId = subnetId
+    },
+
+    setId(id: number) {
+      this.id = id
     },
 
     async getIps() {
@@ -37,13 +52,22 @@ export const useIpStore = defineStore('ip', {
       }
     },
 
-    async getIpById(id: number) {
+    async getIpById() {
+      this.loading = true
       try {
-        return await ipService.getIpById({ id: id })
+        const res = await ipService.getIpById({ id: this.id })
+        this.item = {
+          ...res,
+          id: Number(res.id),
+          serviceId: Number(res.serviceId),
+          customerId: Number(res.customerId),
+        }
+        this.loading = false
       } catch (err) {
         if (err instanceof ConnectError) {
           console.log(err.message)
         }
+        this.loading = false
         throw err
       }
     },
@@ -91,8 +115,12 @@ export const useIpStore = defineStore('ip', {
     }
   },
   getters: {
+    getLoading: state => state.loading,
+
     getTotal: state => state.total,
 
-    getItems: state => state.items
+    getItems: state => state.items,
+
+    getItem: state => state.item,
   }
 })

@@ -93,8 +93,17 @@ func (v *ServiceUseCase) GetById(ctx context.Context, id int64) (*entity.Service
 		return nil, errors.New(fmt.Sprintf("Не удалось получить service: %v", id))
 	}
 
+	var ips []entity.ServiceIp
+	for _, _ip := range service.Ips {
+		ips = append(ips, entity.ServiceIp{
+			Id: int64(_ip.ID),
+			Ip: _ip.Ip,
+		})
+	}
+
 	return &entity.Service{
 		Id:   int64(service.ID),
 		Name: service.Name,
+		Ips:  ips,
 	}, nil
 }

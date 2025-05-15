@@ -12,7 +12,7 @@ const vlanStore = useVlanStore()
 
 const formRef = ref<FormInstance>()
 const id = ref<number>()
-const vlanList = ref<IVlan[]>([])
+const vlans = ref<IVlan[]>([])
 const selected = ref<number | null>(null)
 
 const rules: FormRules = {
@@ -27,16 +27,14 @@ const rules: FormRules = {
 
 export const showEditVlanBox = (form: ISubnet) => {
   id.value = form.id
-  if (form.vlanId !=0) {
-    selected.value = form.vlanId
-  }
+  selected.value = (form.vlanId !=0) ? Number(form.vlanId) : null
 
   vlanStore.getVlans(1, 100)
-    .then(async (res: { total: number; items: IVlan[] }) => {
-      vlanList.value = res.items.map((item) => {
+    .then((res: { total: number; items: IVlan[] }) => {
+      vlans.value = res.items.map((item) => {
         return {
-          ...item,
-          id: Number(item.id)
+          id: Number(item.id),
+          name: item.name
         }
       })
     }).finally(() => {})
@@ -59,7 +57,7 @@ export const showEditVlanBox = (form: ISubnet) => {
             modelValue: selected.value,
             'onUpdate:modelValue': (value: number) => selected.value = value,
             placeholder: 'Выберите VLAN'
-          }, vlanList.value.map(vlan =>
+          }, vlans.value.map(vlan =>
             h(ElOption, {
               label: vlan.name,
               value: vlan.id
@@ -72,6 +70,7 @@ export const showEditVlanBox = (form: ISubnet) => {
       if (action === 'confirm') {
         validateForm(formRef).then(() => {
           subnetStore.editVlanById(id.value, selected.value).then(() => done())
+          subnetStore.getSubnetById()
         })
       } else {
         done()

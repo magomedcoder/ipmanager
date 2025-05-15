@@ -49,17 +49,17 @@ func (v *ServiceHandler) GetServices(ctx context.Context, in *pb.GetServicesRequ
 
 	items := make([]*pb.ServiceItem, 0)
 	for _, item := range services {
-		var vlans []*pb.ServiceItem_Vlan
+		var vlans []*pb.ServiceVlan
 		for _, _vlan := range item.Vlans {
-			vlans = append(vlans, &pb.ServiceItem_Vlan{
+			vlans = append(vlans, &pb.ServiceVlan{
 				Id:   _vlan.Id,
 				Name: _vlan.Name,
 			})
 		}
 
-		var ips []*pb.ServiceItem_Ip
+		var ips []*pb.ServiceIp
 		for _, _ip := range item.Ips {
-			ips = append(ips, &pb.ServiceItem_Ip{
+			ips = append(ips, &pb.ServiceIp{
 				Id: _ip.Id,
 				Ip: _ip.Ip,
 			})
@@ -85,8 +85,17 @@ func (v *ServiceHandler) GetServiceById(ctx context.Context, in *pb.GetServiceRe
 		return nil, status.Error(codes.NotFound, "Service не найден")
 	}
 
+	var ips []*pb.ServiceIp
+	for _, _ip := range service.Ips {
+		ips = append(ips, &pb.ServiceIp{
+			Id: _ip.Id,
+			Ip: _ip.Ip,
+		})
+	}
+
 	return &pb.GetServiceResponse{
 		Id:   service.Id,
 		Name: service.Name,
+		Ips:  ips,
 	}, nil
 }

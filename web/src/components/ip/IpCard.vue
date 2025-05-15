@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { computed } from 'vue'
 import { useIpStore } from '@/stores/ip'
 import { showEditCustomerBox } from './customer-edit'
 import { showEditServiceBox } from './service-edit'
@@ -9,29 +9,13 @@ import type { IIp } from '@/types/ip'
 const modelValue = defineModel()
 const props = defineProps(['id'])
 
+const form = computed<IIp>(() => ipStore.getItem)
+
 const ipStore = useIpStore()
 
-const form = ref<IIp>({
-  id: 0,
-  ip: '',
-  customerId: 0,
-  customerName: '',
-  serviceId: 0,
-  serviceName: '',
-  description: '',
-})
-
 const load = async () => {
-  ipStore.getIpById(props.id)
-    .then(async (res: any) => {
-      form.value = {
-      ...res,
-        id: Number(res.id),
-        serviceId: Number(res.serviceId),
-        customerId: Number(res.customerId),
-      }
-    }).finally(() => {
-  })
+  ipStore.setId(props.id)
+  await ipStore.getIpById()
 }
 
 const onClose = () => ipStore.getIps().then(() => {})
@@ -47,7 +31,7 @@ load()
     align-center
     @close="onClose"
   >
-    <el-descriptions :column="1">
+    <el-descriptions v-loading="ipStore.getLoading" :column="1">
       <el-descriptions-item label="IP:">{{form.ip}}</el-descriptions-item>
       <el-descriptions-item label="Клиент:">
         {{form.customerName}}

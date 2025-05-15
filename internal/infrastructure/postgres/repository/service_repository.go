@@ -45,7 +45,9 @@ func (s *ServiceRepository) GetServices(ctx context.Context, arg ...func(*gorm.D
 }
 
 func (s *ServiceRepository) GetById(ctx context.Context, id int64) (*model.Service, error) {
-	service, err := s.Repo.FindById(ctx, id)
+	service, err := s.Repo.FindByWhereWithQuery(ctx, "id = ?", []any{id}, func(db *gorm.DB) {
+		db.Preload("Ips")
+	})
 	if err != nil {
 		return nil, err
 	}

@@ -10,7 +10,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file service.proto.
  */
 export const file_service: GenFile = /*@__PURE__*/
-  fileDesc("Cg1zZXJ2aWNlLnByb3RvEgdzZXJ2aWNlIiQKFENyZWF0ZVNlcnZpY2VSZXF1ZXN0EgwKBG5hbWUYASABKAkiIwoVQ3JlYXRlU2VydmljZVJlc3BvbnNlEgoKAmlkGAEgASgDIjQKEkdldFNlcnZpY2VzUmVxdWVzdBIMCgRwYWdlGAEgASgDEhAKCHBhZ2VTaXplGAIgASgDIkkKE0dldFNlcnZpY2VzUmVzcG9uc2USDQoFdG90YWwYASABKAMSIwoFaXRlbXMYAiADKAsyFC5zZXJ2aWNlLlNlcnZpY2VJdGVtIrcBCgtTZXJ2aWNlSXRlbRIKCgJpZBgBIAEoAxIMCgRuYW1lGAIgASgJEigKBXZsYW5zGAMgAygLMhkuc2VydmljZS5TZXJ2aWNlSXRlbS5WbGFuEiQKA2lwcxgEIAMoCzIXLnNlcnZpY2UuU2VydmljZUl0ZW0uSXAaIAoEVmxhbhIKCgJpZBgBIAEoAxIMCgRuYW1lGAIgASgJGhwKAklwEgoKAmlkGAEgASgDEgoKAmlwGAIgASgJIh8KEUdldFNlcnZpY2VSZXF1ZXN0EgoKAmlkGAEgASgDIi4KEkdldFNlcnZpY2VSZXNwb25zZRIKCgJpZBgBIAEoAxIMCgRuYW1lGAIgASgJMvUBCg5TZXJ2aWNlU2VydmljZRJOCg1DcmVhdGVTZXJ2aWNlEh0uc2VydmljZS5DcmVhdGVTZXJ2aWNlUmVxdWVzdBoeLnNlcnZpY2UuQ3JlYXRlU2VydmljZVJlc3BvbnNlEkgKC0dldFNlcnZpY2VzEhsuc2VydmljZS5HZXRTZXJ2aWNlc1JlcXVlc3QaHC5zZXJ2aWNlLkdldFNlcnZpY2VzUmVzcG9uc2USSQoOR2V0U2VydmljZUJ5SWQSGi5zZXJ2aWNlLkdldFNlcnZpY2VSZXF1ZXN0Ghsuc2VydmljZS5HZXRTZXJ2aWNlUmVzcG9uc2VCKlooZ2l0aHViLmNvbS9tYWdvbWVkY29kZXIvaXBtYW5hZ2VyL2FwaS9wYmIGcHJvdG8z");
+  fileDesc("Cg1zZXJ2aWNlLnByb3RvEgdzZXJ2aWNlIiQKFENyZWF0ZVNlcnZpY2VSZXF1ZXN0EgwKBG5hbWUYASABKAkiIwoVQ3JlYXRlU2VydmljZVJlc3BvbnNlEgoKAmlkGAEgASgDIjQKEkdldFNlcnZpY2VzUmVxdWVzdBIMCgRwYWdlGAEgASgDEhAKCHBhZ2VTaXplGAIgASgDIkkKE0dldFNlcnZpY2VzUmVzcG9uc2USDQoFdG90YWwYASABKAMSIwoFaXRlbXMYAiADKAsyFC5zZXJ2aWNlLlNlcnZpY2VJdGVtIicKC1NlcnZpY2VWbGFuEgoKAmlkGAEgASgDEgwKBG5hbWUYAiABKAkiIwoJU2VydmljZUlwEgoKAmlkGAEgASgDEgoKAmlwGAIgASgJIm0KC1NlcnZpY2VJdGVtEgoKAmlkGAEgASgDEgwKBG5hbWUYAiABKAkSIwoFdmxhbnMYAyADKAsyFC5zZXJ2aWNlLlNlcnZpY2VWbGFuEh8KA2lwcxgEIAMoCzISLnNlcnZpY2UuU2VydmljZUlwIh8KEUdldFNlcnZpY2VSZXF1ZXN0EgoKAmlkGAEgASgDInQKEkdldFNlcnZpY2VSZXNwb25zZRIKCgJpZBgBIAEoAxIMCgRuYW1lGAIgASgJEiMKBXZsYW5zGAMgAygLMhQuc2VydmljZS5TZXJ2aWNlVmxhbhIfCgNpcHMYBCADKAsyEi5zZXJ2aWNlLlNlcnZpY2VJcDL1AQoOU2VydmljZVNlcnZpY2USTgoNQ3JlYXRlU2VydmljZRIdLnNlcnZpY2UuQ3JlYXRlU2VydmljZVJlcXVlc3QaHi5zZXJ2aWNlLkNyZWF0ZVNlcnZpY2VSZXNwb25zZRJICgtHZXRTZXJ2aWNlcxIbLnNlcnZpY2UuR2V0U2VydmljZXNSZXF1ZXN0Ghwuc2VydmljZS5HZXRTZXJ2aWNlc1Jlc3BvbnNlEkkKDkdldFNlcnZpY2VCeUlkEhouc2VydmljZS5HZXRTZXJ2aWNlUmVxdWVzdBobLnNlcnZpY2UuR2V0U2VydmljZVJlc3BvbnNlQipaKGdpdGh1Yi5jb20vbWFnb21lZGNvZGVyL2lwbWFuYWdlci9hcGkvcGJiBnByb3RvMw");
 
 /**
  * @generated from message service.CreateServiceRequest
@@ -91,6 +91,50 @@ export const GetServicesResponseSchema: GenMessage<GetServicesResponse> = /*@__P
   messageDesc(file_service, 3);
 
 /**
+ * @generated from message service.ServiceVlan
+ */
+export type ServiceVlan = Message<"service.ServiceVlan"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name: string;
+};
+
+/**
+ * Describes the message service.ServiceVlan.
+ * Use `create(ServiceVlanSchema)` to create a new message.
+ */
+export const ServiceVlanSchema: GenMessage<ServiceVlan> = /*@__PURE__*/
+  messageDesc(file_service, 4);
+
+/**
+ * @generated from message service.ServiceIp
+ */
+export type ServiceIp = Message<"service.ServiceIp"> & {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id: bigint;
+
+  /**
+   * @generated from field: string ip = 2;
+   */
+  ip: string;
+};
+
+/**
+ * Describes the message service.ServiceIp.
+ * Use `create(ServiceIpSchema)` to create a new message.
+ */
+export const ServiceIpSchema: GenMessage<ServiceIp> = /*@__PURE__*/
+  messageDesc(file_service, 5);
+
+/**
  * @generated from message service.ServiceItem
  */
 export type ServiceItem = Message<"service.ServiceItem"> & {
@@ -105,14 +149,14 @@ export type ServiceItem = Message<"service.ServiceItem"> & {
   name: string;
 
   /**
-   * @generated from field: repeated service.ServiceItem.Vlan vlans = 3;
+   * @generated from field: repeated service.ServiceVlan vlans = 3;
    */
-  vlans: ServiceItem_Vlan[];
+  vlans: ServiceVlan[];
 
   /**
-   * @generated from field: repeated service.ServiceItem.Ip ips = 4;
+   * @generated from field: repeated service.ServiceIp ips = 4;
    */
-  ips: ServiceItem_Ip[];
+  ips: ServiceIp[];
 };
 
 /**
@@ -120,51 +164,7 @@ export type ServiceItem = Message<"service.ServiceItem"> & {
  * Use `create(ServiceItemSchema)` to create a new message.
  */
 export const ServiceItemSchema: GenMessage<ServiceItem> = /*@__PURE__*/
-  messageDesc(file_service, 4);
-
-/**
- * @generated from message service.ServiceItem.Vlan
- */
-export type ServiceItem_Vlan = Message<"service.ServiceItem.Vlan"> & {
-  /**
-   * @generated from field: int64 id = 1;
-   */
-  id: bigint;
-
-  /**
-   * @generated from field: string name = 2;
-   */
-  name: string;
-};
-
-/**
- * Describes the message service.ServiceItem.Vlan.
- * Use `create(ServiceItem_VlanSchema)` to create a new message.
- */
-export const ServiceItem_VlanSchema: GenMessage<ServiceItem_Vlan> = /*@__PURE__*/
-  messageDesc(file_service, 4, 0);
-
-/**
- * @generated from message service.ServiceItem.Ip
- */
-export type ServiceItem_Ip = Message<"service.ServiceItem.Ip"> & {
-  /**
-   * @generated from field: int64 id = 1;
-   */
-  id: bigint;
-
-  /**
-   * @generated from field: string ip = 2;
-   */
-  ip: string;
-};
-
-/**
- * Describes the message service.ServiceItem.Ip.
- * Use `create(ServiceItem_IpSchema)` to create a new message.
- */
-export const ServiceItem_IpSchema: GenMessage<ServiceItem_Ip> = /*@__PURE__*/
-  messageDesc(file_service, 4, 1);
+  messageDesc(file_service, 6);
 
 /**
  * @generated from message service.GetServiceRequest
@@ -181,7 +181,7 @@ export type GetServiceRequest = Message<"service.GetServiceRequest"> & {
  * Use `create(GetServiceRequestSchema)` to create a new message.
  */
 export const GetServiceRequestSchema: GenMessage<GetServiceRequest> = /*@__PURE__*/
-  messageDesc(file_service, 5);
+  messageDesc(file_service, 7);
 
 /**
  * @generated from message service.GetServiceResponse
@@ -196,6 +196,16 @@ export type GetServiceResponse = Message<"service.GetServiceResponse"> & {
    * @generated from field: string name = 2;
    */
   name: string;
+
+  /**
+   * @generated from field: repeated service.ServiceVlan vlans = 3;
+   */
+  vlans: ServiceVlan[];
+
+  /**
+   * @generated from field: repeated service.ServiceIp ips = 4;
+   */
+  ips: ServiceIp[];
 };
 
 /**
@@ -203,7 +213,7 @@ export type GetServiceResponse = Message<"service.GetServiceResponse"> & {
  * Use `create(GetServiceResponseSchema)` to create a new message.
  */
 export const GetServiceResponseSchema: GenMessage<GetServiceResponse> = /*@__PURE__*/
-  messageDesc(file_service, 6);
+  messageDesc(file_service, 8);
 
 /**
  * @generated from service service.ServiceService

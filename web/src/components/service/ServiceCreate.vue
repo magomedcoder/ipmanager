@@ -73,24 +73,6 @@ const onClose = () => modelValue.value = false
       >
         <el-input v-model="form.name" />
       </el-form-item>
-      <el-form-item
-        label="VLAN"
-        prop="name"
-      >
-        <el-input v-model="form.name" />
-      </el-form-item>
-      <el-form-item
-        label="IP"
-        prop="name"
-      >
-        <el-input v-model="form.name" />
-      </el-form-item>
-      <el-form-item
-        label="Клиент"
-        prop="name"
-      >
-        <el-input v-model="form.name" />
-      </el-form-item>
       <el-button
         type="primary"
         class="w-full"

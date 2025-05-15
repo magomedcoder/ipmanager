@@ -6,8 +6,16 @@ import { ConnectError } from '@connectrpc/connect'
 const subnetService = client(SubnetService)
 
 export const useSubnetStore = defineStore('subnet', {
-  state: () => ({}),
+  state: () => ({
+    id: 0,
+    item: {},
+    chart: {}
+  }),
   actions: {
+    setId(id: number) {
+      this.id = id
+    },
+
     async createSubnet(ip: string, vlanId: number, description: string) {
       try {
         return await subnetService.createSubnet({
@@ -37,9 +45,19 @@ export const useSubnetStore = defineStore('subnet', {
       }
     },
 
-    async getSubnetById(id: number) {
+    async getSubnetById() {
       try {
-        return await subnetService.getSubnetById({ id: id })
+        const res = await subnetService.getSubnetById({ id: this.id })
+        if (res.id !=0) {
+          this.item = res
+          this.chart = {
+            labels: ['Занято', 'Свободно'],
+            data: [{
+              data: res.charts.map((item) => Number(item)),
+              backgroundColor: ['#ff0000', '#1E252B']
+            }]
+          }
+        }
       } catch (err) {
         if (err instanceof ConnectError) {
           console.log(err.message)
@@ -76,5 +94,9 @@ export const useSubnetStore = defineStore('subnet', {
       }
     }
   },
-  getters: {}
+  getters: {
+    getItem: state => state.item,
+
+    getChart: state => state.chart
+  }
 })

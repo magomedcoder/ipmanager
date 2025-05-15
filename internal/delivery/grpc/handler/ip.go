@@ -32,6 +32,8 @@ func (i *IpHandler) GetIps(ctx context.Context, in *pb.GetIpsRequest) (*pb.GetIp
 			Id:           item.Id,
 			Ip:           item.Ip,
 			Busy:         item.Busy,
+			ServiceId:    item.ServiceId,
+			ServiceName:  item.ServiceName,
 			CustomerId:   item.CustomerId,
 			CustomerName: item.CustomerName,
 			Description:  item.Description,
@@ -54,6 +56,8 @@ func (i *IpHandler) GetIpById(ctx context.Context, in *pb.GetIpRequest) (*pb.Get
 		Id:           ip.Id,
 		Ip:           ip.Ip,
 		Busy:         ip.Busy,
+		ServiceId:    ip.ServiceId,
+		ServiceName:  ip.ServiceName,
 		CustomerId:   ip.CustomerId,
 		CustomerName: ip.CustomerName,
 		Description:  ip.Description,
@@ -64,6 +68,7 @@ func (i *IpHandler) EditIpCustomer(ctx context.Context, in *pb.EditIpCustomerReq
 	if err := i.IpUseCase.EditCustomerById(ctx, in.Id, in.CustomerId); err != nil {
 		return nil, status.Error(codes.NotFound, "Ip не найден")
 	}
+
 	return &pb.EditIpCustomerResponse{
 		Success: true,
 	}, nil
@@ -73,6 +78,7 @@ func (i *IpHandler) EditIpService(ctx context.Context, in *pb.EditIpServiceReque
 	if err := i.IpUseCase.EditServiceById(ctx, in.Id, in.ServiceId); err != nil {
 		return nil, status.Error(codes.NotFound, "Ip не найден")
 	}
+
 	return &pb.EditIpServiceResponse{
 		Success: true,
 	}, nil

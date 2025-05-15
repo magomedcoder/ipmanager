@@ -7,8 +7,6 @@ const props = defineProps(['id'])
 
 const customerStore = useCustomerStore()
 
-const onClose = () => modelValue.value = false
-
 interface IItem {
   id: number
   name: string

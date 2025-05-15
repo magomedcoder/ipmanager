@@ -13,12 +13,12 @@ const serviceStore = useServiceStore()
 const formRef = ref<FormInstance>()
 const id = ref<number>()
 const serviceList = ref<IService[]>([])
-const selected = ref<number>()
+const selected = ref<number | null>(null)
 
 const rules: FormRules = {
   service: [
     {
-      required: true,
+      required: false,
       message: 'Сервис не должен быть пустым.',
       trigger: 'blur'
     }
@@ -27,9 +27,7 @@ const rules: FormRules = {
 
 export const showEditServiceBox = (form: IIp) => {
   id.value = form.id
-  if (form.serviceId !=0) {
-    selected.value = form.serviceId
-  }
+  selected.value = (form.serviceId !=0) ? form.serviceId : null
 
   serviceStore.getServices(1, 100)
     .then(async (res: { total: number; items: IService[] }) => {
@@ -59,7 +57,8 @@ export const showEditServiceBox = (form: IIp) => {
           h(ElSelect, {
             modelValue: selected.value,
             'onUpdate:modelValue': (value: number) => selected.value = value,
-            placeholder: 'Выберите cервис'
+            placeholder: 'Выберите cервис',
+            clearable: true
           }, serviceList.value.map(service =>
             h(ElOption, {
               label: service.name,
@@ -73,6 +72,7 @@ export const showEditServiceBox = (form: IIp) => {
       if (action === 'confirm') {
         validateForm(formRef).then(() => {
           ipStore.editServiceById(id.value, selected.value).then(() => done())
+          ipStore.getIpById()
         })
       } else {
         done()

@@ -36,24 +36,24 @@ const columns = ref<IColumn[]>([
     title: "Название",
     width: 350
   },
-  {
-    key: "vlanName",
-    dataKey: "vlanName",
-    title: "VLAN",
-    width: 350
-  },
+  // {
+  //   key: "vlanName",
+  //   dataKey: "vlanName",
+  //   title: "VLAN",
+  //   width: 350
+  // },
   {
     key: "ipName",
     dataKey: "ipName",
     title: "IP",
     width: 350
   },
-  {
-    key: "customerName",
-    dataKey: "customerName",
-    title: "Клиент",
-    width: 350
-  },
+  // {
+  //   key: "customerName",
+  //   dataKey: "customerName",
+  //   title: "Клиент",
+  //   width: 350
+  // },
 ])
 
 const load = async (_page: number) => {

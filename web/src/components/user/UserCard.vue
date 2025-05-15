@@ -7,8 +7,6 @@ const props = defineProps(['id'])
 
 const userStore = useUserStore()
 
-const onClose = () => modelValue.value = false
-
 interface IUser {
   id: number
   username: string

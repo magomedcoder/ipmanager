@@ -14,7 +14,7 @@ const description = ref<string>('')
 const rules: FormRules = {
   description: [
     {
-      required: true,
+      required: false,
       message: 'Описание не должно быть пустым.',
       trigger: 'blur'
     }
@@ -54,6 +54,7 @@ export const showEditDescriptionBox = (form: IIp) => {
       if (action === 'confirm') {
         validateForm(formRef).then(() => {
           ipStore.editDescriptionById(id.value, description.value).then(() => done())
+          ipStore.getIpById()
         })
       } else {
         done()

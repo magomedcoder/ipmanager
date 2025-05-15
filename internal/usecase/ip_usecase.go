@@ -68,12 +68,20 @@ func (i *IpUseCase) Create(ctx context.Context, opt *IpOpt) (*entity.Ip, error) 
 	}, nil
 }
 
+func (i *IpUseCase) checkBusy(item *postgresModel.Ip) bool {
+	if item.Customer != nil || item.Service != nil {
+		return true
+	}
+
+	return false
+}
+
 func (i *IpUseCase) GetIps(ctx context.Context, arg ...func(*gorm.DB)) ([]*entity.Ip, error) {
 	ips, err := i.IpRepo.GetIps(ctx, func(db *gorm.DB) {
 		for _, fn := range arg {
 			fn(db)
 		}
-		db.Preload("Customer")
+		db.Preload("Customer").Preload("Service")
 	})
 	if err != nil {
 		return nil, err
@@ -81,16 +89,19 @@ func (i *IpUseCase) GetIps(ctx context.Context, arg ...func(*gorm.DB)) ([]*entit
 
 	items := make([]*entity.Ip, 0)
 	for _, item := range ips {
+		busy := i.checkBusy(item)
 		res := &entity.Ip{
 			Id:          int64(item.ID),
 			Ip:          item.Ip,
+			Busy:        busy,
 			SubnetId:    int64(item.SubnetID),
 			SubnetName:  item.Ip,
 			Description: item.Description,
 		}
 
-		if item.Customer != nil {
-			res.Busy = true
+		if item.Service != nil {
+			res.ServiceId = int64(item.Service.ID)
+			res.ServiceName = item.Service.Name
 		}
 
 		if item.Customer != nil {
@@ -110,9 +121,11 @@ func (i *IpUseCase) GetById(ctx context.Context, id int64) (*entity.Ip, error) {
 		return nil, errors.New(fmt.Sprintf("Не удалось получить ip: %v", id))
 	}
 
+	busy := i.checkBusy(ip)
 	res := &entity.Ip{
 		Id:          int64(ip.ID),
 		Ip:          ip.Ip,
+		Busy:        busy,
 		SubnetId:    int64(ip.SubnetID),
 		SubnetName:  ip.Ip,
 		Description: ip.Description,
@@ -120,6 +133,11 @@ func (i *IpUseCase) GetById(ctx context.Context, id int64) (*entity.Ip, error) {
 
 	if ip.Customer != nil {
 		res.Busy = true
+	}
+
+	if ip.Service != nil {
+		res.ServiceId = int64(ip.Service.ID)
+		res.ServiceName = ip.Service.Name
 	}
 
 	if ip.Customer != nil {
@@ -139,9 +157,9 @@ func (i *IpUseCase) EditCustomerById(ctx context.Context, id int64, customerId i
 }
 
 func (i *IpUseCase) EditServiceById(ctx context.Context, id int64, serviceId int64) error {
-	//if err := i.IpRepo.EditServiceById(ctx, id, serviceId); err != nil {
-	//	return errors.New(fmt.Sprintf("Не удалось получить ip: %v", id))
-	//}
+	if err := i.IpRepo.EditServiceById(ctx, id, serviceId); err != nil {
+		return errors.New(fmt.Sprintf("Не удалось получить ip: %v", id))
+	}
 
 	return nil
 }
