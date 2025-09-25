@@ -3,8 +3,8 @@ package repository
 import (
 	"context"
 	"errors"
+	"github.com/magomedcoder/gskeleton/pkg/gormutil"
 	"github.com/magomedcoder/ipmanager/internal/infrastructure/postgres/model"
-	"github.com/magomedcoder/ipmanager/pkg/gormutil"
 	"gorm.io/gorm"
 	"log"
 )

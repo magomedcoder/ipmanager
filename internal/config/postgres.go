@@ -12,7 +12,7 @@ type Postgres struct {
 
 func (p *Postgres) GetDsn() string {
 	return fmt.Sprintf(
-		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable TimeZone=Europe/Moscow",
+		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		p.Host,
 		p.Port,
 		p.Username,

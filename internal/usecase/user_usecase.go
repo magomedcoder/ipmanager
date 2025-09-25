@@ -24,6 +24,8 @@ type IUserUseCase interface {
 
 	ChangePasswordById(ctx context.Context, id int64, password string, newPassword string) error
 
+	HashPassword(password string) (string, error)
+
 	ValidateToken(tokenString string) (*UserClaims, error)
 
 	IsTokenRevoked(ctx context.Context, token string) (bool, error)
@@ -73,7 +75,7 @@ func (u *UserUseCase) Logout(ctx context.Context, accessToken string) error {
 	return u.UserSessionRepo.DeleteByToken(ctx, accessToken)
 }
 
-func (u *UserUseCase) hashPassword(password string) (string, error) {
+func (u *UserUseCase) HashPassword(password string) (string, error) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	return string(bytes), err
 }
@@ -147,7 +149,7 @@ func (u *UserUseCase) ChangePasswordById(ctx context.Context, id int64, password
 		return errors.New("Неверно введен пароль")
 	}
 
-	passwordHash, err := u.hashPassword(newPassword)
+	passwordHash, err := u.HashPassword(newPassword)
 	if err != nil {
 		return errors.New("Не удалось хешировать пароль")
 	}
@@ -181,7 +183,7 @@ func (u *UserUseCase) Create(ctx context.Context, opt *UserOpt) (*entity.User, e
 		return nil, status.Error(codes.AlreadyExists, fmt.Sprintf("Пользователь %s уже существует", user.Username))
 	}
 
-	passwordHash, err := u.hashPassword(opt.Password)
+	passwordHash, err := u.HashPassword(opt.Password)
 	if err != nil {
 		return nil, status.Error(codes.Internal, "Не удалось хешировать пароль")
 	}

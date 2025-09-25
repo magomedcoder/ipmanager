@@ -29,13 +29,15 @@ func (m *Migrate) Migrate(ctx context.Context) error {
 		return err
 	}
 
-	return nil
-}
+	userUseCase := usecase.UserUseCase{}
+	password, err := userUseCase.HashPassword("admin123")
+	if err != nil {
+		return err
+	}
 
-func (m *Migrate) TestData(ctx context.Context) error {
 	m.Db.Create(&model.User{
 		Username: "admin",
-		Password: "$2a$10$BWRbkV5MMg4JBPkeD30wO.qv1.HJcZfRZbY2uCCJnEc4YD1X7xI2i",
+		Password: password,
 		Name:     "Admin",
 		Surname:  "Admin",
 	})

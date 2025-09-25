@@ -36,12 +36,5 @@ func main() {
 			return cli.RunMigrate(ctx, di.NewCliInjector(conf))
 		},
 	})
-	_app.Register(app.Command{
-		Name:  "test-data",
-		Usage: "Test data",
-		Action: func(ctx *cliV2.Context, conf *config.Config) error {
-			return cli.RunTestData(ctx, di.NewCliInjector(conf))
-		},
-	})
 	_app.Run()
 }

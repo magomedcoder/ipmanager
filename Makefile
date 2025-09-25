@@ -6,10 +6,6 @@ run:
 migrate:
 	go run ./cmd/ipmanager migrate -config ./configs/ipmanager.yaml
 
-.PHONY: test-data
-test-data:
-	go run ./cmd/ipmanager test-data -config ./configs/ipmanager.yaml
-
 .PHONY: test-client
 test-client:
 	go run ./test/grpc_client
@@ -26,7 +22,5 @@ gen:
 	   --go_out=paths=source_relative:./api/pb \
 	   --go-grpc_out=paths=source_relative:./api/pb \
 	   ./api/proto/*.proto
-
-	wire ./internal/app/di
 
 	cd web && yarn gen

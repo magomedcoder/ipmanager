@@ -88,7 +88,7 @@ loadVlan()
 <template>
   <el-dialog
     v-model="modelValue"
-    title="Добавить подсеть"
+    title="Добавить подсеть (Пример: 0.0.0.0/0)"
     width="500"
     align-center
   >

@@ -50,6 +50,7 @@ export const useUserStore = defineStore('user', {
       try {
         const { success } = await userService.logout()
         console.log(success)
+        removeAccessToken()
       } catch (err) {
         if (err instanceof ConnectError) {
           console.log(err.message)

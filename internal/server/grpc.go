@@ -14,7 +14,7 @@ import (
 	"strings"
 )
 
-func Run(app *di.AppProvider) error {
+func Run(app *di.GrpcProvider) error {
 	srv := grpc.NewServer(
 		grpc.UnaryInterceptor(app.Middleware.UnaryInterceptor),
 		grpc.StreamInterceptor(app.Middleware.StreamInterceptor),

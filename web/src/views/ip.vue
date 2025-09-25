@@ -10,7 +10,7 @@ import BaseChart from '@/components/base/BaseChart.vue'
 import type { IIp } from '@/types/ip'
 import { showEditVlanBox } from '@/components/subnet/vlan-edit'
 import { showEditDescriptionBox } from '@/components/subnet/description-edit'
-import { ISubnet } from '@/types/subnet'
+import type { ISubnet } from '@/types/subnet'
 import { getLastOctet } from '@/utils/util'
 
 const route: any = useRoute()

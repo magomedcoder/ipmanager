@@ -1,6 +1,6 @@
 FROM alpine:3.21 AS builder
 
-ARG GOLANG_VERSION=1.23.9
+ARG GOLANG_VERSION=1.24.7
 
 RUN apk update && \
     apk add --no-cache make gcc openssh bash musl-dev openssl-dev ca-certificates nodejs yarn && \
