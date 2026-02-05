@@ -3,10 +3,11 @@ package repository
 import (
 	"context"
 	"errors"
-	"github.com/magomedcoder/gskeleton/pkg/gormutil"
+	"log"
+
+	"github.com/magomedcoder/gutil/gormutil"
 	"github.com/magomedcoder/ipmanager/internal/infrastructure/postgres/model"
 	"gorm.io/gorm"
-	"log"
 )
 
 type ISubnetRepository interface {

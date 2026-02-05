@@ -2,7 +2,8 @@ package handler
 
 import (
 	"context"
-	"github.com/magomedcoder/gskeleton/pkg/gormutil"
+
+	"github.com/magomedcoder/gutil/gormutil"
 	"github.com/magomedcoder/ipmanager/api/pb"
 	"github.com/magomedcoder/ipmanager/internal/usecase"
 	"google.golang.org/grpc/codes"

@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/magomedcoder/gskeleton/pkg/gormutil"
+	"github.com/magomedcoder/gutil/gormutil"
 	"github.com/magomedcoder/ipmanager/internal/infrastructure/postgres/model"
 	"gorm.io/gorm"
 )
