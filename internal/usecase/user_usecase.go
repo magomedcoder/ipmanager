@@ -115,7 +115,7 @@ func (u *UserUseCase) generateToken(user *postgresModel.User) (*entity.UserLogin
 
 func (u *UserUseCase) ValidateToken(tokenString string) (*UserClaims, error) {
 	claims := &UserClaims{}
-	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (any, error) {
 		return []byte(u.Conf.Jwt.Secret), nil
 	})
 	if err != nil || !token.Valid {

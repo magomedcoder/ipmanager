@@ -6,8 +6,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type IServiceVlanRepository interface {
-}
+type IServiceVlanRepository any
 
 var _ IServiceVlanRepository = (*ServiceVlanRepository)(nil)
 

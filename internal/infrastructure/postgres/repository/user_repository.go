@@ -72,7 +72,7 @@ func (u *UserRepository) GetByUsername(username string) (*model.User, error) {
 }
 
 func (u *UserRepository) UpdatePasswordById(ctx context.Context, id int64, password string) (int64, error) {
-	_id, err := u.Repo.UpdateById(ctx, id, map[string]interface{}{
+	_id, err := u.Repo.UpdateById(ctx, id, map[string]any{
 		"password": password,
 	})
 	if err != nil {
